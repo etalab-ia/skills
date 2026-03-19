@@ -10,10 +10,16 @@ npm install --save @codegouvfr/react-dsfr
 
 ## Vite
 
-1. Ajouter les scripts dans `package.json` :
+1. Copier les assets DSFR dans le dossier `public/` et ajouter les scripts dans `package.json` :
+```bash
+cp -r node_modules/@codegouvfr/react-dsfr/dsfr public/dsfr
+```
+
+Pour automatiser cette copie après chaque `npm install`, ajouter un script `postinstall` :
 ```json
 {
   "scripts": {
+    "postinstall": "cp -r node_modules/@codegouvfr/react-dsfr/dsfr public/dsfr",
     "predev": "react-dsfr update-icons",
     "prebuild": "react-dsfr update-icons"
   }
