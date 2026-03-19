@@ -15,10 +15,13 @@ Créer des interfaces React conformes au [Design System de l'État](https://www.
 
 ### rgaa
 
-[Référentiel Général d'Amélioration de l'Accessibilité](https://accessibilite.numerique.gouv.fr/) (RGAA 4.1.2) — 106 critères d'accessibilité numérique.
+Outil d'audit de conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) — 106 critères d'accessibilité numérique.
 
-- Checklists par type de composant (images, formulaires, navigation, tableaux...)
-- Patterns React/HTML accessibles
+Fournir du code HTML/React à auditer → rapport de conformité structuré avec statut C/NC/NA par critère, liste des non-conformités et corrections priorisées (🔴 Bloquant, 🟠 Majeur, 🟡 Mineur).
+
+- Workflow d'audit en 4 étapes et format de rapport standardisé
+- 106 critères avec test de code, non-conformité type et priorité
+- Couvre les 13 thèmes : images, cadres, couleurs, multimédia, tableaux, liens, scripts, structure, présentation, formulaires, navigation, consultation
 - Basé sur WCAG 2.1 niveau AA
 
 ### securite-anssi
