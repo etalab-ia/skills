@@ -28,6 +28,20 @@ Compliant with [beta.gouv standards](https://doc.incubateur.net/).
 
 ---
 
+## Architecture
+
+> **Adapt this section to your project.** Document the directory structure and key files so the AI assistant understands the codebase layout.
+
+```
+src/
+├── app/                # Pages and routes
+├── components/         # Reusable UI components
+├── lib/                # Business logic, utilities, types
+└── __tests__/          # Unit and E2E tests
+```
+
+---
+
 ## Design System — DSFR
 
 The [DSFR](https://www.systeme-de-design.gouv.fr/) (Design System de l'État) is **mandatory** for French government services.
@@ -149,19 +163,67 @@ Ref: https://cyber.gouv.fr/les-regles-de-securite
 
 ---
 
-## Tests
+## Tests & Definition of Done
 
-- Any new feature must be accompanied by tests
-- Before considering a task complete, run the tests and verify that they pass
-- If you modify existing code, add tests if there aren't any already
+### Definition of Done
+
+A task is only complete when all 3 steps are validated, in order:
+
+1. **Automated tests**: `pnpm validate` passes (lint + type-check + unit tests)
+2. **Visual verification**: open the relevant page in the browser, verify rendering, navigation, and interactions
+3. **Fix loop**: if any issue is found (test or visual), fix and restart from step 1
+
+Never consider a task done based solely on code — the browser rendering is the source of truth.
+
+### Commands
+
+> **Adapt to your project.** The key principle is having a single `validate` command that runs all checks.
 
 ```bash
-pnpm test              # Unit tests
-pnpm test:e2e          # E2E tests
+pnpm dev               # Dev server
+pnpm test              # Unit tests (Vitest)
+pnpm test:e2e          # E2E tests (Playwright)
 pnpm test:coverage     # Coverage
+pnpm validate          # lint + type-check + tests (single entry point)
+```
+
+The `validate` script should be defined in `package.json`:
+```json
+{
+  "scripts": {
+    "validate": "pnpm lint && pnpm type-check && pnpm test"
+  }
+}
 ```
 
 **Coverage targets:** 70% minimum for new code, 90%+ for critical paths.
+
+---
+
+## CI — GitHub Actions
+
+> **Adapt to your project.** At minimum, CI should run lint, type-check, tests, and build on every push and PR.
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm type-check
+      - run: pnpm test
+      - run: pnpm build
+```
 
 ---
 
@@ -211,7 +273,7 @@ fix/description-courte
 4. DSFR components used (no custom components if a DSFR equivalent exists)
 5. `alt` on informative images
 6. Keyboard navigation OK for dynamic content
-7. `pnpm validate` or `pnpm lint` passes
+7. `pnpm validate` passes
 8. Tests pass
 
 ---
