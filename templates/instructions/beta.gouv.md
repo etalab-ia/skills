@@ -11,10 +11,20 @@
 
 ## Context
 
+> **Adapt this section to your project.** Describe what the product does, who it serves, and its current stage (investigation, construction, acceleration, transfer). This helps the AI assistant understand the domain and make better decisions.
+
 French government project, part of the [beta.gouv.fr](https://beta.gouv.fr/) ecosystem.
 Compliant with [beta.gouv standards](https://doc.incubateur.net/).
 
+<!-- Example:
+**[Product name]** is a [brief description of the product and its purpose].
+It serves [target users] and is currently in [phase] stage.
+Key domain concepts: [list 3-5 domain terms the AI should know].
+-->
+
 ## Language
+
+> **Adapt if needed.** These are the beta.gouv defaults. Adjust if your team uses different conventions (e.g., English commit messages for international contributors).
 
 | Context | Language |
 |---------|----------|
@@ -25,6 +35,49 @@ Compliant with [beta.gouv standards](https://doc.incubateur.net/).
 | Issues and discussions | **French** |
 | Code review | **French** |
 | User interface | French |
+
+---
+
+## Expected Behavior
+
+### Plan Mode
+
+For any non-trivial task (3+ steps or architectural decision):
+
+1. Write the plan in `tasks/todo.md` with checkable items
+2. Validate the plan before implementing
+3. Mark items as completed along the way
+4. Add a "result" section at the end of `tasks/todo.md`
+
+If something goes off track: **STOP** and re-plan before continuing.
+
+### Task Management (`tasks/`)
+
+```
+tasks/
+├── todo.md      # Current plan: checkable items, final result
+└── lessons.md   # Error patterns encountered on this project
+```
+
+`tasks/todo.md` is reset for each new task. `tasks/lessons.md` is cumulative.
+
+### Self-Improvement Loop
+
+After any user correction:
+- Update `tasks/lessons.md` with the error pattern and the rule to remember
+- Re-read `tasks/lessons.md` at the start of each session to avoid repeating the same mistakes
+
+### Bug Fixing
+
+When facing a bug: fix it directly. Point to logs, errors, and failing tests — then resolve without asking for step-by-step guidance.
+
+### Code Quality
+
+For any non-trivial change, ask yourself: **"Is there a more elegant solution?"**
+
+If a fix feels hacky: *"Knowing everything I know now, implement the elegant solution."*
+
+Do not apply to simple, obvious fixes — no over-engineering.
 
 ---
 
@@ -43,6 +96,8 @@ src/
 ---
 
 ## Design System — DSFR
+
+> **Keep the framework row matching your stack** and remove the others from the table below. If your project has no UI, you can remove this entire section.
 
 The [DSFR](https://www.systeme-de-design.gouv.fr/) (Design System de l'État) is **mandatory** for French government services.
 Component docs: https://www.systeme-de-design.gouv.fr/version-courante/fr/composants
@@ -142,6 +197,8 @@ Ref: https://cyber.gouv.fr/les-regles-de-securite
 
 ## Recommended Stack
 
+> **Adapt to your project.** Replace the defaults below with your actual stack. Remove rows that don't apply (e.g., no frontend for an API-only project). The AI assistant uses this table to choose the right tools and patterns.
+
 | Component | Default choice |
 |-----------|---------------|
 | Frontend | Next.js or Vite + React |
@@ -154,6 +211,13 @@ Ref: https://cyber.gouv.fr/les-regles-de-securite
 | TypeScript | Strict mode |
 | Formatting | Prettier (single quotes) |
 | Linting | ESLint with TypeScript rules |
+
+<!-- Add or remove rows as needed. Examples:
+| Backend | Django / FastAPI / Express |
+| Database | PostgreSQL |
+| ORM | Prisma / Drizzle |
+| Auth | ProConnect / Keycloak |
+-->
 
 **Code conventions:**
 - `type` over `interface`
@@ -279,8 +343,11 @@ feat: Implémenter le filtre par région (#456)
 | `test` | Adding or modifying tests |
 | `chore` | Maintenance, config, CI |
 | `style` | Formatting, no logic change |
+| `data` | Adding or modifying data files |
 
 ### Branches
+
+> **Add branch patterns specific to your project** (e.g., `data/source-name` for data projects, `hotfix/...` for production fixes).
 
 ```
 feat/description-courte
@@ -303,6 +370,8 @@ fix/description-courte
 ---
 
 ## Open Source
+
+> **Specify your license.** beta.gouv projects are open source by default. Choose MIT or Apache 2.0 and update below.
 
 - All code is public (beta.gouv requirement)
 - License: MIT or Apache 2.0
