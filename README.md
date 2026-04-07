@@ -42,7 +42,7 @@ Créer des interfaces React pour les applications [LaSuite](https://lasuite.nume
 - Headers de sécurité, validation des entrées
 - Dépendances, logs, conteneurs, incidents
 
-### datagouv
+### datagouv-apis
 
 Référence consolidée des 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) pour interagir avec la plateforme de données ouvertes.
 
@@ -64,27 +64,27 @@ Chaque template inclut : conventions de langue, design system, accessibilité RG
 
 ## Installation
 
+### Vercel Skills CLI (recommandé)
+
+```bash
+# Installer toutes les skills
+npx skills add etalab-ia/skills
+
+# Installer une skill spécifique
+npx skills add etalab-ia/skills --skill react-dsfr
+npx skills add etalab-ia/skills --skill rgaa
+```
+
 ### Claude Code
 
 ```bash
-# Cloner dans le dossier skills de Claude Code
-git clone https://github.com/benoitvx/skills-etat.git
-cp -r skills-etat/react-dsfr ~/.claude/skills/
-cp -r skills-etat/lasuite-ui-kit ~/.claude/skills/
-cp -r skills-etat/rgaa ~/.claude/skills/
-cp -r skills-etat/securite-anssi ~/.claude/skills/
-cp -r skills-etat/datagouv ~/.claude/skills/
+npx skills add etalab-ia/skills -a claude-code
 ```
 
 ### OpenCode
 
 ```bash
-git clone https://github.com/benoitvx/skills-etat.git
-cp -r skills-etat/react-dsfr ~/.config/opencode/skills/
-cp -r skills-etat/lasuite-ui-kit ~/.config/opencode/skills/
-cp -r skills-etat/rgaa ~/.config/opencode/skills/
-cp -r skills-etat/securite-anssi ~/.config/opencode/skills/
-cp -r skills-etat/datagouv ~/.config/opencode/skills/
+npx skills add etalab-ia/skills -a opencode
 ```
 
 ### Mistral Vibe
@@ -94,7 +94,7 @@ Copier les fichiers `SKILL.md` et `references/` dans le dossier de votre projet 
 ## Structure
 
 ```
-skills-etat/
+skills/
 ├── react-dsfr/
 │   ├── SKILL.md
 │   └── references/
@@ -116,7 +116,7 @@ skills-etat/
 │       └── criteres-structure-presentation.md
 ├── securite-anssi/
 │   └── SKILL.md
-├── datagouv/
+├── datagouv-apis/
 │   └── SKILL.md
 └── templates/
     └── instructions/

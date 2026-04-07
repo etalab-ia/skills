@@ -115,7 +115,7 @@ Component docs: https://www.systeme-de-design.gouv.fr/version-courante/fr/compos
 
 > Use the DSFR implementation matching your project's stack. RGAA 4.2 accessibility compliance is built in.
 
-> For React projects, the `react-dsfr` skill from [skills-etat](https://github.com/numerique-gouv/skills-etat) provides detailed component reference and code patterns.
+> For React projects, the `react-dsfr` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides detailed component reference and code patterns.
 
 **Plain HTML:**
 - Use `fr-*` CSS classes
@@ -134,7 +134,7 @@ Component docs: https://www.systeme-de-design.gouv.fr/version-courante/fr/compos
 RGAA 4.2 compliance (WCAG 2.1 AA) is mandatory.
 Ref: https://accessibilite.numerique.gouv.fr/
 
-> For a comprehensive audit, the `rgaa` skill from [skills-etat](https://github.com/numerique-gouv/skills-etat) provides a full 106-criteria audit tool that produces structured conformity reports.
+> For a comprehensive audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 106-criteria audit tool that produces structured conformity reports.
 
 ### Images
 
@@ -182,7 +182,7 @@ Ref: https://cyber.gouv.fr/les-regles-de-securite
 - [ ] Dependencies up to date (no known vulnerabilities)
 - [ ] No `console.log` in production
 
-> For a comprehensive review, the `securite-anssi` skill from [skills-etat](https://github.com/numerique-gouv/skills-etat) provides a full 12-rule security checklist for government app development.
+> For a comprehensive review, the `securite-anssi` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 12-rule security checklist for government app development.
 
 ---
 
@@ -382,12 +382,12 @@ fix/description-courte
 
 ## Relevant Skills
 
-The [skills-etat](https://github.com/numerique-gouv/skills-etat) repository provides AI coding assistant skills tailored for French government projects:
+The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides AI coding assistant skills tailored for French government projects:
 
 - **react-dsfr** — React component reference for the DSFR design system (`@codegouvfr/react-dsfr`)
 - **rgaa** — Full 106-criteria RGAA accessibility audit tool with structured conformity reports
 - **securite-anssi** — Comprehensive 12-rule ANSSI security checklist
-- **datagouv** — data.gouv.fr APIs reference (catalog, metrics, tabular data)
+- **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular data)
 
 ---
 
