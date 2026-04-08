@@ -60,16 +60,6 @@ Référence consolidée des 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) 
 - API Tabulaire (requêter les données CSV par resource ID)
 - Skill synchronisée automatiquement depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill)
 
-### skill-creator
-
-Créer, itérer et optimiser des skills pour assistants de code IA.
-
-- Workflow complet : capture d'intention → interview → écriture SKILL.md → test → évaluation → amélioration
-- Système de test et d'évaluation avec agents spécialisés (analyzer, comparator, grader)
-- Benchmarks et comparaison A/B en aveugle
-- Optimisation des descriptions pour la précision des triggers
-- Viewer HTML pour les résultats d'évaluation
-
 ## Templates d'instructions
 
 Fichiers `INSTRUCTIONS.md` prêts à l'emploi pour configurer un assistant de code IA sur un projet de l'État. Copier le fichier correspondant à la racine de votre projet sous le nom `INSTRUCTIONS.md` ou `CLAUDE.md`.
@@ -139,13 +129,6 @@ skills/
 │   └── SKILL.md
 ├── datagouv-apis/
 │   └── SKILL.md
-├── skill-creator/
-│   ├── SKILL.md
-│   ├── agents/
-│   ├── references/
-│   ├── scripts/
-│   ├── assets/
-│   └── eval-viewer/
 └── templates/
     └── instructions/
         ├── beta.gouv.md
