@@ -38,7 +38,7 @@ Use the **La Suite UI Kit** and **Cunningham**:
 **Available components:**
 MainLayout, Header, LeftPanel, RightPanel, Footer, Tabs, DropdownMenu, Input, Textarea, Select, Checkbox, Radio, Switch, Label, TreeView, Datagrid, QuickSearch, Badge, Icon, Loader, Tooltip, Modal, Separator, Hero, Filter, LanguageSelector, ShareModal, UserAvatar, UserMenu, UsersInvitation, LaGaufre, ProConnectButton
 
-> For detailed component reference and code patterns, the `lasuite-ui-kit` skill from [skills-etat](https://github.com/numerique-gouv/skills-etat) covers both `@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`.
+> For detailed component reference and code patterns, the `lasuite-ui-kit` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) covers both `@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`.
 
 **Rules:**
 - NEVER create a custom component if an equivalent UI Kit or Cunningham component exists
@@ -52,7 +52,7 @@ MainLayout, Header, LeftPanel, RightPanel, Footer, Tabs, DropdownMenu, Input, Te
 RGAA 4.2 compliance (WCAG 2.1 AA) is mandatory.
 Ref: https://accessibilite.numerique.gouv.fr/ + [handbook/accessibility](https://suitenumerique.gitbook.io/handbook/accessibility)
 
-> For a comprehensive audit, the `rgaa` skill from [skills-etat](https://github.com/numerique-gouv/skills-etat) provides a full 106-criteria audit tool that produces structured conformity reports.
+> For a comprehensive audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 106-criteria audit tool that produces structured conformity reports.
 
 **Test with a screen reader:**
 - macOS: VoiceOver + Safari (built-in)
@@ -112,7 +112,7 @@ Ref: https://accessibilite.numerique.gouv.fr/ + [handbook/accessibility](https:/
 
 Ref: [handbook/security](https://suitenumerique.gitbook.io/handbook/security) + ANSSI
 
-> For a comprehensive review, the `securite-anssi` skill from [skills-etat](https://github.com/numerique-gouv/skills-etat) provides a full 12-rule ANSSI security checklist for government app development.
+> For a comprehensive review, the `securite-anssi` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 12-rule ANSSI security checklist for government app development.
 
 **Code:**
 - No secrets, API keys, or passwords in code
@@ -255,9 +255,9 @@ Format: `🔖(minor) bump release to X.Y.Z` with changelog in the commit body.
 
 ## Relevant Skills
 
-The [skills-etat](https://github.com/numerique-gouv/skills-etat) repository provides AI coding assistant skills tailored for French government projects:
+The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides AI coding assistant skills tailored for French government projects:
 
 - **lasuite-ui-kit** — Component reference for La Suite UI Kit (`@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`)
 - **rgaa** — Full 106-criteria RGAA accessibility audit tool with structured conformity reports
 - **securite-anssi** — Comprehensive 12-rule ANSSI security checklist
-- **datagouv** — data.gouv.fr APIs reference (catalog, metrics, tabular data)
+- **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular data)

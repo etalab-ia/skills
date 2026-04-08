@@ -25,7 +25,7 @@ The `SKILL.md` frontmatter fields (`name`, `description`) are used by AI tools t
 - **lasuite-ui-kit** — React components for LaSuite apps using `@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`
 - **rgaa** — RGAA 4.1.2 accessibility audit tool (106 criteria, produces structured conformity reports)
 - **securite-anssi** — ANSSI security checklist (12 rules for government app development)
-- **datagouv** — data.gouv.fr APIs reference (catalog, metrics, tabular) — synced from [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill)
+- **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular) — synced from [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill)
 
 ## Templates
 
@@ -33,7 +33,7 @@ The `templates/instructions/` directory contains ready-to-use `INSTRUCTIONS.md` 
 
 ## Upstream Sync
 
-The `datagouv` skill is synced from an external repo (`datagouv/datagouv-skill`). A GitHub Actions workflow (`.github/workflows/sync-datagouv.yml`) runs weekly (Monday 9h UTC) and on manual trigger. It compares the upstream HEAD SHA against `.sync-state/datagouv.sha` and opens a PR if changes are detected. This mechanism is extensible to other third-party skills.
+The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-skill`). A GitHub Actions workflow (`.github/workflows/sync-datagouv.yml`) runs weekly (Monday 9h UTC) and on manual trigger. It compares the upstream HEAD SHA against `.sync-state/datagouv.sha` and opens a PR if changes are detected. This mechanism is extensible to other third-party skills.
 
 ## Conventions
 
