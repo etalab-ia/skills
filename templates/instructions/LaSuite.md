@@ -260,4 +260,4 @@ The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides 
 - **lasuite-ui-kit** — Component reference for La Suite UI Kit (`@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`)
 - **rgaa** — Full 106-criteria RGAA accessibility audit tool with structured conformity reports
 - **securite-anssi** — Comprehensive 12-rule ANSSI security checklist
-- **datagouv** — data.gouv.fr APIs reference (catalog, metrics, tabular data)
+- **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular data)

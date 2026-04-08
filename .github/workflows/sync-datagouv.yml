@@ -27,8 +27,7 @@ jobs:
       - name: Sync files
         if: steps.check.outputs.changed == 'true'
         run: |
-          cp /tmp/upstream/SKILL.md skills/datagouv/SKILL.md
-          sed -i 's/^name: datagouv-apis$/name: datagouv/' skills/datagouv/SKILL.md
+          cp /tmp/upstream/SKILL.md skills/datagouv-apis/SKILL.md
           echo "${{ steps.check.outputs.sha }}" > .sync-state/datagouv.sha
       - name: Create PR
         if: steps.check.outputs.changed == 'true'
@@ -39,7 +38,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add skills/datagouv/SKILL.md .sync-state/datagouv.sha
+          git add skills/datagouv-apis/SKILL.md .sync-state/datagouv.sha
           git commit -m "chore(datagouv): sync upstream changes"
           git push origin "$BRANCH"
           gh pr create \
