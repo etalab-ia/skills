@@ -293,14 +293,29 @@ jobs:
 
 ## Pre-commit (Husky)
 
-`pnpm validate` runs on every commit via Husky. **Never bypass with `--no-verify`** — if the hook fails, fix the underlying issue.
+`gitleaks` (secret scanning) and `pnpm validate` run on every commit via Husky. **Never bypass with `--no-verify`** — if the hook fails, fix the underlying issue.
 
 ```bash
 # Setup (once)
 pnpm add -D husky
 pnpm exec husky init
-echo "pnpm validate" > .husky/pre-commit
+
+# Install gitleaks
+brew install gitleaks  # macOS
+# Or: apt install gitleaks (Debian/Ubuntu)
+# Or: scoop install gitleaks (Windows)
+# Or: download from https://github.com/gitleaks/gitleaks/releases
+
+# Configure pre-commit hook
+cat > .husky/pre-commit << 'EOF'
+gitleaks protect --verbose --staged
+pnpm validate
+EOF
 ```
+
+**Gitleaks** detects hardcoded secrets (API keys, tokens, passwords) before they enter version control. It uses pattern matching for hundreds of known provider token formats (OpenAI, HuggingFace, AWS, GitHub, etc.) with low false positive rates.
+
+Ref: https://github.com/gitleaks/gitleaks
 
 ---
 

@@ -231,6 +231,33 @@ Format: `🔖(minor) bump release to X.Y.Z` with changelog in the commit body.
 
 ---
 
+## Pre-commit (Husky)
+
+`gitleaks` (secret scanning) runs on every commit via Husky. **Never bypass with `--no-verify`** — if the hook fails, fix the underlying issue.
+
+```bash
+# Setup (once)
+yarn add -D husky
+npx husky init
+
+# Install gitleaks
+brew install gitleaks  # macOS
+# Or: apt install gitleaks (Debian/Ubuntu)
+# Or: scoop install gitleaks (Windows)
+# Or: download from https://github.com/gitleaks/gitleaks/releases
+
+# Configure pre-commit hook
+cat > .husky/pre-commit << 'EOF'
+gitleaks protect --verbose --staged
+EOF
+```
+
+**Gitleaks** detects hardcoded secrets (API keys, tokens, passwords) before they enter version control. It uses pattern matching for hundreds of known provider token formats with low false positive rates.
+
+Ref: https://github.com/gitleaks/gitleaks
+
+---
+
 ## Pre-commit Checklist
 
 1. No secrets in code
