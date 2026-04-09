@@ -14,6 +14,43 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 
 Chaque skill a son propre README avec des exemples d'utilisation et des liens utiles.
 
+### RAG Skills (ingestion de documents)
+
+Skills pour l'ingestion et la recherche sémantique de documents locaux. Utilisent **qmd** (indexation) et **LiteParse** (parsing).
+
+#### rag-parse
+
+Convertir des documents non-structurés (PDF, DOCX, PPTX, XLSX, images) en markdown ou JSON localement, sans dépendances cloud.
+
+- Parsing local via Tesseract.js (OCR intégré) ou serveur HTTP externe
+- Screenshots de pages pour les agents LLM
+- Support multi-format : PDF, Office, OpenDocument, images
+- Options OCR, DPI, plages de pages, format de sortie
+
+#### rag-index
+
+Indexer un corpus de documents markdown pour la recherche sémantique.
+
+- Collection qmd (stockage local SQLite + sqlite-vec)
+- Embeddings locaux sans API key
+- Ajout de contexte sémantique pour améliorer la recherche
+
+#### rag-search
+
+Rechercher dans la base de connaissances indexée.
+
+- Recherche sémantique (qmd query)
+- Filtrage par collection, limitation des résultats
+- Modes : query, vsearch, search (hybride)
+
+#### rag-tracking
+
+Mémoire externe pour les agents sans persistance (Claude Code, Codex, OpenCode). **Non nécessaire pour Letta Code** qui a une mémoire native.
+
+- Fichiers `.context/COLLECTIONS.md` et `.context/ISSUES.md`
+- Intégration avec `ctx` (outil de gestion de mémoire externe)
+- Hooks pour rappels automatiques
+
 ## Templates d'instructions
 
 Fichiers `INSTRUCTIONS.md` prêts à l'emploi pour configurer un assistant de code IA sur un projet de l'État. Copier le fichier correspondant à la racine de votre projet sous le nom `INSTRUCTIONS.md` ou `CLAUDE.md`.
@@ -83,6 +120,17 @@ skills/
 │   └── SKILL.md
 ├── datagouv-apis/
 │   └── SKILL.md
+├── rag-parse/
+│   └── SKILL.md
+├── rag-index/
+│   └── SKILL.md
+├── rag-search/
+│   └── SKILL.md
+├── rag-tracking/
+│   ├── SKILL.md
+│   ├── COLLECTIONS.md
+│   ├── ISSUES.md
+│   └── ctxrc.template
 └── templates/
     └── instructions/
         ├── beta.gouv.md

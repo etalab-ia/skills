@@ -1,0 +1,47 @@
+# .ctxrc template for dragster memory skill
+# Copy to your project root as .ctxrc and customize as needed
+
+# Context directory (managed by ctx)
+context_dir: .context
+
+# Token budget for ctx agent command
+token_budget: 8000
+
+# Priority order for loading context files
+priority_order:
+  - COLLECTIONS.md
+  - ISSUES.md
+  - TASKS.md
+  - DECISIONS.md
+  - LEARNINGS.md
+  - CONVENTIONS.md
+
+# Auto-archive completed tasks after 7 days
+auto_archive: true
+archive_after_days: 7
+
+# Hooks for automatic memory management
+[hooks.session_start]
+# Remind agent to load memory at session start
+reminder = "📦 Memory: Read .context/COLLECTIONS.md for collection state and .context/ISSUES.md for open problems."
+
+[hooks.post_tool_use]
+# Remind agent to record ingestion after parse/index commands
+match = "lit parse|qmd collection|qmd embed"
+reminder = "Record this ingestion in .context/COLLECTIONS.md"
+
+[hooks.pre_compact]
+# Save state before context compaction
+reminder = "Save any important state to .context/ before context compaction."
+
+# Freshness tracking for memory files
+freshness_files:
+  - path: .context/COLLECTIONS.md
+    desc: Document collection state and ingestion history
+  - path: .context/ISSUES.md
+    desc: Parsing problems and workarounds
+
+# Drift warnings
+entry_count_learnings: 30
+entry_count_decisions: 20
+convention_line_count: 200
