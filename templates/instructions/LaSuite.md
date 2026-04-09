@@ -249,10 +249,11 @@ brew install gitleaks  # macOS
 # Configure pre-commit hook
 cat > .husky/pre-commit << 'EOF'
 gitleaks protect --verbose --staged
+yarn test
 EOF
 ```
 
-**Gitleaks** detects hardcoded secrets (API keys, tokens, passwords) before they enter version control. It uses pattern matching for hundreds of known provider token formats with low false positive rates.
+**Gitleaks** detects hardcoded secrets (API keys, tokens, passwords) before they enter version control. It uses pattern matching for hundreds of known provider token formats (OpenAI, HuggingFace, AWS, GitHub, etc.) with low false positive rates.
 
 Ref: https://github.com/gitleaks/gitleaks
 
