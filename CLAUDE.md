@@ -17,7 +17,7 @@ skill-name/
 └── references/       # Optional detailed reference docs split by topic
 ```
 
-The `SKILL.md` frontmatter fields (`name`, `description`) are used by AI tools to decide when to activate the skill. The `description` field is critical — it defines the trigger conditions.
+The `SKILL.md` frontmatter fields (`name`, `description`) are used by AI tools to decide when to activate the skill. The `description` field is critical — it defines the trigger conditions. Some skills (rag-*) use additional fields `provider` and `available-providers` to support plug-and-play of different backend providers.
 
 ## Current Skills
 
@@ -26,6 +26,9 @@ The `SKILL.md` frontmatter fields (`name`, `description`) are used by AI tools t
 - **rgaa** — RGAA 4.1.2 accessibility audit tool (106 criteria, produces structured conformity reports)
 - **securite-anssi** — ANSSI security checklist (12 rules for government app development)
 - **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular) — synced from [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill)
+- **rag-parse** — Convert PDF/DOCX/PPTX/XLSX/images to markdown or JSON with LiteParse (local, no cloud dependencies)
+- **rag-index** — Index markdown documents for semantic search with qmd (local SQLite + sqlite-vec)
+- **rag-search** — Search indexed documents with qmd (semantic and keyword search)
 
 ## Templates
 
@@ -39,7 +42,7 @@ The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-sk
 
 - All content is in **French**
 - Skills target React/TypeScript projects
-- SKILL.md files use YAML frontmatter (`---` delimiters) with `name` and `description` fields
+- SKILL.md files use YAML frontmatter (`---` delimiters) with `name` and `description` fields; RAG skills additionally use `provider` and `available-providers` fields
 - Reference files are split by theme/topic to keep individual files manageable
 - The rgaa skill is an audit tool (input: code to audit → output: structured report), not a code generation skill
 - Commit messages follow conventional commits format (e.g., `feat(skill-name):`, `docs(readme):`, `refactor(skill-name):`)

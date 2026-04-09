@@ -1,13 +1,11 @@
 ---
 name: rag-index
+description: Indexer un corpus de documents markdown pour la recherche sémantique. Utiliser quand l'utilisateur veut créer une base de connaissances, indexer des documents, ou configurer une recherche sémantique.
 provider: qmd
 available-providers:
   - qmd
   - pinecone
   - weaviate
-description: Index a document corpus for semantic search. Use when the user wants to set up a knowledge base, create a searchable index from markdown documents, or enable semantic search. Triggers on keywords like "index documents", "create knowledge base", "setup search", "semantic search".
-license: MIT
-allowed-tools: Bash
 ---
 
 # rag-index Skill

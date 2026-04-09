@@ -1,6 +1,6 @@
 # rag-index
 
-Skill pour assistants de code IA — indexer un corpus de documents markdown pour la recherche sémantique avec [qmd](https://github.com/run-llama/qmd).
+Skill pour assistants de code IA — indexer un corpus de documents markdown pour la recherche sémantique avec [qmd](https://github.com/tobi/qmd).
 
 ## Ce que fait cette skill
 
@@ -69,7 +69,7 @@ qmd status
 
 ## Liens utiles
 
-- [qmd sur GitHub](https://github.com/run-llama/qmd)
+- [qmd sur GitHub](https://github.com/tobi/qmd)
 - [sqld (moteur de qmd)](https://github.com/tursodatabase/sqld)
 
 ## Licence

@@ -12,9 +12,8 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | [**securite-anssi**](skills/securite-anssi/) | 12 règles de sécurité issues du [guide d'hygiène ANSSI](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) |
 | [**datagouv-apis**](skills/datagouv-apis/) | 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) — synchronisée depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill) |
 | [**rag-parse**](skills/rag-parse/) | Convertir PDF/DOCX/PPTX/XLSX/images en markdown ou JSON avec [LiteParse](https://github.com/run-llama/liteparse) |
-| [**rag-index**](skills/rag-index/) | Indexer un corpus de documents pour la recherche sémantique avec [qmd](https://github.com/run-llama/qmd) |
-| [**rag-search**](skills/rag-search/) | Rechercher dans une base de connaissances indexée avec [qmd](https://github.com/run-llama/qmd) |
-| [**rag-tracking**](skills/rag-tracking/) | Mémoire externe pour l'ingestion de documents (agents sans persistance) |
+| [**rag-index**](skills/rag-index/) | Indexer un corpus de documents pour la recherche sémantique avec [qmd](https://github.com/tobi/qmd) |
+| [**rag-search**](skills/rag-search/) | Rechercher dans une base de connaissances indexée avec [qmd](https://github.com/tobi/qmd) |
 
 Chaque skill a son propre README avec des exemples d'utilisation et des liens utiles.
 
@@ -101,12 +100,6 @@ skills/
 ├── rag-search/
 │   ├── README.md
 │   └── SKILL.md
-├── rag-tracking/
-│   ├── README.md
-│   ├── SKILL.md
-│   ├── COLLECTIONS.md
-│   ├── ISSUES.md
-│   └── ctxrc.template
 └── templates/
     └── instructions/
         ├── beta.gouv.md

@@ -1,14 +1,9 @@
 ---
 name: rag-parse
+description: Convertir des documents non-structurés (PDF, DOCX, PPTX, XLSX, images, etc.) en markdown ou JSON localement, sans dépendances cloud. Utiliser quand l'utilisateur demande de parser des fichiers, convertir des documents, ou extraire du texte de PDFs.
 provider: liteparse
 available-providers:
   - liteparse
-description: Use this skill when the user asks to parse, perform multi-format document conversion or spatially extract text from an unstructured file (PDF, DOCX, PPTX, XLSX, images, etc.) locally without cloud dependencies.
-compatibility: Requires Node 18+ and `@llamaindex/liteparse` installed globally via npm (`npm i -g @llamaindex/liteparse`)
-license: MIT
-metadata:
-  author: LlamaIndex
-  version: "0.1.0"
 ---
 
 # rag-parse Skill

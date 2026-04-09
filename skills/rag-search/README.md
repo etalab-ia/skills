@@ -1,6 +1,6 @@
 # rag-search
 
-Skill pour assistants de code IA — rechercher dans une base de connaissances indexée avec [qmd](https://github.com/run-llama/qmd).
+Skill pour assistants de code IA — rechercher dans une base de connaissances indexée avec [qmd](https://github.com/tobi/qmd).
 
 ## Ce que fait cette skill
 
@@ -58,7 +58,7 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 
 ## Liens utiles
 
-- [qmd sur GitHub](https://github.com/run-llama/qmd)
+- [qmd sur GitHub](https://github.com/tobi/qmd)
 
 ## Licence
 

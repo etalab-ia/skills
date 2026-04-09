@@ -1,13 +1,11 @@
 ---
 name: rag-search
+description: Rechercher dans une base de connaissances indexée. Utiliser quand l'utilisateur veut trouver des documents, effectuer une recherche sémantique, ou interroger un index de documents.
 provider: qmd
 available-providers:
   - qmd
   - pinecone
   - weaviate
-description: Search the knowledge base for relevant documents. Use when the user wants to find documents in their indexed corpus, has questions that could be answered by their documents, or needs context from their knowledge base. Triggers on keywords like "search documents", "find in knowledge base", "query index".
-license: MIT
-allowed-tools: Bash
 ---
 
 # rag-search Skill
