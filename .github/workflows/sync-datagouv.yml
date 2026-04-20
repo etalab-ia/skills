@@ -37,6 +37,10 @@ jobs:
           BRANCH="sync/datagouv-$(date +%Y%m%d)"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Delete remote branch if it exists (stale from previous failed run)
+          git push origin --delete "$BRANCH" 2>/dev/null || true
+
           git checkout -b "$BRANCH"
           git add skills/datagouv-apis/SKILL.md .sync-state/datagouv.sha
           git commit -m "chore(datagouv): sync upstream changes"
