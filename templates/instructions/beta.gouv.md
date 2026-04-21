@@ -40,7 +40,9 @@ Key domain concepts: [list 3-5 domain terms the AI should know].
 
 ## Expected Behavior
 
-### Plan Mode
+### Think Before Coding
+
+Don't assume. Don't hide confusion. If uncertain about the requirement or approach, **ask**. If a simpler approach exists, say so before writing code.
 
 For any non-trivial task (3+ steps or architectural decision):
 
@@ -50,6 +52,24 @@ For any non-trivial task (3+ steps or architectural decision):
 4. Add a "result" section at the end of `tasks/todo.md`
 
 If something goes off track: **STOP** and re-plan before continuing.
+
+### Simplicity First
+
+No features beyond what was asked. No abstractions for single-use code. No "flexibility" that nobody requested. If 200 lines could be 50, rewrite it.
+
+For any non-trivial change, ask yourself: **"Is there a more elegant solution?"**
+If a fix feels hacky: *"Knowing everything I know now, implement the elegant solution."*
+Do not apply to simple, obvious fixes — no over-engineering.
+
+### Surgical Changes
+
+Touch only what you must. Don't "improve" adjacent code. Don't refactor things that aren't broken. Every changed line should trace directly to the request.
+
+### Goal-Driven Execution
+
+Don't describe steps — define success criteria and loop until verified. Write the test first, then make it pass.
+
+When facing a bug: fix it directly. Point to logs, errors, and failing tests — then resolve without asking for step-by-step guidance.
 
 ### Task Management (`tasks/`)
 
@@ -66,18 +86,6 @@ tasks/
 After any user correction:
 - Update `tasks/lessons.md` with the error pattern and the rule to remember
 - Re-read `tasks/lessons.md` at the start of each session to avoid repeating the same mistakes
-
-### Bug Fixing
-
-When facing a bug: fix it directly. Point to logs, errors, and failing tests — then resolve without asking for step-by-step guidance.
-
-### Code Quality
-
-For any non-trivial change, ask yourself: **"Is there a more elegant solution?"**
-
-If a fix feels hacky: *"Knowing everything I know now, implement the elegant solution."*
-
-Do not apply to simple, obvious fixes — no over-engineering.
 
 ---
 
