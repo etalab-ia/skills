@@ -34,7 +34,7 @@ Don't assume. Don't hide confusion. If uncertain about the requirement or approa
 
 ### Simplicity First
 
-No features beyond what was asked. No abstractions for single-use code. No "flexibility" that nobody requested. If 200 lines could be 50, rewrite it.
+No features beyond what was asked. No abstractions for single-use code. No "flexibility" that nobody requested. If 200 lines could be 50, simplify it while staying within the surgical scope of the task.
 
 For any non-trivial change, ask yourself: **"Is there a more elegant solution?"**
 If a fix feels hacky: *"Knowing everything I know now, implement the elegant solution."*
