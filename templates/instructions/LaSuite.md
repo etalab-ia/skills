@@ -26,6 +26,32 @@ Follows the [Suite numérique Dev Handbook](https://suitenumerique.gitbook.io/ha
 
 ---
 
+## Expected Behavior
+
+### Think Before Coding
+
+Don't assume. Don't hide confusion. If uncertain about the requirement or approach, **ask**. If a simpler approach exists, say so before writing code.
+
+### Simplicity First
+
+No features beyond what was asked. No abstractions for single-use code. No "flexibility" that nobody requested. If 200 lines could be 50, rewrite it.
+
+For any non-trivial change, ask yourself: **"Is there a more elegant solution?"**
+If a fix feels hacky: *"Knowing everything I know now, implement the elegant solution."*
+Do not apply to simple, obvious fixes — no over-engineering.
+
+### Surgical Changes
+
+Touch only what you must. Don't "improve" adjacent code. Don't refactor things that aren't broken. Every changed line should trace directly to the request.
+
+### Goal-Driven Execution
+
+Don't describe steps — define success criteria and loop until verified. Write the test first, then make it pass.
+
+When facing a bug: fix it directly. Point to logs, errors, and failing tests — then resolve without asking for step-by-step guidance.
+
+---
+
 ## Design System
 
 Use the **La Suite UI Kit** and **Cunningham**:
