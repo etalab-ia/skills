@@ -46,7 +46,7 @@ Le template `beta.gouv.md` inclut également : Definition of Done (boucle tests 
 ### Vercel Skills CLI (recommandé)
 
 ```bash
-# Installer toutes les skills (officiels + expérimentaux)
+# Installer tous les skills (officiels + expérimentaux)
 npx skills add etalab-ia/skills
 
 # Installer une skill spécifique
