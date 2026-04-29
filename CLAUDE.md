@@ -21,11 +21,16 @@ The `SKILL.md` frontmatter fields (`name`, `description`) are used by AI tools t
 
 ## Current Skills
 
+Skills are split into two tiers:
+
+**Official skills (`skills/`)** — backed by State standards, maintained by the DINUM IAE department:
 - **react-dsfr** — React components for the Design System de l'État (DSFR) using `@codegouvfr/react-dsfr`
 - **lasuite-ui-kit** — React components for LaSuite apps using `@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`
 - **rgaa** — RGAA 4.1.2 accessibility audit tool (106 criteria, produces structured conformity reports)
 - **securite-anssi** — ANSSI security checklist (12 rules for government app development)
 - **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular) — synced from [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill)
+
+**Experimental skills (`skills/.experimental/`)** ⚠️ — not maintained by the DINUM, depend on unaudited third-party tools, no continuity guarantee. The `.experimental/` subdirectory is a convention recognized by the [Vercel Skills CLI](https://github.com/vercel-labs/skills) so they remain installable. See [skills/.experimental/README.md](skills/.experimental/README.md):
 - **rag-parse** — Convert PDF/DOCX/PPTX/XLSX/images to markdown or JSON with LiteParse (local, no cloud dependencies)
 - **rag-index** — Index markdown documents for semantic search with qmd (local SQLite + sqlite-vec)
 - **rag-search** — Search indexed documents with qmd (semantic and keyword search)
