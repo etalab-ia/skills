@@ -1,13 +1,13 @@
-# Skills expérimentaux
+# Skills expérimentales
 
-Ce dossier regroupe des skills **expérimentaux**, à distinguer des skills officiels de [`skills/`](../).
+Ce dossier regroupe des skills **expérimentales**, à distinguer des skills officielles de [`skills/`](../).
 
 ## ⚠️ Avertissement
 
-- Ces skills **ne sont pas portés par le département IAE de la DINUM**.
-- Ils consomment des **outils tiers non audités** (cf. tableau ci-dessous), sans pin de version stricte. **Auditer avant adoption** dans un projet de l'État.
-- **Aucune garantie** de maintenance, de sécurité ni de continuité. Ils peuvent être retirés à tout moment.
-- Le statut "officiel" suppose une autorité de référence (DSFR, RGAA, ANSSI, data.gouv.fr, La Suite, etc.). Les skills présents ici n'en ont pas.
+- Ces skills **ne sont pas portées par le département IAE de la DINUM**.
+- Elles consomment des **outils tiers non audités** (cf. tableau ci-dessous), sans pin de version stricte. **Auditer avant adoption** dans un projet de l'État.
+- **Aucune garantie** de maintenance, de sécurité ni de continuité. Elles peuvent être retirées à tout moment.
+- Le statut "officiel" suppose une autorité de référence (DSFR, RGAA, ANSSI, data.gouv.fr, La Suite, etc.). Les skills présentes ici n'en ont pas.
 
 ## Skills disponibles
 
