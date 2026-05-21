@@ -17,6 +17,64 @@ import { Card } from "@codegouvfr/react-dsfr/Card";
 // etc.
 ```
 
+## Setup Next.js App Router
+
+> ⚠️ **Pattern obligatoire** : sans `getScriptToRunAsap()` dans `<head>`, le mode sombre cause un **flash blanc visible au chargement** (régression la plus courante). Le code ci-dessous est le minimum incompressible — ne pas écrire un `layout.tsx` plus simple.
+
+Pattern minimal de `app/layout.tsx` (Next.js 14+ App Router, react-dsfr v1.30+) :
+
+```tsx
+import { DsfrProviderBase, StartDsfrOnHydration } from "@codegouvfr/react-dsfr/next-app-router";
+import { createGetHtmlAttributes } from "@codegouvfr/react-dsfr/next-app-router/getHtmlAttributes";
+import { getScriptToRunAsap } from "@codegouvfr/react-dsfr/useIsDark/scriptToRunAsap";
+import "@codegouvfr/react-dsfr/dsfr/dsfr.min.css";
+import "@codegouvfr/react-dsfr/dsfr/utility/icons/icons.main.min.css";
+import Link from "next/link";
+
+declare module "@codegouvfr/react-dsfr/next-app-router" {
+    interface RegisterLink {
+        Link: typeof Link;
+    }
+}
+
+const defaultColorScheme = "system" as const;
+const { getHtmlAttributes } = createGetHtmlAttributes({ defaultColorScheme });
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    return (
+        <html {...getHtmlAttributes({ lang: "fr" })}>
+            <head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: getScriptToRunAsap({
+                            defaultColorScheme,
+                            nonce: undefined,
+                            trustedTypesPolicyName: "react-dsfr",
+                        }),
+                    }}
+                />
+            </head>
+            <body>
+                <DsfrProviderBase lang="fr" Link={Link} defaultColorScheme={defaultColorScheme}>
+                    {children}
+                    <StartDsfrOnHydration />
+                </DsfrProviderBase>
+            </body>
+        </html>
+    );
+}
+```
+
+**Trois éléments critiques** (ne pas omettre) :
+
+1. **`createGetHtmlAttributes()`** : pose `data-fr-scheme` / `data-fr-theme` / `suppressHydrationWarning` sur `<html>` côté SSR
+2. **`getScriptToRunAsap()` dans `<head>`** : script inline qui détecte le thème (localStorage ou `prefers-color-scheme`) **avant le premier paint CSS** — c'est lui qui élimine le flash
+3. **`StartDsfrOnHydration`** : re-scan du DOM après hydratation React pour bind les `Display`, modales, accordéons (sans ça, les boutons `aria-controls` sont muets au clic)
+
+**Noms react-dsfr v1.30+** : `DsfrProviderBase`, `StartDsfrOnHydration`, `createGetHtmlAttributes`, `DsfrHeadBase`. Les anciens noms (`DsfrProvider`, `StartDsfr`, `getHtmlAttributes`, `DsfrHead`) **n'existent plus** dans le package — ne pas les écrire.
+
+Cette approche n'a **pas besoin de `transpilePackages`** dans `next.config.mjs` (les imports directs depuis `.../getHtmlAttributes` et `.../scriptToRunAsap` évitent le tree-shake de `DsfrHead.js` qui tire les `.woff2`). Pour les variantes (avec `DsfrHeadBase` + `transpilePackages`, icônes dynamiques via `iconId`, re-init manuelle DSFR), voir [references/setup.md](references/setup.md#nextjs-app-router).
+
 ## Routing et liens
 
 Enregistrer le composant `Link` du framework une seule fois au démarrage. Tous les composants react-dsfr utilisant `linkProps` s'en serviront automatiquement.
@@ -75,9 +133,7 @@ function MyComponent() {
 }
 ```
 
-Le thème respecte automatiquement le mode clair/sombre.
-
-**Attention au flash dark mode** : en Next.js App Router, utiliser `getHtmlAttributes()` + `<StartDsfr />` + `<DsfrHead />` pour éviter le flash blanc au chargement. Voir [references/setup.md](references/setup.md#prévention-du-flash-dark-mode-nextjs-app-router) pour le détail.
+Le thème respecte automatiquement le mode clair/sombre, à condition que le setup du layout soit complet (cf. section "Setup Next.js App Router" plus haut). Le mode sombre est résolu côté SSR + script anti-flash dans `<head>` ; le `useColors()` lit ensuite la palette résolue.
 
 ## Pattern : page complète
 
@@ -200,4 +256,4 @@ Consulter [references/components.md](references/components.md) pour l'API compl�
 
 ## Setup par framework
 
-Consulter [references/setup.md](references/setup.md) pour l'installation et la configuration avec Next.js (App Router / Pages Router), Vite ou Create React App.
+Le **setup Next.js App Router** est documenté en tête de ce fichier (section "Setup Next.js App Router"). Pour les autres frameworks (Next.js Pages Router, Vite, Create React App) et les pièges avancés (transpilePackages, icônes dynamiques via `iconId`, re-init DSFR manuelle, config ESLint), voir [references/setup.md](references/setup.md).
