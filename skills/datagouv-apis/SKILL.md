@@ -119,7 +119,7 @@ flowchart LR
 | GET/POST/... | `/datasets/community_resources/`, `.../{community}/`, `.../upload/` |
 | GET | `/datasets/badges/`, `frequencies/`, `licenses/`, `resource_types/`, `extensions/`, `schemas/` |
 | GET | `/datasets/suggest/`, `suggest/formats/`, `suggest/mime/` — q, size |
-| GET | `/datasets/r/{id}/` — redirect to latest resource |
+| GET | `/datasets/r/{rid}` — download the resource as a file |
 | GET | `/datasets/recent.atom` |
 
 ### Organizations
