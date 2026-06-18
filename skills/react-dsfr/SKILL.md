@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 **Trois éléments critiques** (ne pas omettre) :
 
 1. **`createGetHtmlAttributes()`** : pose `data-fr-scheme` / `data-fr-theme` / `suppressHydrationWarning` sur `<html>` côté SSR
-2. **`getScriptToRunAsap()` dans `<head>`** : script inline qui détecte le thème (localStorage ou `prefers-color-scheme`) **avant le premier paint CSS** — c'est lui qui élimine le flash
+2. **`getScriptToRunAsap()` dans `<head>`** : script inline qui détecte le thème (localStorage ou `prefers-color-scheme`) **avant le premier paint CSS** — c'est lui qui élimine le flash. `nonce: undefined` ne vaut qu'en dev ; **sous CSP**, passer un `nonce` par requête (cf. [references/setup.md](references/setup.md#pattern-1--recommandé--sans-transpilepackages-imports-directs))
 3. **`StartDsfrOnHydration`** : re-scan du DOM après hydratation React pour bind les `Display`, modales, accordéons (sans ça, les boutons `aria-controls` sont muets au clic)
 
 **Noms react-dsfr v1.30+** : `DsfrProviderBase`, `StartDsfrOnHydration`, `createGetHtmlAttributes`, `DsfrHeadBase`. Les anciens noms (`DsfrProvider`, `StartDsfr`, `getHtmlAttributes`, `DsfrHead`) **n'existent plus** dans le package — ne pas les écrire.

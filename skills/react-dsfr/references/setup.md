@@ -1,5 +1,7 @@
 # Setup react-dsfr par framework
 
+> **Choisir la bonne section selon le framework — ne pas mélanger les patterns.** Chaque framework a sa propre intégration ; les balises `<link rel="stylesheet" href="/dsfr/...">` ci-dessous **n'existent que pour Vite** (assets servis depuis `public/`). En **Next.js (App Router ou Pages Router)**, le CSS se charge par `import` et le `<link>` manuel est à proscrire. Aller directement à la section du framework utilisé : [Vite](#vite) · [Next.js App Router](#nextjs-app-router) · [Next.js Pages Router](#nextjs-pages-router) · [Create React App](#create-react-app).
+
 ## Installation
 
 ```bash
@@ -116,6 +118,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 - Le script anti-flash est injecté manuellement via `dangerouslySetInnerHTML`
 - `StartDsfrOnHydration` re-scan le DOM après hydratation React pour bind les `Display`, modales et accordéons (cf. section "Re-initialisation" plus bas)
 
+> **Sous Content-Security-Policy (CSP)** — fréquent sur les projets administration : `nonce: undefined` ne convient qu'en dev sans CSP. Avec une CSP active, le `<script>` inline serait bloqué. Génère un `nonce` par requête (middleware Next.js ou en-tête serveur), lis-le côté layout via `headers()` de `next/headers`, puis passe-le **à la fois** au prop `nonce` de `getScriptToRunAsap(...)` **et** à l'attribut `nonce` de la balise `<script>`. Renseigne aussi `trustedTypesPolicyName` dans ta directive CSP `trusted-types` (ici `react-dsfr react-dsfr-asap`). Voir la doc react-dsfr (CSP / Trusted Types) pour le détail.
+
 **Pas de `next.config.mjs` requis** pour react-dsfr avec ce pattern. (Tu peux quand même en avoir un pour d'autres besoins Next.js — Next.js 14 ne supporte pas `next.config.ts` côté config, utilise `.mjs` ou `.js`.)
 
 ### Pattern 2 — Variante avec `DsfrHeadBase` (nécessite `transpilePackages`)
@@ -163,18 +167,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html {...getHtmlAttributes({ lang })}>
             <head>
-                <StartDsfrOnHydration />
                 <DsfrHeadBase Link={Link} />
             </head>
             <body>
                 <DsfrProviderBase lang={lang} Link={Link} defaultColorScheme={defaultColorScheme}>
                     {children}
+                    <StartDsfrOnHydration />
                 </DsfrProviderBase>
             </body>
         </html>
     );
 }
 ```
+
+> **Placement de `StartDsfrOnHydration`** : c'est un composant client qui ne fait que lancer un `useEffect` au montage (il rend `null`). Sa position dans le DOM est donc sans effet fonctionnel : on le place dans le `<body>`, à l'intérieur de `DsfrProviderBase`, **identique au Pattern 1**. Éviter de le mettre dans `<head>` — un composant client dans `<head>` peut déclencher un warning d'hydratation sur Next.js 15 / React 19 pour aucun bénéfice.
 
 ### Choisir entre Pattern 1 et Pattern 2
 
@@ -199,6 +205,8 @@ import "@codegouvfr/react-dsfr/dsfr/utility/icons/icons.main.min.css";
 ```
 
 Ce fichier contient toutes les icônes DSFR et Remix Icon. Il est plus lourd que le bundle optimisé par `update-icons`, mais garantit que toutes les icônes fonctionnent sans configuration supplémentaire.
+
+> **`icons.main.min.css` vs `icons.min.css`** : ces deux fichiers ont un contenu **identique** (jeu d'icônes complet). La différence est le mode de chargement, pas le contenu : en Next.js on importe le module `.../icons/icons.main.min.css` (résolu par le bundler), tandis qu'en Vite on sert le fichier `/dsfr/utility/icons/icons.min.css` copié dans `public/` via une balise `<link>`. C'est pourquoi la section Vite plus haut référence `icons.min.css` et la section Next.js `icons.main.min.css` — c'est volontaire et correct.
 
 **Alternative** (optimisée mais fragile) : ne pas importer ce CSS et s'appuyer uniquement sur le SCSS généré par `react-dsfr update-icons`. Dans ce cas, vérifier que le script postinstall est configuré et que toutes les icônes utilisées sont détectées. Les icônes utilisées via `iconId` en prop string ne seront probablement pas détectées.
 
@@ -284,17 +292,16 @@ Un projet Next.js + DSFR avec du contenu français nécessite un `.eslintrc.json
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "react/no-unescaped-entities": "off",
-    "@next/next/no-css-tags": "off"
+    "react/no-unescaped-entities": "off"
   }
 }
 ```
 
-### Pourquoi ces règles sont désactivées
+### Pourquoi cette règle est désactivée
 
 - **`react/no-unescaped-entities`** : le texte français contient des apostrophes partout (`l'État`, `d'utilisation`, `n'est`). Forcer `&apos;` sur chaque occurrence rend le JSX illisible. Cette règle est conçue pour l'anglais où les apostrophes dans le JSX sont rares.
 
-- **`@next/next/no-css-tags`** : react-dsfr nécessite un `<link>` manuel vers `/dsfr/utility/icons/icons.min.css` dans le layout. Ce fichier statique n'est pas un module CSS et ne peut pas être importé via `import`. Le warning est un faux positif.
+> **Note** — `@next/next/no-css-tags` : les patterns Next.js recommandés ci-dessus (Pattern 1 **et** Pattern 2) chargent le CSS DSFR via `import`, **sans `<link>` manuel** dans le layout. La règle `@next/next/no-css-tags` ne se déclenche donc pas et n'a pas besoin d'être désactivée. Ne l'ajouter (`"@next/next/no-css-tags": "off"`) **que** si tu charges un CSS via une balise `<link rel="stylesheet">` manuelle (approche non recommandée en App Router).
 
 ### Compatibilité ESLint / Next.js
 
