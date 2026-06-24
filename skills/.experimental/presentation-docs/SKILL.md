@@ -60,17 +60,17 @@ Veiller pour chaque `---` à la **ligne vide avant et après**.
 Objectif : un deck **texte éditable + images**, jamais un empilement de pages aplaties en images. Le texte d'une diapo (titres, puces, libellés) reste du **texte markdown** — éditable, cherchable, accessible. On n'embarque en image que ce que le markdown ne peut pas reproduire (photos, captures, schémas).
 
 **1. Récupérer le texte de chaque diapo.**
-- PDF → `pdftotext -layout -f <p> -l <p> <fichier.pdf> -` (la couche texte d'un export de slides est en général propre, emojis compris).
-- PPTX → parser les zones de texte par diapo (`python-pptx` : `slide.shapes` → `shape.text_frame`, ou dézipper le `.pptx` et lire `ppt/slides/slideN.xml`). Avantage du PPTX : texte et images sont des éléments **distincts** par diapo.
+- PDF → `pdftotext -layout -f {page} -l {page} {fichier.pdf} -` (la couche texte d'un export de slides est en général propre, emojis compris).
+- PPTX → parser les zones de texte par diapo (`python-pptx` : pour chaque `shape` de `slide.shapes`, vérifier `shape.has_text_frame` avant de lire `shape.text_frame` — toutes les formes n'en ont pas, sinon `AttributeError` ; ou dézipper le `.pptx` et lire `ppt/slides/slideN.xml`). Avantage du PPTX : texte et images sont des éléments **distincts** par diapo.
 
 **2. Récupérer les médias de contenu.**
-- Bitmaps embarqués (photos, captures, illustrations) → `pdfimages -all -p <fichier.pdf> <prefixe>` (PDF, `pdfimages -list` pour l'inventaire) ou `ppt/media/` du PPTX. Écarter le **bruit de gabarit** (fonds, logos répétés, emojis décoratifs).
+- Bitmaps embarqués (photos, captures, illustrations) → `pdfimages -all -p {fichier.pdf} {prefixe}` (PDF, `pdfimages -list` pour l'inventaire) ou `ppt/media/` du PPTX. Écarter le **bruit de gabarit** (fonds, logos répétés, emojis décoratifs).
 
-**3. Schémas vectoriels non reproductibles** (diagrammes, pyramides, infographies, flux) → ni texte ni bitmap extractible, et le markdown ne sait pas les recréer. Pour **ceux-là seulement**, rendre la page concernée en image et l'embarquer **en plus** du texte : `pdftoppm -jpeg -r 130 -f <p> -l <p> <fichier.pdf> <prefixe>`. Résultat par diapo : `## titre` + texte markdown + image du schéma.
+**3. Schémas vectoriels non reproductibles** (diagrammes, pyramides, infographies, flux) → ni texte ni bitmap extractible, et le markdown ne sait pas les recréer. Pour **ceux-là seulement**, rendre la page concernée en image et l'embarquer **en plus** du texte : `pdftoppm -jpeg -r 130 -f {page} -l {page} {fichier.pdf} {prefixe}`. Résultat par diapo : `## titre` + texte markdown + image du schéma.
 
-Décision par diapo : titres/puces/colonnes de texte → **tout en markdown** (pas d'image) ; photo/capture/schéma → **texte markdown + l'image**. Conserver les **liens** en texte (`[libellé](url)`) — au besoin récupérés des annotations du PDF (`strings <fichier.pdf> | grep -oE 'https?://[^ )<>\"]+' | sort -u`).
+Décision par diapo : titres/puces/colonnes de texte → **tout en markdown** (pas d'image) ; photo/capture/schéma → **texte markdown + l'image**. Conserver les **liens** en texte (`[libellé](url)`). Récupérer les URL écrites en clair depuis le texte extrait (`pdftotext {fichier.pdf} - | grep -oE 'https?://[^ )<>"]+' | sort -u`) ; pour un lien dont le libellé diffère de la cible (annotation hypertexte), lire les annotations avec un parser PDF — ex. `pypdf` : pour chaque page, `page.annotations` → `/A` → `/URI` (ne pas compter sur `strings`, les flux PDF étant souvent compressés).
 
-Enregistrer les médias dans un **dossier d'assets à côté du `.md`** (ex : `assets/<nom-deck>/slide-04.jpg`) et les référencer en markdown relatif : `![description](assets/<nom-deck>/slide-04.jpg)`.
+Enregistrer les médias dans un **dossier d'assets à côté du `.md`** (ex : `assets/{nom-deck}/slide-04.jpg`) et les référencer en markdown relatif : `![description](assets/{nom-deck}/slide-04.jpg)`.
 
 **Builds d'animation PowerPoint** : un même slide exporté en plusieurs pages quasi identiques produit des doublons. Replier chaque série sur son **état final** et le **signaler** à l'utilisateur (ne pas supprimer silencieusement).
 
