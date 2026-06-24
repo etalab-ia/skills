@@ -205,9 +205,10 @@ col = requests.post(f"{BASE}/collections", headers=H,
                     json={"name": "ma-doc", "visibility": "private"}).json()
 
 # 2) document
-requests.post(f"{BASE}/documents", headers=H,
-              data={"collection_id": col["id"]},
-              files={"file": open("guide.pdf", "rb")})
+with open("guide.pdf", "rb") as f:
+    requests.post(f"{BASE}/documents", headers=H,
+                  data={"collection_id": col["id"]},
+                  files={"file": f})
 
 # 3) recherche
 hits = requests.post(f"{BASE}/search", headers=H, json={
