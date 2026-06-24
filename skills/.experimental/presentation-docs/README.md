@@ -18,7 +18,20 @@ La skill **produit uniquement le fichier `.md`** (et ses assets) — elle ne pub
 | Fichier | Description |
 |---------|-------------|
 | [`SKILL.md`](SKILL.md) | Instructions principales — convention diapos, extraction texte/médias, workflow |
-| [`master-prompt.md`](master-prompt.md) | Version « master prompt » pour les assistants qui n'ingèrent pas les skills (ex. Assistant IA de l'État) — sans exécution de code |
+| [`master-prompts/`](master-prompts/) | Versions « master prompt » pour les assistants qui n'ingèrent pas les skills (ex. Assistant IA de l'État) — sans exécution de code |
+
+### Master prompts (`master-prompts/`)
+
+À coller dans les instructions d'un projet de l'Assistant. Texte brut (ni titres `#`, ni gras, ni `---` seul sur une ligne) pour ne pas être cassé par les champs qui rendent le Markdown.
+
+| Fichier | Ton | Usage |
+|---------|-----|-------|
+| [`fidele.md`](master-prompts/fidele.md) | Neutre, fidèle | Reproduit le contenu à l'identique (note ou présentation), sans réécriture |
+| [`interne-conviviale.md`](master-prompts/interne-conviviale.md) | Décontracté, dynamique | Réunions d'équipe, ateliers, brainstormings |
+| [`formelle-institutionnelle.md`](master-prompts/formelle-institutionnelle.md) | Structuré, rigoureux | Comités de direction, partenaires publics, restitutions |
+| [`externe-impactante.md`](master-prompts/externe-impactante.md) | Captivant, inspirant | Grand public, médias, événements |
+
+Les trois variantes de ton reprennent les [modèles officiels de l'équipe Docs](https://docs.numerique.gouv.fr/docs/8205d7eb-6ee6-4eba-9518-2aa934c63a43/), adaptés au format master prompt (entrée texte ou PJ, pas d'exécution de code, repères d'images à insérer).
 
 ## Prérequis
 

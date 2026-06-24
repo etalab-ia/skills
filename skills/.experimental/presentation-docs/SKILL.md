@@ -22,7 +22,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 ## La convention diapos (à respecter absolument)
 
 - **Séparateur de diapo = `---`** seul sur sa ligne, **avec une ligne vide avant et après**. Sans ces lignes vides, `---` collé à une ligne de texte au-dessus est interprété comme un soulignement de titre (setext H2), pas comme un diviseur — la diapo ne se crée pas.
-- **Pas de `# H1` pour le titre de la présentation** : dans Docs, le titre est le **nom du document**, et la 1re diapo (avant le 1er `---`) sert de diapo de titre. Réserver `##` aux titres de diapo ; ne pas ouvrir le corps par un `# Titre` qui doublonnerait avec le nom du document.
+- **Titres : `#` pour la diapo d'accroche, `##` pour les diapos suivantes** — les modèles officiels de l'équipe Docs utilisent un `# Titre` (souvent avec emoji) comme 1re diapo. Donc `#` = diapo de titre/accroche, `##` = titres des diapos de contenu, `###` = sous-titres. (Seul cas où éviter le `# H1` : quand un titre est déjà poussé séparément par une API de création de document, pour ne pas doublonner.)
 - **1 diapo = 1 idée** : titre court (`##`) + contenu concis (puces, lignes courtes). Éviter les pavés : un contenu plus haut que l'écran reste accessible au scroll mais nuit à la lisibilité en présentation.
 - **Médias** : `![texte](chemin-ou-url)` → bloc image/vidéo. Liens, **gras**, *italique*, listes, citations `>`, tableaux et blocs de code sont conservés.
 - **Ce que le markdown NE transporte PAS** : l'alignement (centrage), les couleurs et les colonnes sont des fonctions de l'éditeur Docs sans équivalent markdown. Le `.md` livre la **structure** (titres, texte, listes, diapos, images, liens) ; le **fignolage visuel se fait à la main dans Docs** après import. Le dire à l'utilisateur, ne pas le simuler.
@@ -46,7 +46,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 
 - **Source PDF / PPTX / présentation existante** → **respecter à l'identique la mise en forme et le découpage de la source**. Une diapo source = une diapo Docs, dans le même ordre, mêmes titres/puces/médias. Ne pas synthétiser, reformuler, fusionner ni réordonner : on translittère le deck en convention Docs (un `---` entre chaque diapo), transformation **syntaxique** seulement.
 - **Source note / texte / Markdown brut** → construire un deck en découpant aux frontières logiques, **1 idée par diapo** :
-  1. **Diapo de titre** (avant le 1er `---`) : sous-titre, date, auteur si pertinent. **Pas de `# H1`** (le titre = le nom du document). Garder court.
+  1. **Diapo de titre** (avant le 1er `---`) : titre (`#` recommandé, à la manière des modèles Docs), sous-titre, date. Garder court.
   2. `---`
   3. **Diapos de contenu** : chacune = `## Titre court` + 2 à 5 puces concises, ou une citation `>`, ou un média, ou un tableau.
   4. **Diapo de clôture** éventuelle (synthèse, contacts).
@@ -88,7 +88,7 @@ Proposer un emplacement cohérent dans le vault :
 - **Fidélité au deck source** — pour un PDF/PPTX, reproduire à l'identique contenu, découpage et ordre (1 diapo source = 1 diapo). Pas de synthèse ni reformulation. La restructuration éditoriale est réservée aux sources texte/Markdown.
 - **Médias récupérés, pas perdus** — extraire et réembarquer schémas/photos/captures. Ne jamais remplacer un média par une description textuelle.
 - **Diviseur entouré de lignes vides** — sinon la diapo ne se crée pas (interprété comme titre setext).
-- **Pas de `# H1` initial** — le titre de la présentation est le nom du document Docs ; réserver `##` aux titres de diapo.
+- **Titres** — `#` pour la diapo d'accroche (comme les modèles officiels de l'équipe Docs), `##` pour les titres des diapos suivantes, `###` pour les sous-titres.
 - **Honnêteté visuelle** — le markdown porte la structure et les coupures de diapo, pas l'alignement/couleurs/colonnes (réglages manuels dans Docs).
 
 ## Exemple (avant / après)
@@ -104,10 +104,11 @@ Source (texte/Markdown brut) :
 - Guide MCP pour les administrations
 ```
 
-Sortie `.md` (`---` = nouvelle diapo, lignes vides autour, pas de `# H1`) :
+Sortie `.md` (`---` = nouvelle diapo, lignes vides autour, `#` pour la diapo d'accroche) :
 
 ```
-Socle IA interministériel
+# Socle IA interministériel
+
 Point d'étape · juin 2026
 
 ---
