@@ -18,6 +18,7 @@ La skill **produit uniquement le fichier `.md`** (et ses assets) — elle ne pub
 | Fichier | Description |
 |---------|-------------|
 | [`SKILL.md`](SKILL.md) | Instructions principales — convention diapos, extraction texte/médias, workflow |
+| [`master-prompt.md`](master-prompt.md) | Version « master prompt » pour les assistants qui n'ingèrent pas les skills (ex. Assistant IA de l'État) — sans exécution de code |
 
 ## Prérequis
 
