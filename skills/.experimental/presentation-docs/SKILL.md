@@ -1,6 +1,6 @@
 ---
 name: presentation-docs
-description: Transforme une source (note Obsidian, texte/Markdown brut, ou fichier PPTX/PDF/DOCX exporté depuis Google Slides) en un fichier Markdown propre respectant la convention "mode présentation" de Docs (La Suite) — une diapo par diviseur `---`. Produit uniquement le fichier .md prêt à coller/importer dans Docs ; ne publie rien. Utiliser quand l'utilisateur dit "/presentation-docs", "transforme cette note en présentation Docs", "convertis X en présentation Docs", "mets ce PPTX en diapos Docs", "formate ce texte en présentation Docs".
+description: Transforme une source (note Obsidian, texte/Markdown brut, ou fichier de présentation PPTX/PDF/DOCX) en un fichier Markdown propre respectant la convention "mode présentation" de Docs (La Suite) — une diapo par diviseur `---`. Produit uniquement le fichier .md prêt à coller/importer dans Docs ; ne publie rien. Utiliser quand l'utilisateur dit "/presentation-docs", "transforme cette note en présentation Docs", "convertis X en présentation Docs", "mets ce PPTX en diapos Docs", "formate ce texte en présentation Docs".
 ---
 
 # Skill : Présentation Docs
@@ -13,7 +13,7 @@ Le mode présentation de Docs ([doc officielle](https://docs.numerique.gouv.fr/d
 
 1. **Note Obsidian** du vault → lecture directe (`Read`).
 2. **Texte / Markdown brut** (collé par l'utilisateur ou pointé par un chemin) → utilisé tel quel comme matière première.
-3. **Fichier de présentation externe** (PPTX / PDF / DOCX, typiquement export Google Slides) → conversion en markdown (cf. § Récupérer texte et médias).
+3. **Fichier de présentation externe** (PPTX / PDF / DOCX) → conversion en markdown (cf. § Récupérer texte et médias).
 
 ## Sortie
 
@@ -22,7 +22,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 ## La convention diapos (à respecter absolument)
 
 - **Séparateur de diapo = `---`** seul sur sa ligne, **avec une ligne vide avant et après**. Sans ces lignes vides, `---` collé à une ligne de texte au-dessus est interprété comme un soulignement de titre (setext H2), pas comme un diviseur — la diapo ne se crée pas.
-- **Jamais de `# H1` en tête** du markdown : à l'import, Docs ajoute automatiquement le titre du document en H1. Un `# Titre` créerait un doublon sur la 1re diapo.
+- **Pas de `# H1` pour le titre de la présentation** : dans Docs, le titre est le **nom du document**, et la 1re diapo (avant le 1er `---`) sert de diapo de titre. Réserver `##` aux titres de diapo ; ne pas ouvrir le corps par un `# Titre` qui doublonnerait avec le nom du document.
 - **1 diapo = 1 idée** : titre court (`##`) + contenu concis (puces, lignes courtes). Éviter les pavés : un contenu plus haut que l'écran reste accessible au scroll mais nuit à la lisibilité en présentation.
 - **Médias** : `![texte](chemin-ou-url)` → bloc image/vidéo. Liens, **gras**, *italique*, listes, citations `>`, tableaux et blocs de code sont conservés.
 - **Ce que le markdown NE transporte PAS** : l'alignement (centrage), les couleurs et les colonnes sont des fonctions de l'éditeur Docs sans équivalent markdown. Le `.md` livre la **structure** (titres, texte, listes, diapos, images, liens) ; le **fignolage visuel se fait à la main dans Docs** après import. Le dire à l'utilisateur, ne pas le simuler.
@@ -30,7 +30,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 ## Pré-requis
 
 - Aucun pour une note Obsidian ou un texte/Markdown brut.
-- Pour un **fichier externe** : skill `rag-parse` (`lit parse`) et/ou `poppler` (`pdftotext`, `pdfimages`, `pdftoppm`, `pdfinfo` — `brew install poppler`). `magick`/`convert` (ImageMagick) utile pour recadrer. Google Slides n'est pas parsable directement : demander l'export en **PPTX ou PDF** (`Fichier → Télécharger`).
+- Pour un **fichier externe** : skill `rag-parse` (`lit parse`) et/ou `poppler` (`pdftotext`, `pdfimages`, `pdftoppm`, `pdfinfo` — `brew install poppler`). `magick`/`convert` (ImageMagick) utile pour recadrer. Une présentation disponible uniquement en ligne (pas en fichier local) doit d'abord être exportée en **PPTX ou PDF**.
 
 ## Workflow
 
@@ -46,7 +46,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 
 - **Source PDF / PPTX / présentation existante** → **respecter à l'identique la mise en forme et le découpage de la source**. Une diapo source = une diapo Docs, dans le même ordre, mêmes titres/puces/médias. Ne pas synthétiser, reformuler, fusionner ni réordonner : on translittère le deck en convention Docs (un `---` entre chaque diapo), transformation **syntaxique** seulement.
 - **Source note / texte / Markdown brut** → construire un deck en découpant aux frontières logiques, **1 idée par diapo** :
-  1. **Diapo de titre** (avant le 1er `---`) : sous-titre, date, auteur si pertinent. **Pas de `# H1`**. Garder court.
+  1. **Diapo de titre** (avant le 1er `---`) : sous-titre, date, auteur si pertinent. **Pas de `# H1`** (le titre = le nom du document). Garder court.
   2. `---`
   3. **Diapos de contenu** : chacune = `## Titre court` + 2 à 5 puces concises, ou une citation `>`, ou un média, ou un tableau.
   4. **Diapo de clôture** éventuelle (synthèse, contacts).
@@ -61,7 +61,7 @@ Objectif : un deck **texte éditable + images**, jamais un empilement de pages a
 
 **1. Récupérer le texte de chaque diapo.**
 - PDF → `pdftotext -layout -f <p> -l <p> <fichier.pdf> -` (la couche texte d'un export de slides est en général propre, emojis compris).
-- PPTX / Google Slides exporté → parser les zones de texte par diapo (`python-pptx` : `slide.shapes` → `shape.text_frame`, ou dézipper le `.pptx` et lire `ppt/slides/slideN.xml`). Avantage du PPTX : texte et images sont des éléments **distincts** par diapo.
+- PPTX → parser les zones de texte par diapo (`python-pptx` : `slide.shapes` → `shape.text_frame`, ou dézipper le `.pptx` et lire `ppt/slides/slideN.xml`). Avantage du PPTX : texte et images sont des éléments **distincts** par diapo.
 
 **2. Récupérer les médias de contenu.**
 - Bitmaps embarqués (photos, captures, illustrations) → `pdfimages -all -p <fichier.pdf> <prefixe>` (PDF, `pdfimages -list` pour l'inventaire) ou `ppt/media/` du PPTX. Écarter le **bruit de gabarit** (fonds, logos répétés, emojis décoratifs).
@@ -88,7 +88,7 @@ Proposer un emplacement cohérent dans le vault :
 - **Fidélité au deck source** — pour un PDF/PPTX, reproduire à l'identique contenu, découpage et ordre (1 diapo source = 1 diapo). Pas de synthèse ni reformulation. La restructuration éditoriale est réservée aux sources texte/Markdown.
 - **Médias récupérés, pas perdus** — extraire et réembarquer schémas/photos/captures. Ne jamais remplacer un média par une description textuelle.
 - **Diviseur entouré de lignes vides** — sinon la diapo ne se crée pas (interprété comme titre setext).
-- **Pas de `# H1` initial** — doublon avec le titre auto du document à l'import.
+- **Pas de `# H1` initial** — le titre de la présentation est le nom du document Docs ; réserver `##` aux titres de diapo.
 - **Honnêteté visuelle** — le markdown porte la structure et les coupures de diapo, pas l'alignement/couleurs/colonnes (réglages manuels dans Docs).
 
 ## Exemple (avant / après)

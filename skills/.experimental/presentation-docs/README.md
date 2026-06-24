@@ -1,6 +1,6 @@
 # presentation-docs
 
-Skill pour assistants de code IA — transformer une source (note Markdown, texte brut, ou fichier PPTX/PDF/DOCX exporté depuis Google Slides) en un fichier Markdown propre respectant la convention du **mode présentation de [Docs (La Suite)](https://docs.numerique.gouv.fr/)** : une diapo par diviseur `---`.
+Skill pour assistants de code IA — transformer une source (note Markdown, texte brut, ou fichier de présentation PPTX/PDF/DOCX) en un fichier Markdown propre respectant la convention du **mode présentation de [Docs (La Suite)](https://docs.numerique.gouv.fr/)** : une diapo par diviseur `---`.
 
 ## Ce que fait cette skill
 
@@ -38,7 +38,7 @@ apt-get install imagemagick     # Ubuntu/Debian
 pip install python-pptx
 ```
 
-Google Slides n'est pas parsable directement : exporter d'abord en PPTX ou PDF (`Fichier → Télécharger`).
+Une présentation disponible uniquement en ligne doit d'abord être exportée en PPTX ou PDF.
 
 ## Installation
 
