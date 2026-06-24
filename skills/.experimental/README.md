@@ -16,6 +16,7 @@ Ce dossier regroupe des skills **expérimentales**, à distinguer des skills off
 | [**rag-parse**](rag-parse/) | Convertir PDF/DOCX/PPTX/XLSX/images en markdown ou JSON | [LiteParse](https://github.com/run-llama/liteparse) (run-llama) |
 | [**rag-index**](rag-index/) | Indexer un corpus de documents pour la recherche sémantique | [qmd](https://github.com/tobi/qmd) (tobi) |
 | [**rag-search**](rag-search/) | Rechercher dans une base de connaissances indexée | [qmd](https://github.com/tobi/qmd) (tobi) |
+| [**presentation-docs**](presentation-docs/) | Transformer une note/texte/PPTX/PDF en Markdown pour le mode présentation de Docs | [poppler](https://poppler.freedesktop.org/), python-pptx (optionnels) |
 
 ## Convention de dossier
 
