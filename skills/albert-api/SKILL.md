@@ -99,7 +99,7 @@ Instantané du catalogue (juin 2026, **à revérifier via `GET /v1/models`** —
 | Méthode | Chemin | Corps | Notes |
 |---------|--------|-------|-------|
 | POST | `/v1/audio/transcriptions` | `multipart` : `file*`, `model*` ; `language`, `prompt`, `response_format` (`json`\|`text`\|`verbose_json`\|`diarized_json`\|`srt`\|`vtt`), `temperature` | `diarized_json` = transcription avec séparation des locuteurs. |
-| POST | `/v1/ocr` | `json` : `document*` (URL de doc ou d'image), `model`, `pages`, `image_limit`, `include_image_base64` | OCR d'un PDF/image accessible par URL. |
+| POST | `/v1/ocr` | `json` : `document*` (**objet**, pas une URL nue : `{"type":"document_url","document_url":"…"}` pour un PDF, ou `{"type":"image_url","image_url":"…"}` pour une image), `model`, `pages`, `image_limit`, `include_image_base64` | OCR d'un PDF/image accessible par URL. |
 | POST | `/v1/parse-beta` | `multipart` : `file*` ; `page_range`, `force_ocr` | Parsing d'un fichier uploadé en markdown structuré (bêta). |
 
 ### RAG — collections, documents, recherche
@@ -108,7 +108,7 @@ Instantané du catalogue (juin 2026, **à revérifier via `GET /v1/models`** —
 |---------|--------|---------------|
 | GET/POST | `/v1/collections` | POST : `name*`, `description`, `visibility` (`private`\|`public`). |
 | GET/PATCH/DELETE | `/v1/collections/{collection_id}` | Lire / modifier / supprimer une collection. |
-| GET/POST | `/v1/documents` | POST `multipart` : `file*`, `collection_id*` ; chunking paramétrable (`chunk_size`, `chunk_overlap`, `separators`, `preset_separators`, `disable_chunking`). |
+| GET/POST | `/v1/documents` | POST `multipart` : `file` (le fichier à indexer ; ou `name` pour un document sans fichier), `collection_id` (collection cible) ; chunking paramétrable (`chunk_size`, `chunk_overlap`, `separators`, `preset_separators`, `disable_chunking`). |
 | GET/DELETE | `/v1/documents/{document_id}` | Métadonnées / suppression d'un document. |
 | GET/POST | `/v1/documents/{document_id}/chunks` | Lister / ajouter des chunks. |
 | GET/DELETE | `/v1/documents/{document_id}/chunks/{chunk_id}` | Lire / supprimer un chunk. |
