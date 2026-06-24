@@ -15,6 +15,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | [**lasuite-ui-kit**](skills/lasuite-ui-kit/) | Interfaces React pour [LaSuite](https://lasuite.numerique.gouv.fr/) avec `@gouvfr-lasuite/ui-kit` et `@gouvfr-lasuite/cunningham-react` |
 | [**securite-anssi**](skills/securite-anssi/) | 12 règles de sécurité issues du [guide d'hygiène ANSSI](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) |
 | [**datagouv-apis**](skills/datagouv-apis/) | 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) — synchronisées depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill) |
+| [**albert-api**](skills/albert-api/) | [Albert API](https://albert.api.etalab.gouv.fr) — API d'inférence IA de l'État (chat, embeddings, RAG souverain, audio, OCR), compatible OpenAI |
 
 ## Skills expérimentales ⚠️
 
@@ -102,6 +103,9 @@ skills/
 │   ├── README.md
 │   └── SKILL.md
 ├── datagouv-apis/
+│   ├── README.md
+│   └── SKILL.md
+├── albert-api/
 │   ├── README.md
 │   └── SKILL.md
 └── .experimental/          # ⚠️ skills non portées par la DINUM, dépendances tierces non auditées
