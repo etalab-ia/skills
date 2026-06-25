@@ -107,7 +107,10 @@ skills/
 │   └── SKILL.md
 ├── albert-api/
 │   ├── README.md
-│   └── SKILL.md
+│   ├── SKILL.md
+│   ├── openapi.snapshot.json
+│   └── bin/
+│       └── check_drift.py
 └── .experimental/          # ⚠️ skills non portées par la DINUM, dépendances tierces non auditées
     ├── README.md
     ├── rag-parse/

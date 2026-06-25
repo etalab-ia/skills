@@ -223,11 +223,61 @@ hits = requests.post(f"{BASE}/search", headers=H, json={
 
 ---
 
+## Albert en ligne de commande (CLI)
+
+Albert n'a **pas de CLI dédiée** — et n'en a pas besoin pour l'usage courant : étant compatible OpenAI, **n'importe quel client CLI OpenAI fonctionne** en pointant la base URL sur Albert et la clé sur `ALBERT_API_KEY`. Deux options éprouvées :
+
+### `llm` (Simon Willison) — recommandé pour le terminal
+
+Enregistrer Albert comme modèle OpenAI-compatible dans `~/.config/io.datasette.llm/extra-openai-models.yaml` :
+
+```yaml
+- model_id: albert-mistral
+  model_name: mistral-medium-2508   # un id renvoyé par GET /v1/models
+  api_base: https://albert.api.etalab.gouv.fr/v1
+  api_key_name: albert
+```
+
+Puis :
+
+```bash
+llm keys set albert            # colle le token (stocké hors du shell, jamais en clair dans l'historique)
+llm -m albert-mistral "Résume le RGPD en une phrase."
+cat rapport.txt | llm -m albert-mistral "Fais-en une synthèse en 3 points."
+```
+
+### CLI `openai` officielle
+
+```bash
+export OPENAI_BASE_URL="https://albert.api.etalab.gouv.fr/v1"
+export OPENAI_API_KEY="$ALBERT_API_KEY"   # déjà exporté côté env, pas en dur
+
+openai api models.list
+openai api chat.completions.create -m mistral-medium-2508 -g user "Bonjour"
+```
+
+> Pour les capacités propres à Albert (RAG, OCR, parsing, gestion des collections/clés), il n'y a pas de sous-commande CLI standard : utiliser `curl` (cf. exemples ci-dessus) ou le SDK. Ne jamais passer le token en argument de commande (visible dans `ps` et l'historique) : le lire depuis l'environnement ou un gestionnaire de clés (`llm keys`).
+
+---
+
 ## Garanties & doctrine
 
 - **Hébergement SecNumCloud** (Outscale) : qualification ANSSI.
 - **Pas de rétention des conversations**, pas d'envoi de données sur Internet ouvert.
 - Adapté aux usages avec données internes de l'administration, dans le respect du cadre RGPD applicable.
+
+---
+
+## Maintenance de cette skill
+
+La source d'autorité est l'OpenAPI live (`/openapi.json`). Pour vérifier que cette skill n'a pas dérivé de la spec :
+
+```bash
+python3 bin/check_drift.py            # compare la spec live au snapshot committé
+python3 bin/check_drift.py --update   # régénère le snapshot après mise à jour de SKILL.md
+```
+
+Le script (sans dépendance) compare version, endpoints et enums au fichier `openapi.snapshot.json`. En cas d'écart il sort en code 1 et liste les différences — signal qu'il faut relire et corriger ce fichier. À lancer périodiquement ou avant toute revue ; idéalement adossé à une GitHub Action qui ouvre une issue quand la version d'Albert bouge.
 
 ---
 

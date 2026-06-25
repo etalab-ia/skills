@@ -17,7 +17,9 @@ Le tout fondé sur la spec OpenAPI de l'API (qui fait autorité), avec les bonne
 
 | Fichier | Description |
 |---------|-------------|
-| [`SKILL.md`](SKILL.md) | Référence consolidée de l'API (auth, endpoints, workflow RAG, exemples) |
+| [`SKILL.md`](SKILL.md) | Référence consolidée de l'API (auth, endpoints, workflow RAG, exemples, CLI) |
+| [`bin/check_drift.py`](bin/check_drift.py) | Détecte les écarts entre la skill et l'OpenAPI live (sans dépendance) |
+| [`openapi.snapshot.json`](openapi.snapshot.json) | Empreinte de référence de la spec (version, endpoints, enums) |
 
 ## Installation
 
@@ -41,6 +43,19 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 - *"Indexe ces PDF dans une collection Albert et fais une recherche dessus"*
 - *"Transcris ce fichier audio avec Albert"*
 - *"Quels modèles sont disponibles sur Albert API ?"*
+
+## En ligne de commande
+
+Albert n'a pas de CLI dédiée, mais étant compatible OpenAI, tout client CLI OpenAI fonctionne (`llm` de Simon Willison, CLI `openai` officielle) en pointant la base URL sur Albert. Voir la section « Albert en ligne de commande » de [`SKILL.md`](SKILL.md).
+
+## Maintenance
+
+L'OpenAPI live (`/openapi.json`) fait autorité. Pour vérifier que la skill n'a pas dérivé :
+
+```bash
+python3 bin/check_drift.py            # compare la spec live au snapshot
+python3 bin/check_drift.py --update   # régénère le snapshot après mise à jour
+```
 
 ## Prérequis
 
