@@ -190,7 +190,7 @@ Ref: https://cyber.gouv.fr/les-regles-de-securite
 - [ ] Dependencies up to date (no known vulnerabilities)
 - [ ] No `console.log` in production
 
-> For a comprehensive review, the `securite-anssi` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 12-rule security checklist for government app development.
+> For a comprehensive review, the `securite-developpement` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 12-rule security checklist for government app development.
 
 ---
 
@@ -409,7 +409,7 @@ The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides 
 
 - **react-dsfr** — React component reference for the DSFR design system (`@codegouvfr/react-dsfr`)
 - **rgaa** — Full 106-criteria RGAA accessibility audit tool with structured conformity reports
-- **securite-anssi** — Comprehensive 12-rule ANSSI security checklist
+- **securite-developpement** — Comprehensive 12-rule security checklist for government app development
 - **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular data)
 
 ---
