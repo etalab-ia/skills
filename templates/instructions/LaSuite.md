@@ -138,7 +138,7 @@ Ref: https://accessibilite.numerique.gouv.fr/ + [handbook/accessibility](https:/
 
 Ref: [handbook/security](https://suitenumerique.gitbook.io/handbook/security) + ANSSI
 
-> For a comprehensive review, the `securite-anssi` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 12-rule ANSSI security checklist for government app development.
+> For a comprehensive review, the `securite-developpement` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 12-rule security checklist for government app development.
 
 **Code:**
 - No secrets, API keys, or passwords in code
@@ -313,5 +313,5 @@ The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides 
 
 - **lasuite-ui-kit** — Component reference for La Suite UI Kit (`@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`)
 - **rgaa** — Full 106-criteria RGAA accessibility audit tool with structured conformity reports
-- **securite-anssi** — Comprehensive 12-rule ANSSI security checklist
+- **securite-developpement** — Comprehensive 12-rule security checklist for government app development
 - **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular data)

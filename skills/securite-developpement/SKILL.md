@@ -1,11 +1,11 @@
 ---
-name: securite-anssi
-description: "Règles essentielles de sécurité ANSSI pour le développement d'applications de l'État. 12 règles couvrant TLS, secrets, authentification, headers, dépendances, entrées, logs et durcissement. Utiliser cette skill quand l'utilisateur développe une application web, une API, ou tout service exposé, quand il mentionne la sécurité, l'ANSSI, le durcissement, ou quand on configure un serveur, un reverse proxy ou un pipeline CI/CD."
+name: securite-developpement
+description: "Règles essentielles de sécurité pour le développement d'applications de l'État, générées par la DINUM en s'appuyant sur les guides produits par l'ANSSI. 12 règles couvrant TLS, secrets, authentification, headers, dépendances, entrées, logs et durcissement. Utiliser cette skill quand l'utilisateur développe une application web, une API, ou tout service exposé, quand il mentionne la sécurité, le durcissement, ou quand on configure un serveur, un reverse proxy ou un pipeline CI/CD."
 ---
 
-# Sécurité ANSSI — Règles essentielles
+# Sécurité — Règles essentielles pour le développement
 
-Règles de sécurité pour le développement d'applications de l'État, issues du [guide d'hygiène informatique ANSSI](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) et des [recommandations TLS](https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-tls).
+Règles de sécurité pour le développement d'applications de l'État, générées par la DINUM en s'appuyant sur le [guide d'hygiène informatique ANSSI](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) et des [recommandations TLS](https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-tls).
 
 Source : https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/
 
@@ -134,7 +134,7 @@ Referrer-Policy: strict-origin-when-cross-origin
 ## Format du rapport d'audit
 
 ```markdown
-## Audit Sécurité ANSSI — Rapport de conformité
+## Audit Sécurité — Rapport de conformité
 
 **Date :** AAAA-MM-JJ
 **Périmètre audité :** [description du projet / service / composant]
@@ -202,9 +202,9 @@ Referrer-Policy: strict-origin-when-cross-origin
 Après avoir produit le rapport, **toujours** :
 
 1. Créer le dossier `audits/` à la racine du projet s'il n'existe pas
-2. Écrire le rapport complet dans `audits/securite-anssi-AAAA-MM-JJ.md` (date du jour, format ISO)
+2. Écrire le rapport complet dans `audits/securite-developpement-AAAA-MM-JJ.md` (date du jour, format ISO)
 3. Afficher également le rapport dans la conversation
 
-Si un fichier du même nom existe déjà, ajouter un suffixe incrémental : `securite-anssi-2026-03-26-2.md`.
+Si un fichier du même nom existe déjà, ajouter un suffixe incrémental : `securite-developpement-2026-03-26-2.md`.
 
-> Exemple : `audits/securite-anssi-2026-03-26.md`
+> Exemple : `audits/securite-developpement-2026-03-26.md`
