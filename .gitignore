@@ -1,0 +1,5 @@
+# Bruit macOS
+.DS_Store
+
+# Dossiers de travail des skills (sources brutes, extractions temporaires)
+**/.source/

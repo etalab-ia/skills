@@ -14,6 +14,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | [**rgaa**](skills/rgaa/) | Audit de conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) — 106 critères d'accessibilité numérique |
 | [**lasuite-ui-kit**](skills/lasuite-ui-kit/) | Interfaces React pour [LaSuite](https://lasuite.numerique.gouv.fr/) avec `@gouvfr-lasuite/ui-kit` et `@gouvfr-lasuite/cunningham-react` |
 | [**securite-developpement**](skills/securite-developpement/) | 12 règles de sécurité, générées par la DINUM en s'appuyant sur le [guide d'hygiène ANSSI](https://cyber.gouv.fr/publications/guide-dhygiene-informatique) |
+| [**usage-ia-agents-etat**](skills/usage-ia-agents-etat/) | Cadre d'usage de l'IA générative pour les agents publics, d'après le [Guide d'usage de l'IA](https://ia.numerique.gouv.fr/ressources/guide-dusage-de-lia/) de la DINUM — 5 principes + conseil proactif |
 | [**datagouv-apis**](skills/datagouv-apis/) | 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) — synchronisées depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill) |
 
 ## Skills expérimentales ⚠️
