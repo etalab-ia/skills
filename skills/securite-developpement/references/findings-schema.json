@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/etalab-ia/skills/securite-developpement/findings-schema.json",
+  "title": "Rapport d'audit securite-developpement",
+  "description": "Sortie structurée optionnelle d'un audit de conformité securite-developpement (12 domaines ANSSI). Complète le rapport Markdown, ne le remplace pas.",
+  "type": "object",
+  "required": ["date", "perimetre", "synthese", "findings"],
+  "additionalProperties": false,
+  "properties": {
+    "date": {
+      "type": "string",
+      "description": "Date de l'audit au format ISO AAAA-MM-JJ",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "perimetre": {
+      "type": "string",
+      "description": "Description du projet, service ou composant audité"
+    },
+    "synthese": {
+      "type": "object",
+      "description": "Comptage global des statuts sur les 12 domaines",
+      "required": ["total", "conformes", "non_conformes", "partiels", "non_applicables"],
+      "additionalProperties": false,
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "conformes": { "type": "integer", "minimum": 0 },
+        "non_conformes": { "type": "integer", "minimum": 0 },
+        "partiels": { "type": "integer", "minimum": 0 },
+        "non_applicables": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "Un objet par domaine évalué (ou par non-conformité détaillée)",
+      "items": {
+        "type": "object",
+        "required": ["domaine", "nom_domaine", "statut"],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": { "properties": { "statut": { "const": "KO" } } },
+            "then": { "required": ["regle", "constat", "exploitable", "risque", "correction", "priorite"] }
+          },
+          {
+            "if": { "properties": { "statut": { "const": "Partiel" } } },
+            "then": { "required": ["constat", "correction"] }
+          },
+          {
+            "if": { "properties": { "statut": { "const": "NA" } } },
+            "then": { "required": ["justification_na"] }
+          }
+        ],
+        "properties": {
+          "domaine": {
+            "type": "integer",
+            "description": "Numéro du domaine de la checklist (1 à 12)",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "nom_domaine": {
+            "type": "string",
+            "description": "Libellé du domaine (ex: Gestion des secrets)"
+          },
+          "regle": {
+            "type": "string",
+            "description": "Règle concernée par le constat"
+          },
+          "statut": {
+            "type": "string",
+            "description": "Statut de conformité",
+            "enum": ["OK", "KO", "NA", "Partiel"]
+          },
+          "constat": {
+            "type": "string",
+            "description": "Ce qui a été observé dans le code ou la configuration"
+          },
+          "exploitable": {
+            "type": "boolean",
+            "description": "true si la faille est activable en l'état ; false si bonne pratique manquante (défense en profondeur). Pertinent pour les statuts KO/Partiel."
+          },
+          "risque": {
+            "type": "string",
+            "description": "Impact sécurité si non corrigé"
+          },
+          "correction": {
+            "type": "string",
+            "description": "Action concrète à mener"
+          },
+          "priorite": {
+            "type": "string",
+            "description": "Priorité de correction",
+            "enum": ["critique", "elevee", "moderee"]
+          },
+          "justification_na": {
+            "type": "string",
+            "description": "Justification lorsque le statut est NA"
+          }
+        }
+      }
+    }
+  }
+}
