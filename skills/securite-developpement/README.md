@@ -9,7 +9,7 @@ Quand elle est activée, l'assistant IA peut :
 - **Auditer la sécurité** d'une application web, API ou service exposé selon les 12 règles de sécurité
 - **Produire un rapport structuré** avec grille de priorités (🔴 Critique, 🟠 Élevé, 🟡 Modéré), qualification de l'exploitabilité de chaque non-conformité et étape de validation des faux positifs
 - **Appliquer les bonnes pratiques** : TLS/HTTPS, gestion des secrets, authentification, headers de sécurité, validation des entrées, dépendances, logs, conteneurs
-- **Exporter le rapport** dans `audits/securite-developpement-YYYY-MM-DD.md`, avec une sortie structurée `securite-developpement-YYYY-MM-DD.json` optionnelle (machine-lisible)
+- **Exporter le rapport** dans `audits/securite-developpement-AAAA-MM-JJ.md`, avec une sortie structurée `securite-developpement-AAAA-MM-JJ.json` optionnelle (machine-lisible)
 
 ## Contenu
 
