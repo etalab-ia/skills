@@ -7,15 +7,18 @@ Skill pour assistants de code IA — 12 règles essentielles de sécurité, gén
 Quand elle est activée, l'assistant IA peut :
 
 - **Auditer la sécurité** d'une application web, API ou service exposé selon les 12 règles de sécurité
-- **Produire un rapport structuré** avec grille de priorités (🔴 Critique, 🟠 Élevé, 🟡 Modéré)
+- **Produire un rapport structuré** avec grille de priorités (🔴 Critique, 🟠 Élevé, 🟡 Modéré), qualification de l'exploitabilité de chaque non-conformité et étape de validation des faux positifs
 - **Appliquer les bonnes pratiques** : TLS/HTTPS, gestion des secrets, authentification, headers de sécurité, validation des entrées, dépendances, logs, conteneurs
-- **Exporter le rapport** dans `audits/securite-developpement-YYYY-MM-DD.md`
+- **Exporter le rapport** dans `audits/securite-developpement-YYYY-MM-DD.md`, avec une sortie structurée `findings.json` optionnelle (machine-lisible)
 
 ## Contenu
 
 | Fichier | Description |
 |---------|-------------|
-| [`SKILL.md`](SKILL.md) | Les 12 règles de sécurité, workflow d'audit et format de rapport |
+| [`SKILL.md`](SKILL.md) | Workflow d'audit (analyse, qualification, validation, export) et renvois |
+| [`references/checklist.md`](references/checklist.md) | Les 12 domaines de sécurité détaillés (règles à vérifier) |
+| [`references/rapport.md`](references/rapport.md) | Format du rapport, grille de priorités, export, sortie JSON optionnelle |
+| [`references/findings-schema.json`](references/findings-schema.json) | JSON Schema de la sortie structurée optionnelle (`findings.json`) |
 
 ## Installation
 
