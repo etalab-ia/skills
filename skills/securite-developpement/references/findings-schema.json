@@ -36,6 +36,20 @@
         "type": "object",
         "required": ["domaine", "nom_domaine", "statut"],
         "additionalProperties": false,
+        "allOf": [
+          {
+            "if": { "properties": { "statut": { "const": "KO" } } },
+            "then": { "required": ["regle", "constat", "exploitable", "risque", "correction", "priorite"] }
+          },
+          {
+            "if": { "properties": { "statut": { "const": "Partiel" } } },
+            "then": { "required": ["constat", "correction"] }
+          },
+          {
+            "if": { "properties": { "statut": { "const": "NA" } } },
+            "then": { "required": ["justification_na"] }
+          }
+        ],
         "properties": {
           "domaine": {
             "type": "integer",

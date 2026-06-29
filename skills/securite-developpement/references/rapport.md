@@ -87,7 +87,7 @@ Si un fichier du même nom existe déjà, ajouter un suffixe incrémental : `sec
 
 > Exemple : `audits/securite-developpement-2026-03-26.md`
 
-## Sortie structurée optionnelle (`findings.json`)
+## Sortie structurée optionnelle (`securite-developpement-AAAA-MM-JJ.json`)
 
 En **complément** du rapport Markdown (et seulement si l'utilisateur le demande, ou pour outiller/agréger des audits sur plusieurs projets), produire un fichier `audits/securite-developpement-AAAA-MM-JJ.json` conforme au schéma [`findings-schema.json`](findings-schema.json).
 

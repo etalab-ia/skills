@@ -23,7 +23,7 @@ Source : https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformatio
 4. **Qualifier l'exploitabilité de chaque KO** : distinguer une faille **exploitable** (activable en l'état → chemin d'attaque réel) d'une **bonne pratique manquante** (défense en profondeur, sans exploitation directe). Cette qualification alimente la priorité.
 5. **Valider les non-conformités** : avant de finaliser, re-vérifier chaque KO contre le code et la configuration réels. Écarter les faux positifs, ou requalifier le statut/l'exploitabilité si le constat ne tient pas. Ne conserver que les constats étayés par une preuve concrète (fichier, ligne, réglage).
 6. **Produire le rapport structuré** selon le format défini dans [`references/rapport.md`](references/rapport.md)
-7. **Exporter le rapport** : écrire le rapport dans un fichier Markdown ET l'afficher dans la conversation (règles d'export dans [`references/rapport.md`](references/rapport.md)). Une sortie structurée `findings.json` optionnelle est disponible (schéma : [`references/findings-schema.json`](references/findings-schema.json)).
+7. **Exporter le rapport** : écrire le rapport dans un fichier Markdown ET l'afficher dans la conversation (règles d'export dans [`references/rapport.md`](references/rapport.md)). Une sortie structurée JSON optionnelle est disponible au format `securite-developpement-AAAA-MM-JJ.json` (schéma : [`references/findings-schema.json`](references/findings-schema.json)).
 
 ---
 
@@ -33,4 +33,4 @@ Source : https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformatio
 |---------|---------|
 | [`references/checklist.md`](references/checklist.md) | Les 12 domaines de sécurité détaillés (règles à vérifier) |
 | [`references/rapport.md`](references/rapport.md) | Format du rapport, grille de priorités, export, sortie JSON optionnelle |
-| [`references/findings-schema.json`](references/findings-schema.json) | JSON Schema de la sortie structurée optionnelle (`findings.json`) |
+| [`references/findings-schema.json`](references/findings-schema.json) | JSON Schema de la sortie structurée optionnelle (`securite-developpement-AAAA-MM-JJ.json`) |
