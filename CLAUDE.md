@@ -41,7 +41,7 @@ The `templates/instructions/` directory contains ready-to-use `INSTRUCTIONS.md` 
 
 ## Upstream Sync
 
-The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-skill`). A GitHub Actions workflow (`.github/workflows/sync-datagouv.yml`) runs weekly (Monday 9h UTC) and on manual trigger. Only `SKILL.md` is synced — the skill's `README.md` is DINUM-authored and intentionally diverges from upstream. Accordingly, `.sync-state/datagouv.sha` stores the **git blob hash of the upstream `SKILL.md`**, not the upstream HEAD commit SHA: the workflow opens a PR only when that file's content actually changes, so upstream commits touching only README/LICENSE do not produce empty sync PRs. This mechanism is extensible to other third-party skills.
+The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-skill`). A GitHub Actions workflow (`.github/workflows/sync-datagouv.yml`) runs weekly (Mondays at 09:00 UTC) and on manual trigger. Only `SKILL.md` is synced — the skill's `README.md` is DINUM-authored and intentionally diverges from upstream. Accordingly, `.sync-state/datagouv.sha` stores the **git blob hash of the upstream `SKILL.md`**, not the upstream HEAD commit SHA: the workflow opens a PR only when that file's content actually changes, so upstream commits touching only README/LICENSE do not produce empty sync PRs. This mechanism is extensible to other third-party skills.
 
 ## Conventions
 
