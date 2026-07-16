@@ -16,23 +16,34 @@ jobs:
         id: check
         run: |
           git clone --depth=1 https://github.com/datagouv/datagouv-skill.git /tmp/upstream
-          UPSTREAM_SHA=$(cd /tmp/upstream && git rev-parse HEAD)
-          LOCAL_SHA=$(cat .sync-state/datagouv.sha 2>/dev/null || echo "")
-          if [ "$UPSTREAM_SHA" != "$LOCAL_SHA" ]; then
+
+          # On suit le hash du blob SKILL.md, pas le HEAD du dépôt : seul ce
+          # fichier est synchronisé, donc un commit upstream sur README/LICENSE
+          # ne doit pas ouvrir de PR.
+          UPSTREAM_BLOB=$(cd /tmp/upstream && git rev-parse HEAD:SKILL.md)
+          UPSTREAM_COMMIT=$(cd /tmp/upstream && git rev-parse HEAD)
+          LOCAL_BLOB=$(cat .sync-state/datagouv.sha 2>/dev/null || echo "")
+
+          if [ "$UPSTREAM_BLOB" != "$LOCAL_BLOB" ]; then
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "sha=$UPSTREAM_SHA" >> $GITHUB_OUTPUT
+            echo "blob=$UPSTREAM_BLOB" >> $GITHUB_OUTPUT
+            echo "commit=$UPSTREAM_COMMIT" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
       - name: Sync files
         if: steps.check.outputs.changed == 'true'
+        env:
+          BLOB: ${{ steps.check.outputs.blob }}
         run: |
           cp /tmp/upstream/SKILL.md skills/datagouv-apis/SKILL.md
-          echo "${{ steps.check.outputs.sha }}" > .sync-state/datagouv.sha
+          echo "$BLOB" > .sync-state/datagouv.sha
       - name: Create PR
         if: steps.check.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BLOB: ${{ steps.check.outputs.blob }}
+          COMMIT: ${{ steps.check.outputs.commit }}
         run: |
           BRANCH="sync/datagouv-$(date +%Y%m%d)"
           git config user.name "github-actions[bot]"
@@ -47,4 +58,10 @@ jobs:
           git push origin "$BRANCH"
           gh pr create \
             --title "chore(datagouv): sync upstream changes" \
-            --body "Mise à jour automatique de la skill datagouv depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill).\n\nCommit upstream: ${{ steps.check.outputs.sha }}"
+            --body "$(cat <<EOF
+          Mise à jour automatique de la skill datagouv depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill).
+
+          Commit upstream : [\`${COMMIT:0:7}\`](https://github.com/datagouv/datagouv-skill/commit/${COMMIT})
+          Blob \`SKILL.md\` : \`${BLOB}\`
+          EOF
+          )"
