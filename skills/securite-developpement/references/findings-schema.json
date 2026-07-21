@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/etalab-ia/skills/securite-developpement/findings-schema.json",
   "title": "Rapport d'audit securite-developpement",
-  "description": "Sortie structurée optionnelle d'un audit de conformité securite-developpement (12 domaines ANSSI). Complète le rapport Markdown, ne le remplace pas.",
+  "description": "Sortie structurée optionnelle d'un audit de conformité securite-developpement (14 domaines dérivés des guides ANSSI, plus les modules conditionnels). Complète le rapport Markdown, ne le remplace pas.",
   "type": "object",
   "required": ["date", "perimetre", "synthese", "findings"],
   "additionalProperties": false,
@@ -18,7 +18,7 @@
     },
     "synthese": {
       "type": "object",
-      "description": "Comptage global des statuts sur les 12 domaines",
+      "description": "Comptage global des statuts. Les domaines du socle non applicables restent comptés ; les modules non chargés sont exclus du total.",
       "required": ["total", "conformes", "non_conformes", "partiels", "non_applicables"],
       "additionalProperties": false,
       "properties": {
@@ -34,8 +34,20 @@
       "description": "Un objet par domaine évalué (ou par non-conformité détaillée)",
       "items": {
         "type": "object",
-        "required": ["domaine", "nom_domaine", "statut"],
+        "required": ["nom_domaine", "statut"],
         "additionalProperties": false,
+        "oneOf": [
+          {
+            "title": "Constat portant sur un domaine du socle",
+            "required": ["domaine"],
+            "not": { "required": ["module"] }
+          },
+          {
+            "title": "Constat portant sur un module conditionnel",
+            "required": ["module"],
+            "not": { "required": ["domaine"] }
+          }
+        ],
         "allOf": [
           {
             "if": { "properties": { "statut": { "const": "KO" } } },
@@ -53,13 +65,24 @@
         "properties": {
           "domaine": {
             "type": "integer",
-            "description": "Numéro du domaine de la checklist (1 à 12)",
+            "description": "Numéro du domaine du socle (1 à 14). Exclusif avec 'module'.",
             "minimum": 1,
-            "maximum": 12
+            "maximum": 14
+          },
+          "module": {
+            "type": "string",
+            "description": "Module conditionnel dont relève le constat, lorsqu'il ne relève pas d'un domaine du socle. Exclusif avec 'domaine'.",
+            "enum": ["langage-c", "langage-rust", "cms"]
           },
           "nom_domaine": {
             "type": "string",
-            "description": "Libellé du domaine (ex: Gestion des secrets)"
+            "description": "Libellé du domaine ou du module (ex: Gestion des secrets)"
+          },
+          "references_anssi": {
+            "type": "array",
+            "description": "Identifiants des recommandations ANSSI fondant la règle, tels qu'ils apparaissent dans references/sources.md (ex: ['TLS R5', 'CRYPTO R3']). Utiliser 'ESS-<GUIDE>' pour les Essentiels, qui ne numérotent pas leurs recommandations, et 'DINUM' pour une bonne pratique sans source ANSSI.",
+            "items": { "type": "string" },
+            "uniqueItems": true
           },
           "regle": {
             "type": "string",
