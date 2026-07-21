@@ -87,7 +87,7 @@ Les modules conditionnels — [langage C](modules/langage-c.md), [Rust](modules/
 - [ ] Schémas de validation explicites (Zod, Joi, Pydantic…) — [DINUM]
 - [ ] Conformité vérifiée pour les données issues de sources externes — [WEB R8]
 - [ ] Échappement des contenus inclus vérifié — [WEB R7]
-- [ ] **Requêtes préparées / paramétrées**, aucune concaténation de chaînes SQL — [ESS-BDD] [WEB R7]
+- [ ] **Requêtes préparées / paramétrées**, aucune concaténation de chaînes SQL — [ESS-BDD]
 - [ ] Taille des requêtes bornée (corps, téléversements, chaînes de requête) — [DINUM]
 - [ ] `Content-Type` explicite sur chaque réponse — [WEB R6]
 - [ ] **Comptes de base de données distincts** pour les humains et pour les applications — [ESS-BDD]
