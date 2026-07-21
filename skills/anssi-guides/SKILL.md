@@ -1,6 +1,6 @@
 ---
 name: anssi-guides
-description: "Catalogue des 128 guides et recommandations publiés par l'ANSSI, pour trouver le bon guide et répondre à une question de sécurité en citant sa source. Utiliser cette skill quand l'utilisateur cherche un guide ou une publication de l'ANSSI, demande « que dit / que recommande l'ANSSI sur… », « existe-t-il un guide sur… », ou pose une question de sécurité hors du développement d'application : architecture réseau, pare-feu, DNS, Active Directory, Wi-Fi, virtualisation, nomadisme, systèmes industriels, gestion de crise cyber, remédiation, homologation, EBIOS, IA générative, cryptographie post-quantique. Pour la sécurité du développement d'une application (code, serveur, base de données, CI/CD), utiliser plutôt la skill securite-developpement."
+description: "Catalogue des 126 guides et recommandations publiés par l'ANSSI, pour trouver le bon guide et répondre à une question de sécurité en citant sa source. Utiliser cette skill quand l'utilisateur cherche un guide ou une publication de l'ANSSI, demande « que dit / que recommande l'ANSSI sur… », « existe-t-il un guide sur… », ou pose une question de sécurité hors du développement d'application : architecture réseau, pare-feu, DNS, Active Directory, Wi-Fi, virtualisation, nomadisme, systèmes industriels, gestion de crise cyber, remédiation, homologation, EBIOS, IA générative, cryptographie post-quantique. Pour la sécurité du développement d'une application (code, serveur, base de données, CI/CD), utiliser plutôt la skill securite-developpement."
 ---
 
 # Guides ANSSI — trouver et consulter la bonne source
@@ -9,7 +9,7 @@ Cette skill aiguille vers les guides publiés par l'ANSSI et les consulte à la 
 
 ## Workflow
 
-1. **Chercher dans le catalogue** — [`references/catalogue.md`](references/catalogue.md) : 128 guides en français (titre, date, collection, thématique, URL). Chercher par mots-clés du sujet, y compris les synonymes (ex. « SSO » → OpenID Connect ; « conteneurs » → Docker, cloisonnement, virtualisation).
+1. **Chercher dans le catalogue** — [`references/catalogue.md`](references/catalogue.md) : 126 guides — 125 en français, 1 disponible uniquement en anglais — (titre, date, collection, thématique, URL). Chercher par mots-clés du sujet, y compris les synonymes (ex. « SSO » → OpenID Connect ; « conteneurs » → Docker, cloisonnement, virtualisation).
 
 2. **Aiguiller vers `securite-developpement` si la question relève du développement.** Les guides marqués ★ dans le catalogue y sont déjà digérés règle par règle, avec leur traçabilité (`[TLS R3]`, `[ESS-BDD]`…) et les valeurs chiffrées exactes. Ne pas refaire ce travail depuis les PDF.
 
@@ -33,4 +33,4 @@ Cette skill aiguille vers les guides publiés par l'ANSSI et les consulte à la 
 
 | Fichier | Contenu |
 |---------|---------|
-| [`references/catalogue.md`](references/catalogue.md) | Les 128 guides FR : titre, date, collection, thématique, URL — plus la méthode de re-scan |
+| [`references/catalogue.md`](references/catalogue.md) | Les 126 guides : titre, date, collection, thématique, URL — plus la méthode de re-scan |

@@ -1,6 +1,6 @@
 # anssi-guides
 
-Skill d'aiguillage vers les guides publiés par l'ANSSI : trouver le bon guide dans le catalogue (128 guides en français), le consulter à la demande et répondre en citant la source exacte.
+Skill d'aiguillage vers les guides publiés par l'ANSSI : trouver le bon guide dans le catalogue (126 guides), le consulter à la demande et répondre en citant la source exacte.
 
 ## Positionnement
 
@@ -21,7 +21,7 @@ Les 13 guides couverts par `securite-developpement` sont marqués ★ dans le ca
 anssi-guides/
 ├── SKILL.md                  # Workflow : chercher, aiguiller, consulter, citer
 └── references/
-    └── catalogue.md          # Les 128 guides FR + méthode de re-scan
+    └── catalogue.md          # Les 126 guides + méthode de re-scan
 ```
 
 ## Maintenance

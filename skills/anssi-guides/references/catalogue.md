@@ -1,6 +1,6 @@
-# Catalogue des guides ANSSI — 128 guides en français
+# Catalogue des guides ANSSI — 126 guides
 
-**Date du scan : 20 juillet 2026.** Source : [messervices.cyber.gouv.fr/guides](https://messervices.cyber.gouv.fr/guides), point d'entrée canonique du catalogue ANSSI (`cyber.gouv.fr/publications` n'est plus qu'une page d'aiguillage qui y renvoie). Le catalogue complet compte 178 fiches ; les 50 traductions anglaises sont exclues de ce tableau.
+**Date du scan : 20 juillet 2026.** Source : [messervices.cyber.gouv.fr/guides](https://messervices.cyber.gouv.fr/guides), point d'entrée canonique du catalogue ANSSI (`cyber.gouv.fr/publications` n'est plus qu'une page d'aiguillage qui y renvoie). Le catalogue complet compte 178 fiches ; les 52 traductions anglaises de guides français sont exclues de ce tableau (50 aux slugs préfixés `en-`, 2 sans préfixe). Restent **125 guides en français** et **1 publication disponible uniquement en anglais**, conservée et signalée comme telle.
 
 **Légende** : ★ = guide déjà digéré et tracé règle par règle dans la skill [`securite-developpement`](../../securite-developpement/SKILL.md) — pour une question de développement d'application, utiliser cette skill plutôt que le PDF.
 
@@ -16,7 +16,6 @@ Trié du plus récent au plus ancien.
 | Recommandations de sécurité relatives à la gestion technique et centralisée du bâtiment (gtb/gtc) | 4 juin 2026 | Systèmes industriels | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-gestion-technique-batiment) |
 | Anticiper et gérer sa communication de crise cyber | 4 juin 2026 | Crise cyber | Crise cyber | [lien](https://messervices.cyber.gouv.fr/guides/anticiper-et-gerer-sa-communication-de-crise-cyber) |
 | Recommandations pour la mise en œuvre du vote par Internet pour les élections non politiques | 24 avril 2026 | Sécurité du vote électronique | — | [lien](https://messervices.cyber.gouv.fr/guides/vote-internet-elections-non-politiques) |
-| The security accreditation guide for information systems | 26 mars 2026 | Gestion des risques cyber | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/the-security-accreditation-guide-for-information-systems) |
 | ★ Mécanismes cryptographiques | 20 mars 2026 | Cryptographie | Cryptographie | [lien](https://messervices.cyber.gouv.fr/guides/mecanismes-cryptographiques) |
 | Guide de cybersécurité à l’usage des start-up du numérique | 26 février 2026 | Cybersécurité des start-up | — | [lien](https://messervices.cyber.gouv.fr/guides/guide-cybersecurite-start-up-numerique) |
 | Sécurisation du poste de travail multi-environnements (non classifiés) | 20 février 2026 | Les fondamentaux | Les fondamentaux | [lien](https://messervices.cyber.gouv.fr/guides/fondamentaux-poste-multi-environnements) |
@@ -24,9 +23,8 @@ Trié du plus récent au plus ancien.
 | Transition post-quantique de SSHv2 | 2 février 2026 | Cryptographie post-quantique | Cryptographie | [lien](https://messervices.cyber.gouv.fr/guides/Transition-post-quantique-protocole-SSHv2) |
 | Transition post-quantique de TLS 1.3 | 2 février 2026 | Cryptographie post-quantique | Cryptographie | [lien](https://messervices.cyber.gouv.fr/guides/Transition-post-quantique-protocole-TLS-1-3) |
 | Sécurisation d’une infrastructure VMware | 26 janvier 2026 | Les fondamentaux | Les fondamentaux | [lien](https://messervices.cyber.gouv.fr/guides/securisation-dune-infrastructure-vmware) |
-| Securing a VMware infrastructure  | 26 janvier 2026 | Les fondamentaux | Les fondamentaux | [lien](https://messervices.cyber.gouv.fr/guides/securing-wmware-infrastructure) |
 | Sécuriser une migration numérique | 23 janvier 2026 | Migration | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/migration) |
-| ANSSI views on crypto agility  | 19 janvier 2026 | Cryptographie post-quantique | Cryptographie | [lien](https://messervices.cyber.gouv.fr/guides/ANSSI-views-on-crypto-agility) |
+| ANSSI views on crypto agility *(en anglais, sans équivalent français)* | 19 janvier 2026 | Cryptographie post-quantique | Cryptographie | [lien](https://messervices.cyber.gouv.fr/guides/ANSSI-views-on-crypto-agility) |
 | Préparer la remédiation | 16 janvier 2026 | Cyberattaques et remédiation | Remédiation | [lien](https://messervices.cyber.gouv.fr/guides/cyberattaques-et-remediation-preparer-la-remedation) |
 | Outil de pilotage du projet de remédiation | 1 janvier 2026 | Gestion des risques cyber | Remédiation | [lien](https://messervices.cyber.gouv.fr/guides/outil-pilotage-projet-remediation) |
 | La cybersécurité des systèmes industriels - Mesures détaillées | 19 décembre 2025 | Systèmes industriels | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/la-cybersecurite-des-systemes-industriels-mesures-detaillees) |
@@ -43,7 +41,7 @@ Trié du plus récent au plus ancien.
 | Hygiène numérique des téléphones mobiles | 3 avril 2025 | Les essentiels | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/hygiene-numerique-des-telephones-mobiles) |
 | L’homologation de sécurité des systèmes d’information | 1 avril 2025 | Gestion des risques cyber | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/lhomologation-de-securite-des-systemes-dinformation) |
 | Données et traitements sensibles | 28 mars 2025 | Les essentiels | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/donnees-traitements-sensibles) |
-| Développer la confiance dans l’IA par une approche par les risques cyber. | 7 février 2025 | Gestion des risques cyber | Intelligence artificielle | [lien](https://messervices.cyber.gouv.fr/guides/developper-la-confiance-dans-lia-par-une-approche-par-les-risques-cyber) |
+| Développer la confiance dans l’IA par une approche par les risques cyber | 7 février 2025 | Gestion des risques cyber | Intelligence artificielle | [lien](https://messervices.cyber.gouv.fr/guides/developper-la-confiance-dans-lia-par-une-approche-par-les-risques-cyber) |
 | ★ Bases de données relationnelles | 31 janvier 2025 | Les essentiels | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/bases-de-donnees-relationnelles) |
 | Se protéger des fuites de données | 28 janvier 2025 | Les essentiels | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/se-proteger-des-fuites-de-donnees) |
 | Automatisation de la gestion des certificats avec ACME | 24 janvier 2025 | Les fondamentaux | Les fondamentaux | [lien](https://messervices.cyber.gouv.fr/guides/automatisation-de-la-gestion-des-certificats-avec-acme) |
@@ -86,7 +84,7 @@ Trié du plus récent au plus ancien.
 | Cybersécurité : toutes les communes et intercommunalités sont concernées | 20 novembre 2020 | Gestion des risques cyber | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/cybersecurite-toutes-les-communes-et-intercommunalites-sont-concernees) |
 | Organiser un exercice de gestion de crise cyber | 14 octobre 2020 | Crise cyber | Crise cyber | [lien](https://messervices.cyber.gouv.fr/guides/organiser-un-exercice-de-gestion-de-crise-cyber) |
 | Recommandations pour la sécurisation de la mise en oeuvre du protocole OpenID Connect | 8 septembre 2020 | OpenID Connect | — | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-la-securisation-de-la-mise-en-oeuvre-du-protocole-openid-connect) |
-| Attaques par rançongiciels, tous concernés. | 4 septembre 2020 | Rançongiciels | Crise cyber | [lien](https://messervices.cyber.gouv.fr/guides/attaques-par-rancongiciels-tous-concernes) |
+| Attaques par rançongiciels, tous concernés | 4 septembre 2020 | Rançongiciels | Crise cyber | [lien](https://messervices.cyber.gouv.fr/guides/attaques-par-rancongiciels-tous-concernes) |
 | ★ Règles de programmation pour le développement sécurisé de logiciels en langage C | 21 juillet 2020 | Langage C | — | [lien](https://messervices.cyber.gouv.fr/guides/regles-de-programmation-pour-le-developpement-securise-de-logiciels-en-langage-c) |
 | Profil de fonctionnalités et de sécurité - Sas et station blanche (réseaux non classifiés) | 1 juillet 2020 | Profil de fonctionnalités et de sécurité | — | [lien](https://messervices.cyber.gouv.fr/guides/profil-de-fonctionnalites-et-de-securite-sas-et-station-blanche-reseaux-non-classifies) |
 | Recommandations relatives à l’interconnexion d’un SI à Internet | 19 juin 2020 | Interconnexion à internet | — | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-relatives-linterconnexion-dun-si-internet) |
@@ -125,7 +123,7 @@ Trié du plus récent au plus ancien.
 | Recommandations de sécurité relatives à IPsec | 3 août 2015 | IPsec | — | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-relatives-ipsec) |
 | Sécuriser son ordiphone | 15 juillet 2015 | Ordiphone smartphone | — | [lien](https://messervices.cyber.gouv.fr/guides/securiser-son-ordiphone) |
 | Recommandations de configuration matérielle de postes clients et serveurs x86 | 31 mars 2015 | x86 | — | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-configuration-materielle-de-postes-clients-et-serveurs-x86) |
-| Comprendre et anticiper les attaques DDoS | 20 mars 2015 | DDos | — | [lien](https://messervices.cyber.gouv.fr/guides/comprendre-et-anticiper-les-attaques-ddos) |
+| Comprendre et anticiper les attaques DDoS | 20 mars 2015 | DDoS | — | [lien](https://messervices.cyber.gouv.fr/guides/comprendre-et-anticiper-les-attaques-ddos) |
 | Guide pour une formation sur la cybersécurité des systèmes industriels | 5 mars 2015 | Systèmes industriels | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/guide-pour-une-formation-sur-la-cybersecurite-des-systemes-industriels) |
 | Profils de protection pour les systèmes industriels | 3 mars 2015 | PP | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/profils-de-protection-pour-les-systemes-industriels) |
 | Achat de produits de sécurité et de services de confiance qualifiés dans le cadre du RGS | 12 février 2015 | RGS | — | [lien](https://messervices.cyber.gouv.fr/guides/achat-de-produits-de-securite-et-de-services-de-confiance-qualifies-dans-le-cadre-du) |
@@ -149,6 +147,6 @@ Trié du plus récent au plus ancien.
 
 1. `curl -sL https://messervices.cyber.gouv.fr/guides` — la page rend toutes les fiches en une seule fois, sans pagination.
 2. Extraire les attributs de chaque `<dsfr-card>` : `data-cible` (titre), `detailend` (date), `detailstart` (collection), `badges` (thématique), `href` (slug).
-3. Écarter les traductions anglaises (slugs préfixés `en-`).
+3. Écarter les traductions anglaises : les slugs préfixés `en-`, **puis** vérifier les titres restants — certaines fiches en anglais n'ont pas le préfixe (ex. `securing-wmware-infrastructure`, `the-security-accreditation-guide-for-information-systems`). Écarter celles qui doublonnent un guide français du tableau ; conserver les publications sans équivalent français en les signalant *(en anglais)*.
 4. Comparer au présent tableau : toute ligne nouvelle ou dont la date a changé est une publication ou une révision.
 5. **Si un guide ★ a changé** : le signaler — la skill `securite-developpement` doit alors rejouer son extraction (méthode dans son [`sources.md`](../../securite-developpement/references/sources.md)).

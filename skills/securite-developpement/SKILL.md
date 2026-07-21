@@ -27,7 +27,7 @@ Quand l'utilisateur demande un audit, un rapport de conformité, ou de vérifier
 
 ### Hors périmètre
 
-Pour une question de sécurité hors des 14 domaines — architecture réseau, pare-feu, DNS, Active Directory, remédiation, systèmes industriels, IA générative… — utiliser la skill [`anssi-guides`](../anssi-guides/SKILL.md), qui cherche dans l'ensemble du catalogue ANSSI (128 guides).
+Pour une question de sécurité hors des 14 domaines — architecture réseau, pare-feu, DNS, Active Directory, remédiation, systèmes industriels, IA générative… — utiliser la skill [`anssi-guides`](../anssi-guides/SKILL.md), qui cherche dans l'ensemble du catalogue ANSSI (126 guides).
 
 ---
 
