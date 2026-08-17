@@ -1,11 +1,11 @@
 ---
 name: datagouv-apis
 description: >-
-  data.gouv.fr — search catalog, dataset metadata, organizations, download files,
-  query tabular CSV rows (Tabular API), usage metrics (Metrics API), discover external
-  APIs (dataservices on data.gouv.fr; same APIs historically listed on api.gouv.fr + OpenAPI).
-  Use for consumption, analysis, or MCP-assisted exploration.
-  Optional producer coaching (documentation/quality before publication on the platform).
+  French State open data platform (data.gouv.fr) — search catalog, dataset metadata,
+  organizations, download files, query tabular CSV rows (Tabular API), usage metrics
+  (Metrics API), discover external APIs (dataservices). Use for consumption, analysis,
+  or MCP-assisted exploration. Optional producer coaching (documentation/quality before
+  publication on the platform).
 ---
 
 # data.gouv.fr APIs — Consolidated Reference
