@@ -7,7 +7,7 @@ Skill pour assistants de code IA — référence consolidée d'[Albert API](http
 Quand elle est activée, l'assistant IA sait :
 
 - **Inférence compatible OpenAI** — Appeler `chat/completions` et `embeddings` en réutilisant le SDK `openai` (changement de `base_url`), faire du reranking
-- **Audio & documents** — Transcrire de l'audio (avec diarisation), faire de l'OCR sur PDF/images, parser des fichiers en markdown
+- **Audio & documents** — Transcrire de l'audio (avec diarisation), faire de l'OCR sur PDF/images
 - **RAG souverain** — Créer des collections, indexer des documents, chercher (sémantique / hybride / lexical) et brancher le résultat sur un chat completion
 - **Compte & quotas** — Connaître ses droits, gérer ses clés API, suivre sa consommation
 

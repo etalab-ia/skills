@@ -3,7 +3,7 @@ name: albert-api
 description: >-
   Albert API — API d'inférence et d'IA générative interministérielle de l'État
   (OpenGateLLM, hébergement SecNumCloud). Compatible OpenAI : chat completions,
-  embeddings, rerank. Plus transcription audio, OCR, parsing de documents, et un
+  embeddings, rerank. Plus transcription audio, OCR de PDF et d'images, et un
   pipeline RAG souverain complet (collections, documents, recherche sémantique/
   hybride/lexicale). À utiliser pour appeler Albert, intégrer un LLM souverain
   dans un produit ou un script de l'administration, faire du RAG sur corpus
@@ -14,7 +14,7 @@ description: >-
 
 # Albert API — Référence consolidée
 
-API d'inférence de l'État français, opérée par le département IAE de la DINUM (commun numérique **OpenGateLLM**). **Largement compatible OpenAI** : pour `chat/completions`, `embeddings` et `rerank`, réutiliser le SDK `openai` (ou tout client OpenAI) en changeant simplement `base_url` et la clé. Les capacités propres à Albert (RAG, audio, OCR, parsing) s'appellent en HTTP direct.
+API d'inférence de l'État français, opérée par le département IAE de la DINUM (commun numérique **OpenGateLLM**). **Largement compatible OpenAI** : pour `chat/completions`, `embeddings` et `rerank`, réutiliser le SDK `openai` (ou tout client OpenAI) en changeant simplement `base_url` et la clé. Les capacités propres à Albert (RAG, audio, OCR) s'appellent en HTTP direct.
 
 **Base URL :** `https://albert.api.etalab.gouv.fr`
 **Spec OpenAPI (fait foi) :** `https://albert.api.etalab.gouv.fr/openapi.json`
@@ -27,8 +27,8 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 - **Consommation d'abord.** L'usage courant = appeler les modèles (chat, embeddings) et le RAG. Les écritures (créer collection, uploader documents, gérer des clés) ne se font que sur intention explicite de l'utilisateur.
 - **Compatibilité OpenAI.** Pointer un client OpenAI sur `https://albert.api.etalab.gouv.fr/v1` évite de réécrire du code. Les schémas de requête/réponse de `chat/completions` et `embeddings` suivent OpenAI ; Albert ajoute des paramètres (`search`, `search_args`).
 - **Ne jamais logger ni afficher le token.** Le Bearer token est un secret. Ne pas l'écho dans les réponses, les logs, les exemples copiés. Le lire depuis une variable d'environnement (`ALBERT_API_KEY`).
-- **L'OpenAPI fait autorité.** En cas de divergence entre ce fichier et la spec récupérée en live, **suivre la spec**. La version peut évoluer (ce fichier décrit v0.4.7).
-- **Ne pas inventer d'ID de modèle.** Lister les modèles disponibles via `GET /v1/models` avant d'en coder un en dur.
+- **L'OpenAPI fait autorité.** En cas de divergence entre ce fichier et la spec récupérée en live, **suivre la spec**. La spec live ne porte plus de numéro de version (`info.version` vaut `latest`) : c'est le contenu qui fait foi, pas un semver.
+- **Ne pas inventer d'ID de modèle, et ne jamais coder un alias.** Lister les modèles via `GET /v1/models` et utiliser le champ **`id`**, jamais une valeur du tableau `aliases` (cf. § Modèles).
 
 ---
 
@@ -51,7 +51,6 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 | Reclasser des documents par pertinence | `POST /v1/rerank` |
 | Transcrire de l'audio | `POST /v1/audio/transcriptions` |
 | Extraire le texte d'un PDF/image (OCR) | `POST /v1/ocr` |
-| Parser un fichier en markdown structuré | `POST /v1/parse-beta` |
 | Indexer un corpus puis chercher dedans (RAG) | `/v1/collections` → `/v1/documents` → `POST /v1/search` |
 | Lister les modèles et leurs types | `GET /v1/models` |
 | Quotas, usage, clés | `/v1/me/info`, `/v1/me/usage`, `/v1/me/keys` |
@@ -61,20 +60,51 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 
 ## Modèles
 
-Lister en live : `GET /v1/models` (champ `data[]`, chaque entrée a un `id` et un `type`). `GET /v1/models/{model}` pour le détail d'un modèle.
+Lister en live : `GET /v1/models` (champ `data[]`). `GET /v1/models/{model}` pour le détail d'un modèle.
 
-Instantané du catalogue (juin 2026, **à revérifier via `GET /v1/models`** — il évolue) :
+### `id` ou alias ? Toujours l'`id`
 
-| `type` | Usage | Exemples d'`id` |
+Chaque entrée du catalogue expose **deux** façons de désigner le modèle, et elles n'ont pas le même statut. La spec OpenAPI les décrit ainsi :
+
+| Champ | Description dans la spec | Statut |
+|-------|--------------------------|--------|
+| `id` | « The model identifier, which can be **referenced in the API endpoints** » | **Identifiant contractuel**, c'est celui à coder |
+| `aliases` | « Aliases of the model. It will be used to **identify the model by users** » | Commodité d'affichage, **non contractuelle** |
+
+> ⚠️ **Coder un alias est un bug différé.** Les alias ont déjà churné sans préavis : en juillet 2026, `deepseek-ai/DeepSeek-V4-Flash` a été re-versionné en `deepseek-ai/DeepSeek-V4-Flash-0731` et `Qwen/Qwen3.6-27B` a disparu du catalogue. Toutes les intégrations qui les avaient codés en dur sont tombées en `404 {"detail":"Model not found."}`. Les `id` canoniques, eux, n'ont pas bougé.
+
+Les `id` canoniques sont en **minuscules avec des tirets** (`deepseek-v4-flash`), alors que les alias reprennent souvent la nomenclature HuggingFace (`deepseek-ai/DeepSeek-V4-Flash-0731`). Certains modèles portent aussi un alias de **rôle** stable (`openweight-code`, `openweight-small`…), pratique mais réservé aux modèles ouverts : les modèles propriétaires n'en ont pas, donc ce schéma ne peut pas servir de politique uniforme.
+
+```bash
+# Le bon réflexe : récupérer les id, filtrés par type
+curl -s https://albert.api.etalab.gouv.fr/v1/models \
+  -H "Authorization: Bearer $ALBERT_API_KEY" \
+  | jq -r '.data[] | select(.type=="text-generation") | .id'
+```
+
+### Instantané du catalogue
+
+Relevé le **2026-08-26**, **à revérifier via `GET /v1/models`** : le catalogue évolue et cette table sera périmée.
+
+| `type` | Usage | `id` canoniques |
 |--------|-------|-----------------|
-| `text-generation` | Chat / complétion | `mistral-medium-2508`, `openai/gpt-oss-120b`, `Qwen/Qwen3-Coder-30B-A3B-Instruct` |
-| `image-text-to-text` | Vision (image + texte) | `mistralai/Mistral-Small-3.2-24B-Instruct-2506`, `mistralai/Ministral-3-8B-Instruct-2512` |
-| `text-embeddings-inference` | Embeddings | `BAAI/bge-m3` |
-| `text-classification` | Rerank | `BAAI/bge-reranker-v2-m3` |
-| `automatic-speech-recognition` | Transcription audio | `openai/whisper-large-v3` |
+| `text-generation` | Chat / complétion | `deepseek-v4-flash`, `mistral-medium-2508`, `qwen3-coder-30b-A3b-instruct`, `openai/gpt-oss-120b` |
+| `image-text-to-text` | Vision (image + texte) | `mistral-medium-3-5-128b`, `gemma-4-31b-it`, `mistral-small-3-2-24b-instruct-2506`, `ministral-3-8b-instruct-2512`, `lightonocr-2-1b` |
+| `text-embeddings-inference` | Embeddings | `bge-m3`, `qwen3-vl-embedding-8b`, `mistral-embed-2312` |
+| `text-classification` | Rerank | `bge-reranker-v2-m3` |
+| `automatic-speech-recognition` | Transcription audio | `whisper-large-v3` |
 | `image-to-text` | OCR | `mistral-ocr-2512` |
 
-> ⚠️ **Ne pas coder un ID de modèle en dur sans l'avoir listé** : le catalogue évolue. Récupérer l'`id` exact via `GET /v1/models` et filtrer par `type`.
+### Vérifier qu'un modèle répond avant de s'appuyer dessus
+
+`GET /health/models` (authentifié) renvoie un statut par modèle :
+
+```bash
+curl -s https://albert.api.etalab.gouv.fr/health/models \
+  -H "Authorization: Bearer $ALBERT_API_KEY" | jq '.data[] | select(.status!="green")'
+```
+
+Un modèle présent dans `GET /v1/models` mais `red` dans `/health/models` répond **`502 Bad Gateway`**, pas `404`. Distinguer les deux évite de chercher une erreur de nommage là où il n'y a qu'une panne amont : `404` = identifiant inconnu (vérifier l'`id`), `502` = modèle indisponible (attendre ou basculer).
 
 ---
 
@@ -100,7 +130,6 @@ Instantané du catalogue (juin 2026, **à revérifier via `GET /v1/models`** —
 |---------|--------|-------|-------|
 | POST | `/v1/audio/transcriptions` | `multipart` : `file*`, `model*` ; `language`, `prompt`, `response_format` (`json`\|`text`\|`verbose_json`\|`diarized_json`\|`srt`\|`vtt`), `temperature` | `diarized_json` = transcription avec séparation des locuteurs. |
 | POST | `/v1/ocr` | `json` : `document*` (**objet**, pas une URL nue : `{"type":"document_url","document_url":"…"}` pour un PDF, ou `{"type":"image_url","image_url":"…"}` pour une image), `model`, `pages`, `image_limit`, `include_image_base64` | OCR d'un PDF/image accessible par URL. |
-| POST | `/v1/parse-beta` | `multipart` : `file*` ; `page_range`, `force_ocr` | Parsing d'un fichier uploadé en markdown structuré (bêta). |
 
 ### RAG — collections, documents, recherche
 
@@ -112,7 +141,6 @@ Instantané du catalogue (juin 2026, **à revérifier via `GET /v1/models`** —
 | GET/DELETE | `/v1/documents/{document_id}` | Métadonnées / suppression d'un document. |
 | GET/POST | `/v1/documents/{document_id}/chunks` | Lister / ajouter des chunks. |
 | GET/DELETE | `/v1/documents/{document_id}/chunks/{chunk_id}` | Lire / supprimer un chunk. |
-| GET | `/v1/chunks/{document}` · `/v1/chunks/{document}/{chunk}` | Accès direct aux chunks. |
 | POST | `/v1/search` | `query`, `collection_ids`, `document_ids`, `method` (`hybrid`\|`semantic`\|`lexical`), `limit`, `score_threshold`, `metadata_filters`. Renvoie les chunks les plus pertinents. |
 
 ### Compte & supervision
@@ -142,7 +170,7 @@ Deux approches :
 
 ## Exemples
 
-> Lire `ALBERT_API_KEY` depuis l'environnement ; ne jamais coller le token en clair. Vérifier les `id` de modèle via `GET /v1/models`.
+> Lire `ALBERT_API_KEY` depuis l'environnement ; ne jamais coller le token en clair. Vérifier les `id` de modèle via `GET /v1/models` (le champ `id`, pas un alias).
 
 ### Chat (SDK OpenAI)
 
@@ -167,7 +195,7 @@ print(resp.choices[0].message.content)
 
 ```bash
 curl -s https://albert.api.etalab.gouv.fr/v1/models \
-  -H "Authorization: Bearer $ALBERT_API_KEY" | jq '.data[] | {id, type}'
+  -H "Authorization: Bearer $ALBERT_API_KEY" | jq '.data[] | {id, type, aliases}'
 
 curl -s https://albert.api.etalab.gouv.fr/v1/chat/completions \
   -H "Authorization: Bearer $ALBERT_API_KEY" \
@@ -178,7 +206,7 @@ curl -s https://albert.api.etalab.gouv.fr/v1/chat/completions \
 ### Embeddings
 
 ```python
-emb = client.embeddings.create(model="BAAI/bge-m3", input=["texte à vectoriser"])
+emb = client.embeddings.create(model="bge-m3", input=["texte à vectoriser"])
 vector = emb.data[0].embedding
 ```
 
@@ -188,7 +216,7 @@ vector = emb.data[0].embedding
 curl -s https://albert.api.etalab.gouv.fr/v1/audio/transcriptions \
   -H "Authorization: Bearer $ALBERT_API_KEY" \
   -F "file=@reunion.mp3" \
-  -F "model=openai/whisper-large-v3" \
+  -F "model=whisper-large-v3" \
   -F "response_format=text"
 ```
 
@@ -256,7 +284,7 @@ openai api models.list
 openai api chat.completions.create -m mistral-medium-2508 -g user "Bonjour"
 ```
 
-> Pour les capacités propres à Albert (RAG, OCR, parsing, gestion des collections/clés), il n'y a pas de sous-commande CLI standard : utiliser `curl` (cf. exemples ci-dessus) ou le SDK. Ne jamais passer le token en argument de commande (visible dans `ps` et l'historique) : le lire depuis l'environnement ou un gestionnaire de clés (`llm keys`).
+> Pour les capacités propres à Albert (RAG, OCR, gestion des collections/clés), il n'y a pas de sous-commande CLI standard : utiliser `curl` (cf. exemples ci-dessus) ou le SDK. Ne jamais passer le token en argument de commande (visible dans `ps` et l'historique) : le lire depuis l'environnement ou un gestionnaire de clés (`llm keys`).
 
 ---
 

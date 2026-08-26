@@ -1,5 +1,5 @@
 {
-  "version": "0.4.7",
+  "version": "latest",
   "endpoints": {
     "DELETE /v1/collections/{collection_id}": "delete_collection_v1_collections__collection_id__delete",
     "DELETE /v1/documents/{document_id}": "delete_document_v1_documents__document_id__delete",
@@ -8,8 +8,6 @@
     "GET /health": "get_health_health_get",
     "GET /health/models": "get_health_models_health_models_get",
     "GET /metrics": "get_metrics_metrics_get",
-    "GET /v1/chunks/{document}": "get_chunks_v1_chunks__document__get",
-    "GET /v1/chunks/{document}/{chunk}": "get_chunk_v1_chunks__document___chunk__get",
     "GET /v1/collections": "get_collections_v1_collections_get",
     "GET /v1/collections/{collection_id}": "get_collection_v1_collections__collection_id__get",
     "GET /v1/documents": "get_documents_v1_documents_get",
@@ -29,10 +27,9 @@
     "POST /v1/collections": "create_collection_v1_collections_post",
     "POST /v1/documents": "create_document_v1_documents_post",
     "POST /v1/documents/{document_id}/chunks": "create_document_chunks_v1_documents__document_id__chunks_post",
-    "POST /v1/embeddings": "embeddings_v1_embeddings_post",
+    "POST /v1/embeddings": "create_embeddings_v1_embeddings_post",
     "POST /v1/me/keys": "create_key_v1_me_keys_post",
     "POST /v1/ocr": "ocr_v1_ocr_post",
-    "POST /v1/parse-beta": "parse_v1_parse_beta_post",
     "POST /v1/rerank": "create_rerank_v1_rerank_post",
     "POST /v1/search": "search_v1_search_post"
   },
