@@ -4,3 +4,6 @@
 # Claude Code (config et skills installées localement)
 .claude/
 .agent-vm.runtime.sh
+
+# Python (check_drift.py)
+__pycache__/
