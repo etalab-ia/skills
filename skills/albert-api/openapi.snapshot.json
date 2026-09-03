@@ -1,5 +1,5 @@
 {
-  "version": "latest",
+  "version": "0.6.0post1",
   "endpoints": {
     "DELETE /v1/collections/{collection_id}": "delete_collection_v1_collections__collection_id__delete",
     "DELETE /v1/documents/{document_id}": "delete_document_v1_documents__document_id__delete",
@@ -29,7 +29,7 @@
     "POST /v1/documents/{document_id}/chunks": "create_document_chunks_v1_documents__document_id__chunks_post",
     "POST /v1/embeddings": "create_embeddings_v1_embeddings_post",
     "POST /v1/me/keys": "create_key_v1_me_keys_post",
-    "POST /v1/ocr": "ocr_v1_ocr_post",
+    "POST /v1/ocr": "create_ocr_v1_ocr_post",
     "POST /v1/rerank": "create_rerank_v1_rerank_post",
     "POST /v1/search": "search_v1_search_post"
   },
@@ -298,7 +298,6 @@
     ],
     "PermissionType": [
       "admin",
-      "create_public_collection",
       "provide_models",
       "read_metric"
     ],

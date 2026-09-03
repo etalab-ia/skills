@@ -27,7 +27,7 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 - **Consommation d'abord.** L'usage courant = appeler les modèles (chat, embeddings) et le RAG. Les écritures (créer collection, uploader documents, gérer des clés) ne se font que sur intention explicite de l'utilisateur.
 - **Compatibilité OpenAI.** Pointer un client OpenAI sur `https://albert.api.etalab.gouv.fr/v1` évite de réécrire du code. Les schémas de requête/réponse de `chat/completions` et `embeddings` suivent OpenAI ; Albert ajoute des paramètres (`search`, `search_args`).
 - **Ne jamais logger ni afficher le token.** Le Bearer token est un secret. Ne pas l'écho dans les réponses, les logs, les exemples copiés. Le lire depuis une variable d'environnement (`ALBERT_API_KEY`).
-- **L'OpenAPI fait autorité.** En cas de divergence entre ce fichier et la spec récupérée en live, **suivre la spec**. La spec live ne porte plus de numéro de version (`info.version` vaut `latest`) : c'est le contenu qui fait foi, pas un semver.
+- **L'OpenAPI fait autorité.** En cas de divergence entre ce fichier et la spec récupérée en live, **suivre la spec**. Son champ `info.version` change sans préavis (`v0.4.7`, puis `latest`, puis `0.6.0post1` à ce jour) : c'est le contenu qui fait foi, pas un semver — `bin/check_drift.py` détecte les écarts d'endpoints et d'enums.
 - **Ne pas inventer d'ID de modèle, et ne jamais coder un alias.** Lister les modèles via `GET /v1/models` et utiliser le champ **`id`**, jamais une valeur du tableau `aliases` (cf. § Modèles).
 
 ---
@@ -84,7 +84,7 @@ curl -s https://albert.api.etalab.gouv.fr/v1/models \
 
 ### Instantané du catalogue
 
-Relevé le **2026-08-26**, **à revérifier via `GET /v1/models`** : le catalogue évolue et cette table sera périmée.
+Relevé le **2026-08-26**, revérifié le **2026-09-03** (conforme au catalogue live), **à revérifier via `GET /v1/models`** : le catalogue évolue et cette table sera périmée.
 
 | `type` | Usage | `id` canoniques |
 |--------|-------|-----------------|
