@@ -67,14 +67,25 @@ Le flash blanc au chargement en mode sombre est la régression la plus courante 
 
 Cette approche utilise les imports directs depuis `.../getHtmlAttributes` et `.../scriptToRunAsap` pour éviter le tree-shake de `DsfrHead.js` qui tirerait les fonts `.woff2`. Pas besoin de configurer webpack ni de `transpilePackages`.
 
-`src/app/layout.tsx` :
+Structure en 3 fichiers, alignée sur le starter officiel react-dsfr (`dsfr-bootstrap`) :
+
+**`src/dsfr-bootstrap/defaultColorScheme.ts`** :
 
 ```tsx
-import { DsfrProviderBase, StartDsfrOnHydration } from "@codegouvfr/react-dsfr/next-app-router";
-import { createGetHtmlAttributes } from "@codegouvfr/react-dsfr/next-app-router/getHtmlAttributes";
-import { getScriptToRunAsap } from "@codegouvfr/react-dsfr/useIsDark/scriptToRunAsap";
-import "@codegouvfr/react-dsfr/dsfr/dsfr.min.css";
-import "@codegouvfr/react-dsfr/dsfr/utility/icons/icons.main.min.css";
+export const defaultColorScheme = "system" as const;
+```
+
+**`src/dsfr-bootstrap/index.tsx`** — wrapper `"use client"` qui importe `Link` :
+
+```tsx
+"use client";
+
+import {
+    DsfrProviderBase,
+    StartDsfrOnHydration,
+    type DsfrProviderProps
+} from "@codegouvfr/react-dsfr/next-app-router";
+import { defaultColorScheme } from "./defaultColorScheme";
 import Link from "next/link";
 
 declare module "@codegouvfr/react-dsfr/next-app-router" {
@@ -83,7 +94,29 @@ declare module "@codegouvfr/react-dsfr/next-app-router" {
     }
 }
 
-const defaultColorScheme = "system" as const;
+export function DsfrProvider(props: DsfrProviderProps) {
+    return (
+        <DsfrProviderBase
+            defaultColorScheme={defaultColorScheme}
+            Link={Link}
+            {...props}
+        />
+    );
+}
+
+export { StartDsfrOnHydration };
+```
+
+**`src/app/layout.tsx`** — composant serveur, ne passe au provider que des props sérialisables :
+
+```tsx
+import { createGetHtmlAttributes } from "@codegouvfr/react-dsfr/next-app-router/getHtmlAttributes";
+import { getScriptToRunAsap } from "@codegouvfr/react-dsfr/useIsDark/scriptToRunAsap";
+import "@codegouvfr/react-dsfr/dsfr/dsfr.min.css";
+import "@codegouvfr/react-dsfr/dsfr/utility/icons/icons.main.min.css";
+import { DsfrProvider, StartDsfrOnHydration } from "../dsfr-bootstrap";
+import { defaultColorScheme } from "../dsfr-bootstrap/defaultColorScheme";
+
 const { getHtmlAttributes } = createGetHtmlAttributes({ defaultColorScheme });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -101,10 +134,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
             </head>
             <body>
-                <DsfrProviderBase lang="fr" Link={Link} defaultColorScheme={defaultColorScheme}>
+                <DsfrProvider lang="fr">
                     {children}
                     <StartDsfrOnHydration />
-                </DsfrProviderBase>
+                </DsfrProvider>
             </body>
         </html>
     );
@@ -117,6 +150,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 - Le CSS DSFR est importé via `import "@codegouvfr/react-dsfr/dsfr/dsfr.min.css"` (géré par Next.js — pas besoin de `<link>` manuel ni de copier `public/dsfr/`)
 - Le script anti-flash est injecté manuellement via `dangerouslySetInnerHTML`
 - `StartDsfrOnHydration` re-scan le DOM après hydratation React pour bind les `Display`, modales et accordéons (cf. section "Re-initialisation" plus bas)
+- Le wrapper `"use client"` suit le starter officiel : `layout.tsx` est un composant serveur, `DsfrProviderBase` un composant client — l'import de `Link` et la déclaration `RegisterLink` restent côté client, et le layout ne passe que des props sérialisables (`lang`, `children`)
+- `defaultColorScheme` vit dans son propre module car il est lu des deux côtés de la frontière serveur/client (layout serveur via `createGetHtmlAttributes`/`getScriptToRunAsap`, wrapper client via `DsfrProviderBase`)
 
 > **Sous Content-Security-Policy (CSP)** — fréquent sur les projets administration : `nonce: undefined` ne convient qu'en dev sans CSP. Avec une CSP active, le `<script>` inline serait bloqué. Génère un `nonce` par requête (middleware Next.js ou en-tête serveur), lis-le côté layout via `headers()` de `next/headers`, puis passe-le **à la fois** au prop `nonce` de `getScriptToRunAsap(...)` **et** à l'attribut `nonce` de la balise `<script>`. Renseigne aussi `trustedTypesPolicyName` dans ta directive CSP `trusted-types` (ici `react-dsfr react-dsfr-asap`). Voir la doc react-dsfr (CSP / Trusted Types) pour le détail.
 
@@ -144,22 +179,16 @@ const nextConfig = {
 export default nextConfig;
 ```
 
-`src/app/layout.tsx` :
+`src/app/layout.tsx` (le wrapper `src/dsfr-bootstrap/` est identique au Pattern 1 — le créer d'abord) :
 
 ```tsx
 import { DsfrHeadBase } from "@codegouvfr/react-dsfr/next-app-router/DsfrHead";
-import { DsfrProviderBase, StartDsfrOnHydration } from "@codegouvfr/react-dsfr/next-app-router";
 import { createGetHtmlAttributes } from "@codegouvfr/react-dsfr/next-app-router/getHtmlAttributes";
 import "@codegouvfr/react-dsfr/dsfr/utility/icons/icons.main.min.css";
+import { DsfrProvider, StartDsfrOnHydration } from "../dsfr-bootstrap";
+import { defaultColorScheme } from "../dsfr-bootstrap/defaultColorScheme";
 import Link from "next/link";
 
-declare module "@codegouvfr/react-dsfr/next-app-router" {
-    interface RegisterLink {
-        Link: typeof Link;
-    }
-}
-
-const defaultColorScheme = "system" as const;
 const { getHtmlAttributes } = createGetHtmlAttributes({ defaultColorScheme });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -170,17 +199,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <DsfrHeadBase Link={Link} />
             </head>
             <body>
-                <DsfrProviderBase lang={lang} Link={Link} defaultColorScheme={defaultColorScheme}>
+                <DsfrProvider lang={lang}>
                     {children}
                     <StartDsfrOnHydration />
-                </DsfrProviderBase>
+                </DsfrProvider>
             </body>
         </html>
     );
 }
 ```
 
-> **Placement de `StartDsfrOnHydration`** : c'est un composant client qui ne fait que lancer un `useEffect` au montage (il rend `null`). Sa position dans le DOM est donc sans effet fonctionnel : on le place dans le `<body>`, à l'intérieur de `DsfrProviderBase`, **identique au Pattern 1**. Éviter de le mettre dans `<head>` — un composant client dans `<head>` peut déclencher un warning d'hydratation sur Next.js 15 / React 19 pour aucun bénéfice.
+> **`DsfrHeadBase` reste un composant serveur** (pas de `"use client"` dans son module) : lui passer `Link` depuis le layout ne franchit pas la frontière serveur/client — c'est le provider `DsfrProviderBase` (client) qui doit recevoir `Link` via le wrapper `dsfr-bootstrap`.
+
+> **Placement de `StartDsfrOnHydration`** : c'est un composant client qui ne fait que lancer un `useEffect` au montage (il rend `null`). Sa position dans le DOM est donc sans effet fonctionnel : on le place dans le `<body>`, à l'intérieur du `DsfrProvider` du wrapper, **identique au Pattern 1**. Éviter de le mettre dans `<head>` — un composant client dans `<head>` peut déclencher un warning d'hydratation sur Next.js 15 / React 19 pour aucun bénéfice.
 
 ### Choisir entre Pattern 1 et Pattern 2
 
@@ -239,13 +270,13 @@ export function DsfrStartup() {
 Et le placer dans le layout après tous les composants DSFR :
 
 ```tsx
-<DsfrProviderBase lang="fr" Link={Link} defaultColorScheme={defaultColorScheme}>
+<DsfrProvider lang="fr">
     <Header />
     <main>{children}</main>
     <Footer />
     <Display />
     <DsfrStartup />
-</DsfrProviderBase>
+</DsfrProvider>
 ```
 
 **Important** : sans ce re-scan, les composants suivants ne fonctionneront pas au clic :
