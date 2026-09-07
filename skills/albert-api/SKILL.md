@@ -2,8 +2,8 @@
 name: albert-api
 description: >-
   Albert API — API d'inférence et d'IA générative interministérielle de l'État
-  (OpenGateLLM, hébergement SecNumCloud). Compatible OpenAI : chat completions,
-  embeddings, rerank. Plus transcription audio, OCR de PDF et d'images, et un
+  (OpenGateLLM, hébergement SecNumCloud). Compatible OpenAI : chat completions
+  et embeddings. Plus rerank, transcription audio, OCR de PDF et d'images, et un
   pipeline RAG souverain complet (collections, documents, recherche sémantique/
   hybride/lexicale). À utiliser pour appeler Albert, intégrer un LLM souverain
   dans un produit ou un script de l'administration, faire du RAG sur corpus
@@ -14,7 +14,7 @@ description: >-
 
 # Albert API — Référence consolidée
 
-API d'inférence de l'État français, opérée par le département IAE de la DINUM (commun numérique **OpenGateLLM**). **Largement compatible OpenAI** : pour `chat/completions`, `embeddings` et `rerank`, réutiliser le SDK `openai` (ou tout client OpenAI) en changeant simplement `base_url` et la clé. Les capacités propres à Albert (RAG, audio, OCR) s'appellent en HTTP direct.
+API d'inférence de l'État français, opérée par le département IAE de la DINUM (commun numérique **OpenGateLLM**). **Partiellement compatible OpenAI** : pour `chat/completions` et `embeddings`, réutiliser le SDK `openai` (ou tout client OpenAI) en changeant simplement `base_url` et la clé. Les autres surfaces — `rerank`, RAG, audio, OCR — n'existent pas dans le SDK OpenAI et s'appellent en HTTP direct.
 
 **Base URL :** `https://albert.api.etalab.gouv.fr`
 **Spec OpenAPI (fait foi) :** `https://albert.api.etalab.gouv.fr/openapi.json`
@@ -25,7 +25,7 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 ## Comment utiliser cette skill
 
 - **Consommation d'abord.** L'usage courant = appeler les modèles (chat, embeddings) et le RAG. Les écritures (créer collection, uploader documents, gérer des clés) ne se font que sur intention explicite de l'utilisateur.
-- **Compatibilité OpenAI.** Pointer un client OpenAI sur `https://albert.api.etalab.gouv.fr/v1` évite de réécrire du code. Les schémas de requête/réponse de `chat/completions` et `embeddings` suivent OpenAI ; Albert ajoute des paramètres (`search`, `search_args`).
+- **Compatibilité OpenAI, mais partielle.** Pointer un client OpenAI sur `https://albert.api.etalab.gouv.fr/v1` évite de réécrire du code pour `chat/completions` et `embeddings`, dont les schémas de requête/réponse suivent OpenAI (Albert ajoute des paramètres : `search`, `search_args`). **Le SDK s'arrête là** : `rerank`, `audio/transcriptions`, `ocr` et le RAG n'ont aucune méthode côté SDK — ne jamais générer de `client.rerank(...)`, `client.ocr(...)` ou `client.search(...)`, ces appels échouent avant même de partir. Les faire en HTTP direct (`requests`, `httpx`, `curl`).
 - **Ne jamais logger ni afficher le token.** Le Bearer token est un secret. Ne pas l'écho dans les réponses, les logs, les exemples copiés. Le lire depuis une variable d'environnement (`ALBERT_API_KEY`).
 - **L'OpenAPI fait autorité.** En cas de divergence entre ce fichier et la spec récupérée en live, **suivre la spec**. Son champ `info.version` change sans préavis (`v0.4.7`, puis `latest`, puis `0.6.0post1` à ce jour) : c'est le contenu qui fait foi, pas un semver — `bin/check_drift.py` détecte les écarts d'endpoints et d'enums.
 - **Ne pas inventer d'ID de modèle, et ne jamais coder un alias.** Lister les modèles via `GET /v1/models` et utiliser le champ **`id`**, jamais une valeur du tableau `aliases` (cf. § Modèles).
@@ -118,11 +118,13 @@ Un modèle présent dans `GET /v1/models` mais `red` dans `/health/models` répo
 | POST | `/v1/embeddings` | `input*` (string ou array), `model*` ; `dimensions`, `encoding_format` (`float`\|`base64`). |
 | GET | `/v1/models` · `/v1/models/{model}` | Catalogue des modèles. |
 
-### Reranking
+### Reranking — HTTP direct (hors SDK OpenAI)
 
 | Méthode | Chemin | Corps |
 |---------|--------|-------|
-| POST | `/v1/rerank` | `query*`, `documents*` (array de strings), `model*`, `top_n`. Renvoie les documents triés par score de pertinence. |
+| POST | `/v1/rerank` | `query*`, `documents*` (array de strings), `model*`, `top_n`. Renvoie `results` : une liste de `{index, relevance_score}` triée par pertinence — **des indices dans `documents`, pas les textes** ; c'est à l'appelant de re-mapper. |
+
+Le SDK `openai` n'expose pas de ressource `rerank` : cet endpoint s'appelle en HTTP direct (cf. § Exemples).
 
 ### Audio & documents
 
@@ -208,6 +210,28 @@ curl -s https://albert.api.etalab.gouv.fr/v1/chat/completions \
 ```python
 emb = client.embeddings.create(model="bge-m3", input=["texte à vectoriser"])
 vector = emb.data[0].embedding
+```
+
+### Reranking (requests — pas de méthode SDK)
+
+```python
+import os, requests
+
+docs = ["texte du chunk 1", "texte du chunk 2", "texte du chunk 3"]
+
+r = requests.post(
+    "https://albert.api.etalab.gouv.fr/v1/rerank",
+    headers={"Authorization": f"Bearer {os.environ['ALBERT_API_KEY']}"},
+    json={
+        "model": "bge-reranker-v2-m3",  # un id de type text-classification
+        "query": "Quelles sont les obligations de publication ?",
+        "documents": docs,
+        "top_n": 2,
+    },
+).json()
+
+# `results` contient des index dans `docs`, pas les textes : re-mapper soi-même
+top = [(docs[x["index"]], x["relevance_score"]) for x in r["results"]]
 ```
 
 ### Transcription audio
