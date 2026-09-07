@@ -1,6 +1,6 @@
 ---
 name: presentation-docs
-description: Transforme une source (note Obsidian, texte/Markdown brut, ou fichier de présentation PPTX/PDF/DOCX) en un fichier Markdown propre respectant la convention "mode présentation" de Docs (La Suite) — une diapo par diviseur `---`. Produit uniquement le fichier .md prêt à coller/importer dans Docs ; ne publie rien. Utiliser quand l'utilisateur dit "/presentation-docs", "transforme cette note en présentation Docs", "convertis X en présentation Docs", "mets ce PPTX en diapos Docs", "formate ce texte en présentation Docs".
+description: Transforme une source (note Obsidian, texte/Markdown brut, ou fichier de présentation PPTX/PDF/DOCX) en un fichier Markdown propre respectant la convention "mode présentation" de Docs (La Suite) — une diapo par diviseur `---`. Produit uniquement le fichier .md (et ses assets) prêt à coller/importer dans Docs ; ne publie rien. Utiliser quand l'utilisateur dit "/presentation-docs", "transforme cette note en présentation Docs", "convertis X en présentation Docs", "mets ce PPTX en diapos Docs", "formate ce texte en présentation Docs".
 ---
 
 # Skill : Présentation Docs
@@ -43,7 +43,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 
 - **Note Obsidian** (chemin `.md`) → `Read`.
 - **Texte / Markdown brut** → prendre le contenu fourni tel quel.
-- **Fichier PPTX / PDF / DOCX / ODP** → en extraire texte et médias (étape 2). Pour un PDF, `pdftotext`/`pdfimages`/`pdftoppm` ; pour un PPTX, parsing `python-pptx` ; pour un DOCX/ODT/ODP, `lit parse {fichier} --format md` (LiteParse) — les médias sont alors récupérés depuis l'archive du document (`word/media/` pour un DOCX).
+- **Fichier PPTX / PDF / DOCX / ODP** → en extraire texte et médias (étape 2). Pour un PDF, `pdftotext`/`pdfimages`/`pdftoppm` ; pour un PPTX, parsing `python-pptx` ; pour un DOCX/ODT/ODP, `lit parse {fichier}` (LiteParse ; sortie texte par défaut, `--format json` pour la structure) — les médias sont récupérés à part, depuis l'archive du document (`word/media/` pour un DOCX, qui est un zip).
 
 ### Étape 2 — Restructurer en diapos
 
