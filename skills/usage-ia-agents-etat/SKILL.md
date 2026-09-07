@@ -1,17 +1,13 @@
 ---
 name: usage-ia-agents-etat
 description: >-
-  Cadre d'usage de l'IA générative pour les agents publics de l'État, publié par la DINUM (avec la DITP et la DGAFP).
-  5 principes fondamentaux : responsabilité de l'agent, choix de l'outil selon la sensibilité des données, transparence,
-  usage utile/sobre/éthique, montée en compétence. Utiliser cette skill (1) pour répondre aux questions sur les règles
-  d'usage de l'IA dans l'administration, et (2) de façon PROACTIVE pour alerter l'utilisateur quand il s'apprête à faire
-  quelque chose de contraire au guide : coller des données personnelles, sensibles, RH, médicales, internes, couvertes
-  par le secret professionnel ou classifiées (Diffusion Restreinte, IGI 1300) dans un outil d'IA commercial grand public ;
-  utiliser un outil d'IA non autorisé par son administration ; omettre de signaler un usage substantiel de l'IA
-  (transparence) ; lancer une action automatique sans validation humaine ; recourir à l'IA pour un usage à haut risque
-  au sens du règlement européen sur l'IA (tri de candidatures, RH, justice, santé, police). Se déclenche aussi sur :
-  « usage de l'IA », « IA générative », « agent public », « ChatGPT/Claude/Gemini au travail », « données personnelles
-  dans un prompt », « confidentialité », « outil homologué », « transparence IA », « RGPD et IA », « charte IA ».
+  Cadre d'usage de l'IA générative pour les agents publics de l'État (DINUM/DITP/DGAFP). 5 principes : responsabilité,
+  choix de l'outil selon les données, transparence, sobriété, formation. Utiliser (1) pour répondre aux questions sur
+  l'IA dans l'administration et (2) PROACTIVEMENT pour alerter quand l'utilisateur s'apprête à transmettre des données
+  personnelles/sensibles/secret professionnel/classifiées (IGI 1300) à un outil commercial grand public, utiliser un
+  outil non autorisé, omettre la transparence IA, automatiser sans validation humaine, ou faire un usage à haut risque
+  (RIA : tri de candidatures, RH, justice, santé, police). Se déclenche sur : « usage de l'IA », « IA générative »,
+  « agent public », « ChatGPT/Claude/Gemini au travail », « RGPD et IA », « charte IA ».
 ---
 
 # Usage de l'IA pour les agents publics de l'État
@@ -49,19 +45,19 @@ Cette skill ne sert pas seulement à répondre aux questions. **Quand l'utilisat
 Déclenchez une alerte dans ces situations :
 
 ### 1. Données confiées à un outil non adapté
-Le **test simple du guide** : « Est-ce que je pourrais publier ces informations sur un site Internet accessible à tous ? » Si la réponse est non, **ne pas utiliser un outil d'IA commercial grand public** (versions gratuites de ChatGPT, Claude, Gemini, NotebookLM, Vibe…).
+Le **test simple du guide** : « Est-ce que je pourrais publier ces informations sur un site Internet accessible à tous ? » Si la réponse est non, **ne pas utiliser un outil d'IA commercial grand public** (versions gratuites de ChatGPT, Claude, Gemini, NotebookLM, Vibe (ex Le Chat de Mistral AI)…).
 
 Alertez si l'utilisateur s'apprête à transmettre à un outil commercial grand public :
 - des **données personnelles** (noms, coordonnées, situations individuelles) ;
 - un **dossier d'usager**, un **compte-rendu de réunion interne**, des **données RH ou médicales** ;
 - des informations **couvertes par le secret professionnel** ;
 - des **informations professionnelles non publiques** : notes en cours d'arbitrage, projets confidentiels, secret des délibérations gouvernementales, données stratégiques ou économiques sensibles ;
-- des **données classifiées ou à mention de protection** (Diffusion Restreinte, Confidentiel Défense, toute donnée relevant de l'**IGI 1300**) → **seuls les outils explicitement homologués** par l'administration sont permis.
+- des **données classifiées ou à mention de protection** (Diffusion Restreinte, Secret, Très Secret, toute donnée relevant de l'**IGI 1300**) → **seuls les outils explicitement homologués** par l'administration sont permis.
 
-→ Alternative conforme : utiliser l'**outil de l'administration**, ou **anonymiser** quand c'est simple (« Madame X », « un usager »), ou s'abstenir. Détails : [`references/outils-et-donnees.md`](references/outils-et-donnees.md).
+→ Alternative conforme : utiliser l'**outil de l'administration**, ou **pseudonymiser** quand c'est simple (« Madame X », « un usager ») — insuffisant pour les données couvertes par le secret professionnel ou classifiées (IGI 1300), qui nécessitent l'outil de l'administration —, ou s'abstenir. Détails : [`references/outils-et-donnees.md`](references/outils-et-donnees.md).
 
 ### 2. Outil non autorisé
-Le recours à un outil commercial doit rester exceptionnel et n'est possible qu'à **deux conditions cumulatives** : l'administration l'autorise explicitement **ET** les informations pourraient être publiées librement. En cas de doute → outil de l'administration ou hiérarchie.
+Le recours à un outil commercial **gratuit (grand public)** doit rester exceptionnel et n'est possible qu'à **deux conditions cumulatives** : l'administration l'autorise explicitement **ET** les informations pourraient être publiées librement. Pour les outils commerciaux **payants mis à disposition par l'administration**, les types de données autorisés sont définis par la DSI ou le responsable. En cas de doute → outil de l'administration ou hiérarchie.
 
 ### 3. Absence de transparence
 Si l'IA a un **rôle substantiel** (production de contenu : analyse, note, courrier, synthèse — même ajustée ensuite), une **mention est obligatoire**. Une simple reformulation/correction/mise en forme d'un texte déjà rédigé par l'agent n'en requiert pas. Rappelez d'ajouter une mention (ex. « Contenu partiellement généré par une IA et vérifié par un agent ») et, pour une décision administrative individuelle algorithmique, la mention explicite est une **obligation légale** (RGPD art. 22 ; CRPA art. L. 311-3-1). Détails : [`references/5-principes-fondamentaux.md`](references/5-principes-fondamentaux.md).
@@ -90,7 +86,7 @@ Trois catégories d'outils, du plus au moins sécurisé :
 |---|---|---|
 | **Outils des administrations** (interministériels ou ministériels) — *à privilégier* | Premier choix pour tout usage professionnel | Selon les règles de l'administration, y compris données internes / personnelles si l'outil le permet |
 | **Outils commerciaux payants mis à disposition par l'administration** — *avec précautions* | Possible si l'administration les fournit (garanties contractuelles renforcées) | Vérifier **auprès de la DSI / du responsable** les types de données autorisés |
-| **Outils commerciaux gratuits** (ChatGPT, Claude, Gemini, NotebookLM, Vibe…) — *usage très limité voire interdit* | Seulement si l'administration l'autorise | **Uniquement des données publiables librement** : pas de données personnelles ni sensibles |
+| **Outils commerciaux gratuits** (ChatGPT, Claude, Gemini, NotebookLM, Vibe (ex Le Chat de Mistral AI)…) — *usage très limité voire interdit* | Seulement si l'administration l'autorise | **Uniquement des données publiables librement** : pas de données personnelles ni sensibles |
 
 **Outils interministériels de référence :**
 - **Assistant IA interministériel** — `assistant.numerique.gouv.fr` (rédaction, résumé, reformulation)

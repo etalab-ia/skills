@@ -38,7 +38,7 @@ Accessibles librement sur Internet, parfois sans compte : versions gratuites de 
 
 - **Données personnelles (RGPD)** : protéger, n'utiliser que les données strictement nécessaires. Usage régulier → vérifier l'inscription au **registre des traitements** avec le DPD.
 - **Informations professionnelles non publiques** : notes en cours d'arbitrage, projets confidentiels, secret des délibérations gouvernementales, données stratégiques ou économiques sensibles. **Ne pas confier à un outil commercial grand public.**
-- **Données classifiées ou à mention de protection** : Diffusion Restreinte, Confidentiel Défense, toute donnée relevant de l'**IGI 1300** → **seuls les outils explicitement homologués** peuvent être employés.
+- **Données classifiées ou à mention de protection** : Diffusion Restreinte, Secret, Très Secret, toute donnée relevant de l'**IGI 1300** → **seuls les outils explicitement homologués** peuvent être employés.
 
 ## Le cadre juridique qui vous protège
 
@@ -51,7 +51,7 @@ Accessibles librement sur Internet, parfois sans compte : versions gratuites de 
 ## En cas de doute, trois réflexes
 
 1. Utiliser l'outil de l'administration plutôt qu'un outil commercial.
-2. **Anonymiser** quand c'est simple (« Madame X », « un usager », « un agent ») avant de transmettre.
+2. **Pseudonymiser** quand c'est simple (« Madame X », « un usager », « un agent ») avant de transmettre — insuffisant pour les données couvertes par le secret professionnel ou classifiées.
 3. Demander conseil : hiérarchie, DSI, DPD, référent cybersécurité.
 
 ## Exemples pratiques
