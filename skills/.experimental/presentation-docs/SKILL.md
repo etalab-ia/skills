@@ -5,7 +5,7 @@ description: Transforme une source (note Obsidian, texte/Markdown brut, ou fichi
 
 # Skill : Présentation Docs
 
-Transforme une source en un **fichier Markdown propre**, formaté selon la convention du **mode présentation de Docs (La Suite)**. La sortie est un `.md` prêt à coller ou importer dans Docs. **La skill ne publie rien** : aucun appel réseau, aucune publication — elle produit le fichier, point.
+Transforme une source en un **fichier Markdown propre**, formaté selon la convention du **mode présentation de Docs (La Suite)**. La sortie est un `.md` prêt à coller ou importer dans Docs. **La skill ne publie rien** : aucun appel réseau, aucune publication — elle produit le fichier et ses assets, point.
 
 Le mode présentation de Docs ([doc officielle](https://docs.numerique.gouv.fr/docs/f7ca1950-5e0f-48bb-993a-54584e8c060d/)) repose sur une règle unique : **chaque diviseur `---` crée une nouvelle diapo**. C'est un mode lecture. Il supporte alignement, couleurs, types de blocs, colonnes et médias (images/vidéos lisibles en présentant).
 
@@ -30,7 +30,12 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 ## Pré-requis
 
 - Aucun pour une note Obsidian ou un texte/Markdown brut.
-- Pour un **fichier externe** : skill `rag-parse` (`lit parse`) et/ou `poppler` (`pdftotext`, `pdfimages`, `pdftoppm`, `pdfinfo` — `brew install poppler`). `magick`/`convert` (ImageMagick) utile pour recadrer. Une présentation disponible uniquement en ligne (pas en fichier local) doit d'abord être exportée en **PPTX ou PDF**.
+- Pour un **fichier externe**, selon le format :
+  - **PDF** → `poppler` (`pdftotext`, `pdfimages`, `pdftoppm`, `pdfinfo` — `brew install poppler`).
+  - **PPTX** → `python-pptx` (`pip install python-pptx`), ou LiteParse.
+  - **DOCX / ODT / ODP** → LiteParse (`npm i -g @llamaindex/liteparse`, plus LibreOffice pour les formats Office : `brew install --cask libreoffice`), utilisable directement en `lit parse` ou via la skill `rag-parse` si elle est installée.
+  - **Recadrage d'images** (tous formats, optionnel) → `magick`/`convert` (ImageMagick).
+- Une présentation disponible uniquement en ligne (pas en fichier local) doit d'abord être exportée en **PPTX ou PDF**.
 
 ## Workflow
 
@@ -38,7 +43,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 
 - **Note Obsidian** (chemin `.md`) → `Read`.
 - **Texte / Markdown brut** → prendre le contenu fourni tel quel.
-- **Fichier PPTX / PDF / DOCX / ODP** → en extraire texte et médias (étape 2). Pour un PDF, `pdftotext`/`pdfimages`/`pdftoppm` ; pour un PPTX, `rag-parse` ou parsing `python-pptx`.
+- **Fichier PPTX / PDF / DOCX / ODP** → en extraire texte et médias (étape 2). Pour un PDF, `pdftotext`/`pdfimages`/`pdftoppm` ; pour un PPTX, parsing `python-pptx` ; pour un DOCX/ODT/ODP, `lit parse {fichier} --format md` (LiteParse) — les médias sont alors récupérés depuis l'archive du document (`word/media/` pour un DOCX).
 
 ### Étape 2 — Restructurer en diapos
 
@@ -84,7 +89,7 @@ Proposer un emplacement cohérent dans le vault :
 
 ## Contraintes
 
-- **Sortie = fichier .md uniquement** — la skill ne publie pas et ne touche à aucun service Docs ; elle produit seulement le fichier.
+- **Sortie = le fichier `.md` et son dossier d'assets** — et rien d'autre : la skill ne publie pas et ne touche à aucun service Docs. Les médias extraits (étape 2) sont écrits à côté du `.md` et référencés en chemins relatifs ; ne jamais produire un lien vers un fichier qui n'a pas été écrit.
 - **Fidélité au deck source** — pour un PDF/PPTX, reproduire à l'identique contenu, découpage et ordre (1 diapo source = 1 diapo). Pas de synthèse ni reformulation. La restructuration éditoriale est réservée aux sources texte/Markdown.
 - **Médias récupérés, pas perdus** — extraire et réembarquer schémas/photos/captures. Ne jamais remplacer un média par une description textuelle.
 - **Diviseur entouré de lignes vides** — sinon la diapo ne se crée pas (interprété comme titre setext).

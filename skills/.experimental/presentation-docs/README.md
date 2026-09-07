@@ -6,7 +6,7 @@ Skill pour assistants de code IA — transformer une source (note Markdown, text
 
 Quand elle est activée, l'assistant IA sait :
 
-- **Produire un `.md` aux conventions Docs** : diviseur `---` entouré de lignes vides = nouvelle diapo, pas de `# H1` initial (Docs ajoute le titre du document en H1 à l'import), 1 diapo = 1 idée
+- **Produire un `.md` aux conventions Docs** : diviseur `---` entouré de lignes vides = nouvelle diapo, `#` pour la diapo d'accroche et `##` pour les diapos de contenu (comme les modèles officiels de l'équipe Docs), 1 diapo = 1 idée
 - **Respecter la source** : pour un PDF/PPTX, reproduire le deck à l'identique (même découpage, même ordre) ; pour une note ou un texte, découper en diapos logiques
 - **Garder texte ET images** : le texte reste du markdown éditable, et seuls les médias non reproductibles (photos, captures, schémas) sont extraits et embarqués
 - **Rester honnête sur les limites** : alignement, couleurs et colonnes sont des réglages de l'éditeur Docs, à faire à la main après import
@@ -50,6 +50,11 @@ apt-get install imagemagick     # Ubuntu/Debian
 
 # Optionnel — parsing PPTX (séparation texte/images par diapo)
 pip install python-pptx
+
+# Extraction DOCX / ODT / ODP — LiteParse (CLI `lit`)
+npm i -g @llamaindex/liteparse
+brew install --cask libreoffice   # macOS  (requis par LiteParse pour les formats Office)
+apt-get install libreoffice       # Ubuntu/Debian
 ```
 
 Une présentation disponible uniquement en ligne doit d'abord être exportée en PPTX ou PDF.
