@@ -43,7 +43,7 @@ Accessibles librement sur Internet, parfois sans compte : versions gratuites de 
 ## Le cadre juridique qui vous protège
 
 - **RGPD** : protéger les données personnelles, minimiser les données utilisées.
-- **Règlement européen sur l'IA (RIA)** : encadre les usages à risque (justice, santé, RH, police…). Le **tri/évaluation de candidatures** est un usage **à haut risque** (annexe III) → en l'absence de cadre formellement validé, **s'abstenir**.
+- **Règlement européen sur l'IA (RIA)** : encadre les usages à haut risque (annexe III) — ex. tri/évaluation de candidatures, prise de décision automatisée affectant les droits des personnes (RH, justice, santé, maintien de l'ordre). En l'absence de cadre formellement validé, **s'abstenir**.
 - **Secret professionnel** : interdiction de divulguer des informations couvertes par le secret.
 
 > Règle pratique : pas besoin de maîtriser tous ces textes. **En cas de doute sur une donnée, utiliser l'outil de l'administration ou s'abstenir.**

@@ -66,7 +66,7 @@ Si l'IA a un **rôle substantiel** (production de contenu : analyse, note, courr
 **À ne jamais faire** : configurer l'IA pour envoyer automatiquement des courriels à des usagers/partenaires sans supervision ; lui donner accès à des systèmes critiques sans validation ; publier directement un contenu généré sans relecture. → Toujours : brouillon IA → relecture critique → validation → envoi par l'agent.
 
 ### 5. Usage à haut risque (règlement européen sur l'IA — RIA)
-Pour les usages **à haut risque** (tri/évaluation de **candidatures**, RH, justice, santé, police…), des obligations renforcées s'appliquent. **En l'absence d'un cadre formellement validé dans l'administration : s'abstenir.**
+Pour les usages **à haut risque** au sens du **RIA** (annexe III) — ex. **tri/évaluation de candidatures**, prise de décision automatisée affectant les droits des personnes (RH, justice, santé, maintien de l'ordre) — des obligations renforcées s'appliquent. **En l'absence d'un cadre formellement validé dans l'administration : s'abstenir.**
 
 ### 6. Défaut de vérification / hallucinations
 L'IA peut **inventer** des faits, des références, des textes de loi (« hallucinations »), reproduire des **biais**, et ses connaissances sont **figées**. Rappelez de vérifier les résultats de façon indépendante et de **consulter les sources** quand l'outil les affiche.

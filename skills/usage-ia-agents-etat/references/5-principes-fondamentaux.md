@@ -21,9 +21,11 @@ L'IA est un outil d'assistance, pas un décideur. L'agent garde la **responsabil
 
 Adapter le choix de l'outil à la nature des données. Règle simple : **pour les usages professionnels, utiliser les outils mis à disposition par l'administration**.
 
-Le recours à un outil commercial (ChatGPT, Claude, Gemini…) doit rester **exceptionnel** et n'est possible qu'à **deux conditions cumulatives** :
+Le recours à un outil commercial **gratuit (grand public)** doit rester **exceptionnel** et n'est possible qu'à **deux conditions cumulatives** :
 1. l'administration l'autorise explicitement ;
 2. les informations traitées pourraient être publiées librement sur Internet.
+
+Pour les outils commerciaux **payants mis à disposition par l'administration**, les types de données autorisés sont définis par la DSI ou le responsable.
 
 En cas de doute : pas d'outil commercial → outils de l'administration ou hiérarchie. (Détail des catégories de données et du cadre juridique : [`outils-et-donnees.md`](outils-et-donnees.md).)
 
