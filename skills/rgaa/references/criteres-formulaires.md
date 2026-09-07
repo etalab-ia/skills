@@ -152,13 +152,13 @@ Alternative ARIA : `role="group"` + `aria-label` ou `role="radiogroup"`.
   <legend class="fr-fieldset__legend">Civilité</legend>
   <div class="fr-fieldset__element">
     <div class="fr-radio-group">
-      <input class="fr-radio" type="radio" id="civilite_mme" name="civilite" value="mme">
+      <input type="radio" id="civilite_mme" name="civilite" value="mme">
       <label class="fr-label" for="civilite_mme">Madame</label>
     </div>
   </div>
   <div class="fr-fieldset__element">
     <div class="fr-radio-group">
-      <input class="fr-radio" type="radio" id="civilite_m" name="civilite" value="m">
+      <input type="radio" id="civilite_m" name="civilite" value="m">
       <label class="fr-label" for="civilite_m">Monsieur</label>
     </div>
   </div>
@@ -283,7 +283,7 @@ Chaque bouton doit avoir un intitulé décrivant son action.
   aria-describedby="error-email"
 />
 <p id="error-email" role="alert">
-  Erreur : veuillez saisir une adresse email valide (ex : jeanne.martin@example.fr)
+  Erreur : veuillez saisir une adresse email valide (ex : jeanne.martin@example.com)
 </p>
 ```
 
@@ -291,9 +291,9 @@ Chaque bouton doit avoir un intitulé décrivant son action.
 
 ```erb
 <label class="fr-label" for="email">Adresse e-mail</label>
-<input class="fr-input" type="email" id="email" aria-invalid="true" aria-describedby="error-email">
+<input class="fr-input" type="email" id="email" name="email" aria-invalid="true" aria-describedby="error-email">
 <p id="error-email" class="fr-error-text" role="alert">
-  Erreur : veuillez saisir une adresse e-mail valide (ex : jeanne.martin@example.fr)
+  Erreur : veuillez saisir une adresse e-mail valide (ex : jeanne.martin@example.com)
 </p>
 ```
 
@@ -354,7 +354,7 @@ En cas d'erreur, suggérer le type de données attendu et donner un exemple.
 </p>
 ```
 
-> **Astuce — exemples de valeurs.** Quand un champ porte déjà un exemple dans son indication de format (`hint`), donner dans le message d'erreur une valeur **différente** : deux valeurs distinctes montrent clairement qu'il s'agit d'illustrations et non d'une saisie attendue. Ex. hint `email@example.fr`, message d'erreur `jeanne.martin@example.fr`. Pour les e-mails, utiliser un **domaine réservé à la documentation** (`example.fr`, `example.com`) plutôt qu'un domaine réel — l'équivalent des numéros de téléphone de fiction (cf. critère 11.10).
+> **Astuce — exemples de valeurs.** Quand un champ porte déjà un exemple dans son indication de format (`hint`), donner dans le message d'erreur une valeur **différente** : deux valeurs distinctes montrent clairement qu'il s'agit d'illustrations et non d'une saisie attendue. Ex. hint `email@example.com`, message d'erreur `jeanne.martin@example.com`. Pour les e-mails, utiliser un **domaine réservé à la documentation** (RFC 2606 : `example.com`, `example.net`, `example.org`, TLD `.example`) plutôt qu'un domaine réel — `example.fr` n'est pas réservé. C'est l'équivalent des numéros de téléphone de fiction (cf. critère 11.10).
 
 ---
 
