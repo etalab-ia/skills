@@ -37,7 +37,7 @@ Chaque champ de formulaire doit avoir une étiquette associée via (ordre de pri
 <input class="fr-input" type="email" id="user_email" name="user[email]">
 
 <%# aria-label si pas de label visible %>
-<input class="fr-input" type="search" aria-label="Rechercher sur le site">
+<input class="fr-input" type="search" name="q" aria-label="Rechercher sur le site">
 ```
 
 ---
@@ -193,6 +193,7 @@ Alternative ARIA : `role="group"` + `aria-label` ou `role="radiogroup"`.
 ### Correction — Rails / ERB
 
 ```erb
+<label class="fr-label" for="departement">Département</label>
 <select class="fr-select" id="departement" name="departement">
   <optgroup label="Île-de-France">
     <option value="75">Paris</option>
