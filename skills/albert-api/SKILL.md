@@ -38,6 +38,15 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 - **Public :** réservé aux agents de la fonction publique. Demande d'accès en ligne (voir la doc humaine). L'accès distingue un mode **expérimentation** (quotas réduits) d'un mode **production** (sur dossier).
 - **Connaître ses droits :** `GET /v1/me/info` renvoie l'identité, les quotas et limites du compte. `GET /v1/me/usage` renvoie la consommation.
 - **Gérer ses clés :** `GET/POST /v1/me/keys`, `DELETE /v1/me/keys/{key}`. Créer une clé dédiée par usage/produit plutôt que réutiliser la clé personnelle.
+
+> ⚠️ **Créer une clé : deux pièges vérifiés en live (2026-09-08), la spec OpenAPI est fausse sur les deux.**
+> 1. `POST /v1/me/keys` (corps `{"name": "...", "expires": <ts>}`) renvoie **201 `{"id", "key"}`** — le champ porte le nom **`key`**, pas `token` comme l'annonce le schéma `CreateKeyResponse`. Lire `resp["token"]` lève un `KeyError`.
+> 2. Le champ `token` du listing `GET /v1/me/keys` est **masqué** : même longueur qu'une vraie clé, mais tout appel avec renvoie `401/403 {"detail":"Invalid API key."}`. **La valeur exploitable n'existe qu'à la création** — pas récupérable ensuite. La perdre = clé orpheline, à supprimer et recréer.
+>
+> Corollaire : **pas de renommage possible**. `/v1/me/keys/{key}` n'expose que `get` et `delete`, il n'y a pas de `PATCH` — renommer = créer + réinstaller la nouvelle valeur partout + supprimer l'ancienne.
+>
+> Diagnostiquer une clé suspecte avec **`GET /v1/models`**, jamais avec `/v1/me/info` : ce dernier renvoie `403` là où `/v1/models` renvoie `401`, ce qui fait confondre « clé invalide » et « quota/compte ».
+
 - **Erreurs :** `401` = token absent/invalide ; `403` = droits ou quota insuffisants ; `404` = ressource/ID inexistant ; `429` = rate limit. Sur 401/403, distinguer *token manquant* de *quota dépassé* avant de réessayer.
 
 ---
