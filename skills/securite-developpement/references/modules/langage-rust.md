@@ -25,7 +25,7 @@ Les règles de style, de nommage et de lisibilité du guide (R5 rustfmt, R9 conv
 - [ ] `cargo-outdated` exécuté pour détecter les dépendances obsolètes — [RUST R7 · RÈGLE]
 - [ ] `cargo-audit` exécuté pour détecter les vulnérabilités connues des dépendances — [RUST R8 · RÈGLE]
 
-> Le module 6 du socle (Dépendances et composants tiers) s'applique en complément.
+> Le domaine 6 du socle (Dépendances et composants tiers) s'applique en complément.
 
 ## 3. Code `unsafe`
 
