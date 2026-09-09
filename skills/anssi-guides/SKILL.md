@@ -11,7 +11,7 @@ Cette skill aiguille vers les guides publiés par l'ANSSI et les consulte à la 
 
 1. **Chercher dans le catalogue** — [`references/catalogue.md`](references/catalogue.md) : 126 guides — 125 en français, 1 disponible uniquement en anglais — (titre, date, collection, thématique, URL). Chercher par mots-clés du sujet, y compris les synonymes (ex. « SSO » → OpenID Connect ; « conteneurs » → Docker, cloisonnement, virtualisation).
 
-2. **Aiguiller vers `securite-developpement` si la question relève du développement.** Les guides marqués ★ dans le catalogue y sont déjà digérés règle par règle, avec leur traçabilité (`[TLS R3]`, `[ESS-BDD]`…) et les valeurs chiffrées exactes. Ne pas refaire ce travail depuis les PDF.
+2. **Aiguiller vers `securite-developpement` si la question relève du développement.** Les guides marqués ★ dans le catalogue y sont déjà digérés règle par règle, avec leur traçabilité (`[TLS R3]`, `[ESS-BDD]`…) et les valeurs chiffrées exactes. Ne pas refaire ce travail depuis les PDF. Aiguiller uniquement sur les guides ★ : un sujet pertinent pour le développement mais hors ★ (ex. OpenID Connect, conteneurs Docker) reste traité par le workflow ci-dessous (catalogue → consultation → citation), même si `securite-developpement` couvre partiellement le domaine avec une règle `[DINUM]`.
 
 3. **Présenter le ou les guides pertinents** : titre exact, date de publication, collection, URL. S'il existe plusieurs guides sur le sujet, les donner du plus récent au plus ancien et signaler les recouvrements (ex. TLS 2020 et Transition post-quantique de TLS 1.3 2026).
 
