@@ -62,7 +62,7 @@ Les modules ne sont **ni chargés ni audités par défaut**. Détecter la stack 
 
 | Module | Charger si |
 |--------|-----------|
-| [`references/modules/langage-c.md`](references/modules/langage-c.md) | présence de fichiers `*.c` / `*.h`, `Makefile`, `CMakeLists.txt` |
+| [`references/modules/langage-c.md`](references/modules/langage-c.md) | présence de fichiers `*.c` (ou configuration de build compilant effectivement du C) |
 | [`references/modules/langage-rust.md`](references/modules/langage-rust.md) | présence de `Cargo.toml` / `Cargo.lock` |
 | [`references/modules/cms.md`](references/modules/cms.md) | CMS détecté : `wp-config.php` (WordPress), Drupal, Joomla, ou hébergement CMS géré |
 

@@ -51,7 +51,7 @@
         "allOf": [
           {
             "if": { "properties": { "statut": { "const": "KO" } } },
-            "then": { "required": ["regle", "constat", "exploitable", "risque", "correction", "priorite"] }
+            "then": { "required": ["regle", "references_anssi", "constat", "exploitable", "risque", "correction", "priorite"] }
           },
           {
             "if": { "properties": { "statut": { "const": "Partiel" } } },

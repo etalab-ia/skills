@@ -1,6 +1,6 @@
 # Module conditionnel — Langage C
 
-**Charger uniquement si** le projet contient des fichiers `*.c` / `*.h`, un `Makefile` ou un `CMakeLists.txt`.
+**Charger uniquement si** le projet contient des fichiers sources C (`*.c`) ou une configuration de build (`Makefile`, `CMakeLists.txt`) compilant effectivement du C.
 
 Dérivé de *Règles de programmation pour le développement sécurisé de logiciels en langage C* (ANSSI-PA-073 v1.2, 21/07/2020) — voir [`../sources.md`](../sources.md).
 

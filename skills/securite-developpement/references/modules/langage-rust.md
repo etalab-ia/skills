@@ -29,7 +29,7 @@ Les règles de style, de nommage et de lisibilité du guide (R5 rustfmt, R9 conv
 
 ## 3. Code `unsafe`
 
-- [ ] `#![forbid(unsafe_code)]` présent dans `main.rs` — [RUST R10 · RÈGLE]
+- [ ] `#![forbid(unsafe_code)]` présent à la racine de chaque crate (`main.rs`, `lib.rs`) ou configuré via `Cargo.toml` (`[lints.rust] unsafe_code = "forbid"`) — [RUST R10 · RÈGLE]
 - [ ] Si `unsafe` est présent, il relève de l'un des **trois cas tolérés** par le guide, et il est justifié :
   - FFI vers des fonctions `extern "C"`, encapsulée dans un *wrapper* sûr ;
   - programmation embarquée sur adresses mémoire fixées, avec une abstraction dédiée minimisant le nombre de blocs ;
