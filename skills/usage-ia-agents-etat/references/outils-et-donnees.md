@@ -51,7 +51,7 @@ Accessibles librement sur Internet, parfois sans compte : versions gratuites de 
 ## En cas de doute, trois réflexes
 
 1. Utiliser l'outil de l'administration plutôt qu'un outil commercial.
-2. **Pseudonymiser** quand c'est simple (« Madame X », « un usager », « un agent ») avant de transmettre — insuffisant pour les données couvertes par le secret professionnel ou classifiées.
+2. Ne pas confondre **pseudonymisation** et **anonymisation** : remplacer un nom (« Madame X ») laisse des données personnelles au sens du RGPD — seule une anonymisation irréversible (impossible à reconstituer, y compris par recoupement) rend les données publiables, et elle est rarement atteignable pour un dossier complet.
 3. Demander conseil : hiérarchie, DSI, DPD, référent cybersécurité.
 
 ## Exemples pratiques
