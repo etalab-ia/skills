@@ -1,6 +1,6 @@
 ---
 name: presentation-docs
-description: Transforme une source (note Obsidian, texte/Markdown brut, ou fichier de présentation PPTX/PDF/DOCX) en un fichier Markdown propre respectant la convention "mode présentation" de Docs (La Suite) — une diapo par diviseur `---`. Produit uniquement le fichier .md (et ses assets) prêt à coller/importer dans Docs ; ne publie rien. Utiliser quand l'utilisateur dit "/presentation-docs", "transforme cette note en présentation Docs", "convertis X en présentation Docs", "mets ce PPTX en diapos Docs", "formate ce texte en présentation Docs".
+description: Transforme une source (note Obsidian, texte/Markdown brut, ou fichier de présentation PPTX/PDF/DOCX/ODT/ODP) en un fichier Markdown propre respectant la convention "mode présentation" de Docs (La Suite) — une diapo par diviseur `---`. Produit uniquement le fichier .md (et ses assets) prêt à coller/importer dans Docs ; ne publie rien. Utiliser quand l'utilisateur dit "/presentation-docs", "transforme cette note en présentation Docs", "convertis X en présentation Docs", "mets ce PPTX/PDF/DOCX/ODT en diapos Docs", "formate ce texte en présentation Docs".
 ---
 
 # Skill : Présentation Docs
@@ -33,7 +33,7 @@ Un seul livrable : un fichier `.md` dans le vault, respectant la convention diap
 - Pour un **fichier externe**, selon le format :
   - **PDF** → `poppler` (`pdftotext`, `pdfimages`, `pdftoppm`, `pdfinfo` — `brew install poppler`).
   - **PPTX** → `python-pptx` (`pip install python-pptx`), ou LiteParse.
-  - **DOCX / ODT / ODP** → LiteParse (`npm i -g @llamaindex/liteparse`, plus LibreOffice pour les formats Office : `brew install --cask libreoffice`), utilisable directement en `lit parse` ou via la skill `rag-parse` si elle est installée.
+  - **DOCX / ODT / ODP** → LiteParse (`npm i -g @llamaindex/liteparse`, plus LibreOffice pour les formats Office : `brew install --cask libreoffice` sur macOS, `apt-get install libreoffice` sur Ubuntu/Debian), utilisable directement en `lit parse` ou via la skill `rag-parse` si elle est installée.
   - **Recadrage d'images** (tous formats, optionnel) → `magick`/`convert` (ImageMagick).
 - Une présentation disponible uniquement en ligne (pas en fichier local) doit d'abord être exportée en **PPTX ou PDF**.
 

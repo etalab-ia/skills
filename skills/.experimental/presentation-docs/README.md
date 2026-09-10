@@ -1,6 +1,6 @@
 # presentation-docs
 
-Skill pour assistants de code IA — transformer une source (note Markdown, texte brut, ou fichier de présentation PPTX/PDF/DOCX) en un fichier Markdown propre respectant la convention du **mode présentation de [Docs (La Suite)](https://docs.numerique.gouv.fr/)** : une diapo par diviseur `---`.
+Skill pour assistants de code IA — transformer une source (note Markdown, texte brut, ou fichier de présentation PPTX/PDF/DOCX/ODT/ODP) en un fichier Markdown propre respectant la convention du **mode présentation de [Docs (La Suite)](https://docs.numerique.gouv.fr/)** : une diapo par diviseur `---`.
 
 ## Ce que fait cette skill
 
