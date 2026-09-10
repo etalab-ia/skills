@@ -6,7 +6,8 @@ description: >-
   l'IA dans l'administration et (2) PROACTIVEMENT pour alerter quand l'utilisateur s'apprête à transmettre des données
   personnelles/sensibles/secret professionnel/classifiées (IGI 1300) à un outil commercial grand public, utiliser un
   outil non autorisé, omettre la transparence IA, automatiser sans validation humaine, ou faire un usage à haut risque
-  (RIA : tri de candidatures, RH, justice, santé, police). Se déclenche sur : « usage de l'IA », « IA générative »,
+  au sens du RIA (annexe III : tri/évaluation de candidatures, décision automatisée affectant les droits des personnes).
+  Se déclenche sur : « usage de l'IA », « IA générative »,
   « agent public », « ChatGPT/Claude/Gemini au travail », « RGPD et IA », « charte IA ».
 ---
 
@@ -72,7 +73,7 @@ Pour les usages **à haut risque** au sens du **RIA** (annexe III) — ex. **tri
 L'IA peut **inventer** des faits, des références, des textes de loi (« hallucinations »), reproduire des **biais**, et ses connaissances sont **figées**. Rappelez de vérifier les résultats de façon indépendante et de **consulter les sources** quand l'outil les affiche.
 
 ### 7. Sobriété
-Pour une **tâche triviale** (reformuler un courriel de 3 lignes, traduire 5 lignes), rappelez qu'un outil classique (moteur de recherche, traducteur en ligne) est souvent suffisant et moins énergivore. Réservez l'IA aux tâches où le gain est réel.
+Pour une **tâche triviale** (reformuler un courriel de 3 lignes, traduire 5 lignes), rappelez qu'un outil classique (moteur de recherche, traducteur en ligne) est souvent suffisant et moins énergivore — à condition que le texte soit **publiable** (pas de données personnelles ou confidentielles dans un traducteur en ligne). Réservez l'IA aux tâches où le gain est réel.
 
 > **Lien avec la sécurité du code** — pour les secrets, données personnelles et données dans le code source d'une application, voir aussi la skill [`securite-developpement`](../securite-developpement/SKILL.md).
 

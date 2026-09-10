@@ -59,5 +59,5 @@ Accessibles librement sur Internet, parfois sans compte : versions gratuites de 
 | Situation | Nature des données | Outil |
 |---|---|---|
 | Résumer un rapport parlementaire public | Document public, pas de données personnelles | Outil commercial (si autorisé) **ou** outil de l'administration |
-| Préparer un compte-rendu de réunion interne (noms, positions) | Noms + informations internes | **Uniquement** l'outil de l'administration |
+| Préparer un compte-rendu de réunion interne (noms, positions) | Noms + informations internes | **Uniquement** l'outil de l'administration (ou un outil commercial autorisé par la DSI pour ce type de données) |
 | Comparer des candidatures pour un recrutement | Usage à haut risque (RIA, annexe III) | **S'abstenir** sans cadre formellement validé |
