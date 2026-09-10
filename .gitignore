@@ -4,3 +4,6 @@
 # Claude Code (config et skills installées localement)
 .claude/
 .agent-vm.runtime.sh
+
+# Dossiers de travail des skills (sources brutes, extractions temporaires)
+**/.source/

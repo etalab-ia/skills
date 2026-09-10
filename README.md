@@ -15,6 +15,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | [**lasuite-ui-kit**](skills/lasuite-ui-kit/) | Interfaces React pour [LaSuite](https://lasuite.numerique.gouv.fr/) avec `@gouvfr-lasuite/ui-kit` et `@gouvfr-lasuite/cunningham-react` |
 | [**securite-developpement**](skills/securite-developpement/) | 14 domaines de sécurité + 3 modules conditionnels (C, Rust, CMS), générés par la DINUM en s'appuyant sur [13 guides de l'ANSSI](skills/securite-developpement/references/sources.md) |
 | [**anssi-guides**](skills/anssi-guides/) | Trouver et consulter le bon guide dans le catalogue complet de l'ANSSI (126 guides) — aiguillage et citation, complémentaire de `securite-developpement` |
+| [**usage-ia-agents-etat**](skills/usage-ia-agents-etat/) | Cadre d'usage de l'IA générative pour les agents publics, d'après le [Guide d'usage de l'IA](https://ia.numerique.gouv.fr/ressources/guide-dusage-de-lia/) de la DINUM — 5 principes + conseil proactif |
 | [**datagouv-apis**](skills/datagouv-apis/) | 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) — synchronisées depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill) |
 
 ## Skills expérimentales ⚠️
