@@ -1,6 +1,6 @@
 ---
 name: anssi-guides
-description: "Catalogue français des guides et recommandations publiés par l'ANSSI, interrogé via l'API MesServicesCyber pour trouver le bon guide et répondre à une question de sécurité en citant sa source. Utiliser cette skill quand l'utilisateur cherche un guide ou une publication de l'ANSSI, demande « que dit / que recommande l'ANSSI sur… », « existe-t-il un guide sur… », ou pose une question de sécurité hors du développement d'application : architecture réseau, pare-feu, DNS, Active Directory, Wi-Fi, virtualisation, nomadisme, systèmes industriels, gestion de crise cyber, remédiation, homologation, EBIOS, IA générative, cryptographie post-quantique. Pour la sécurité du développement d'une application (code, serveur, base de données, CI/CD), utiliser plutôt la skill securite-developpement."
+description: "Catalogue des guides et recommandations publiés par l'ANSSI, interrogé via l'API MesServicesCyber et limité aux guides français plus aux publications anglaises sans équivalent français, pour trouver le bon guide et répondre à une question de sécurité en citant sa source. Utiliser cette skill quand l'utilisateur cherche un guide ou une publication de l'ANSSI, demande « que dit / que recommande l'ANSSI sur… », « existe-t-il un guide sur… », ou pose une question de sécurité hors du développement d'application : architecture réseau, pare-feu, DNS, Active Directory, Wi-Fi, virtualisation, nomadisme, systèmes industriels, gestion de crise cyber, remédiation, homologation, EBIOS, IA générative, cryptographie post-quantique. Pour la sécurité du développement d'une application (code, serveur, base de données, CI/CD), utiliser plutôt la skill securite-developpement."
 ---
 
 # Guides ANSSI — trouver et consulter la bonne source
@@ -9,7 +9,7 @@ Cette skill aiguille vers les guides publiés par l'ANSSI et les consulte à la 
 
 ## Workflow
 
-1. **Interroger l'API canonique** — `https://messervices.cyber.gouv.fr/api/guides`. Filtrer impérativement `.langue == "FR"`, puis chercher les mots-clés et synonymes du sujet dans `nom`, `description`, `thematique`, `collections` et `besoins` (ex. « SSO » → OpenID Connect ; « conteneurs » → Docker, cloisonnement, virtualisation). Les champs `collections` et `besoins` permettent aussi de restreindre la recherche par public ou objectif (`ETRE_SENSIBILISE`, `REAGIR`, `SECURISER`, `SE_FORMER`). Utiliser [`references/catalogue.md`](references/catalogue.md) comme instantané hors ligne, pas comme source plus fraîche que l'API.
+1. **Interroger l'API canonique** — `https://messervices.cyber.gouv.fr/api/guides`. Retenir `.langue == "FR"` ainsi que les identifiants anglais sans équivalent français listés dans [`scripts/included-english-guide-ids.json`](scripts/included-english-guide-ids.json), puis chercher les mots-clés et synonymes du sujet dans `nom`, `description`, `thematique`, `collections` et `besoins` (ex. « SSO » → OpenID Connect ; « conteneurs » → Docker, cloisonnement, virtualisation). Les champs `collections` et `besoins` permettent aussi de restreindre la recherche par public ou objectif (`ETRE_SENSIBILISE`, `REAGIR`, `SECURISER`, `SE_FORMER`). Utiliser [`references/catalogue.md`](references/catalogue.md) comme instantané hors ligne, pas comme source plus fraîche que l'API.
 
 2. **Aiguiller vers `securite-developpement` si la question relève du développement.** Les guides marqués ★ dans le catalogue y sont déjà digérés règle par règle, avec leur traçabilité (`[TLS R3]`, `[ESS-BDD]`…) et les valeurs chiffrées exactes. Ne pas refaire ce travail depuis les PDF. Aiguiller uniquement sur les guides ★ : un sujet pertinent pour le développement mais hors ★ (ex. OpenID Connect, conteneurs Docker) reste traité par le workflow ci-dessous (catalogue → consultation → citation), même si `securite-developpement` couvre partiellement le domaine avec une règle `[DINUM]`.
 
@@ -33,5 +33,6 @@ Cette skill aiguille vers les guides publiés par l'ANSSI et les consulte à la 
 
 | Fichier | Contenu |
 |---------|---------|
-| [`references/catalogue.md`](references/catalogue.md) | Instantané généré des guides français : titre, date, collection, besoin, thématique et URL — plus la méthode de re-scan |
+| [`references/catalogue.md`](references/catalogue.md) | Instantané généré des guides français et publications anglaises sans équivalent : titre, date, collection, besoin, thématique et URL |
 | [`scripts/generate-catalogue.sh`](scripts/generate-catalogue.sh) | Génération et validation du catalogue depuis l'API JSON |
+| [`scripts/included-english-guide-ids.json`](scripts/included-english-guide-ids.json) | Exceptions anglaises sans équivalent français, incluses explicitement |

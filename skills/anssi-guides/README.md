@@ -1,6 +1,6 @@
 # anssi-guides
 
-Skill d'aiguillage vers les guides publiés par l'ANSSI : interroger le catalogue français via l'API MesServicesCyber, consulter le bon document et répondre en citant la source exacte.
+Skill d'aiguillage vers les guides publiés par l'ANSSI : interroger via l'API MesServicesCyber les guides français et les publications anglaises sans équivalent, consulter le bon document et répondre en citant la source exacte.
 
 ## Positionnement
 
@@ -22,10 +22,11 @@ anssi-guides/
 ├── SKILL.md                  # Workflow : chercher, aiguiller, consulter, citer
 ├── scripts/
 │   ├── generate-catalogue.sh # Génération et validation depuis l'API
+│   ├── included-english-guide-ids.json
 │   ├── test-generate-catalogue.sh
 │   └── tracked-guide-ids.json
 └── references/
-    └── catalogue.md          # Instantané des guides français + méthode de re-scan
+    └── catalogue.md          # Instantané filtré + méthode de re-scan
 ```
 
 ## Maintenance
@@ -37,7 +38,7 @@ skills/anssi-guides/scripts/generate-catalogue.sh skills/anssi-guides/references
 skills/anssi-guides/scripts/test-generate-catalogue.sh
 ```
 
-Le générateur filtre les fiches françaises, valide les champs attendus et conserve le marquage ★ des 13 fiches suivies par `securite-developpement`. Le chemin de sortie est remplacé atomiquement seulement après une génération réussie. Toute révision d'une fiche ★ doit être signalée pour que cette skill rejoue son extraction (`references/sources.md`).
+Le générateur retient les fiches françaises et les exceptions anglaises sans équivalent déclarées explicitement, valide les champs attendus et conserve le marquage ★ des 13 fiches suivies par `securite-developpement`. Le chemin de sortie est remplacé atomiquement seulement après une génération réussie. Toute révision d'une fiche ★ doit être signalée pour que cette skill rejoue son extraction (`references/sources.md`).
 
 Les PDF ne sont pas versionnés dans ce dépôt : la skill cite les guides, elle ne les redistribue pas.
 

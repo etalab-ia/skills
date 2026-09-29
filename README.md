@@ -14,7 +14,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | [**rgaa**](skills/rgaa/) | Audit de conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) — 106 critères d'accessibilité numérique |
 | [**lasuite-ui-kit**](skills/lasuite-ui-kit/) | Interfaces React pour [LaSuite](https://lasuite.numerique.gouv.fr/) avec `@gouvfr-lasuite/ui-kit` et `@gouvfr-lasuite/cunningham-react` |
 | [**securite-developpement**](skills/securite-developpement/) | 14 domaines de sécurité + 3 modules conditionnels (C, Rust, CMS), générés par la DINUM en s'appuyant sur [13 guides de l'ANSSI](skills/securite-developpement/references/sources.md) |
-| [**anssi-guides**](skills/anssi-guides/) | Trouver et consulter le bon guide dans le catalogue français de l'ANSSI (128 guides au 29 septembre 2026), alimenté par l'API MesServicesCyber — aiguillage et citation, complémentaire de `securite-developpement` |
+| [**anssi-guides**](skills/anssi-guides/) | Trouver et consulter le bon guide dans le catalogue ANSSI (128 guides français + 1 publication anglaise sans équivalent au 29 septembre 2026), alimenté par l'API MesServicesCyber — aiguillage et citation, complémentaire de `securite-developpement` |
 | [**usage-ia-agents-etat**](skills/usage-ia-agents-etat/) | Cadre d'usage de l'IA générative pour les agents publics, d'après le [Guide d'usage de l'IA](https://ia.numerique.gouv.fr/ressources/guide-dusage-de-lia/) de la DINUM — 5 principes + conseil proactif |
 | [**datagouv-apis**](skills/datagouv-apis/) | 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) — synchronisées depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill) |
 
@@ -118,10 +118,11 @@ skills/
 │   ├── SKILL.md
 │   ├── scripts/
 │   │   ├── generate-catalogue.sh # génération et validation depuis l'API MesServicesCyber
+│   │   ├── included-english-guide-ids.json
 │   │   ├── test-generate-catalogue.sh
 │   │   └── tracked-guide-ids.json
 │   └── references/
-│       └── catalogue.md          # instantané des 128 guides français + méthode de re-scan
+│       └── catalogue.md          # 128 guides français + 1 publication anglaise sans équivalent
 ├── datagouv-apis/
 │   ├── README.md
 │   └── SKILL.md

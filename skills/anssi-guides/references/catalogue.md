@@ -1,6 +1,6 @@
-# Catalogue des guides ANSSI — 128 guides en français
+# Catalogue des guides ANSSI — 129 publications
 
-**Date du scan : 2026-09-29.** Source canonique : [API des guides MesServicesCyber](https://messervices.cyber.gouv.fr/api/guides). Le filtre `langue == "FR"` est appliqué explicitement ; les traductions anglaises ne figurent pas dans ce tableau.
+**Date du scan : 2026-09-29.** Source canonique : [API des guides MesServicesCyber](https://messervices.cyber.gouv.fr/api/guides). Le tableau contient 128 guides en français et 1 publication en anglais sans équivalent français ; les traductions anglaises de guides français sont exclues.
 
 **Légende** : ★ = guide déjà digéré et tracé règle par règle dans la skill [`securite-developpement`](../../securite-developpement/SKILL.md) — pour une question de développement d’application, utiliser cette skill plutôt que le PDF.
 
@@ -17,17 +17,18 @@ Trié du plus récent au plus ancien.
 | Sécurisation des réseaux Wi-Fi | 2026-08-31 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/essentiels-wifi) |
 | Cœur de confiance | 2026-07-21 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/essentiels-coeur-confiance) |
 | Défense en profondeur | 2026-07-01 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/essentiels-defense-profondeur) |
-| Recommandations de sécurité relatives à la gestion technique et centralisée du bâtiment (gtb/gtc) | 2026-06-04 | Systèmes industriels | Sécuriser | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-gestion-technique-batiment) |
 | Anticiper et gérer sa communication de crise cyber | 2026-06-04 | Crise cyber | Réagir | Crise cyber | [lien](https://messervices.cyber.gouv.fr/guides/anticiper-et-gerer-sa-communication-de-crise-cyber) |
+| Recommandations de sécurité relatives à la gestion technique et centralisée du bâtiment (gtb/gtc) | 2026-06-04 | Systèmes industriels | Sécuriser | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-gestion-technique-batiment) |
 | Recommandations pour la mise en œuvre du vote par Internet pour les élections non politiques | 2026-04-24 | Autre | Sécuriser | Sécurité du vote électronique | [lien](https://messervices.cyber.gouv.fr/guides/vote-internet-elections-non-politiques) |
 | ★ Mécanismes cryptographiques | 2026-03-20 | Cryptographie | Sécuriser | Cryptographie | [lien](https://messervices.cyber.gouv.fr/guides/mecanismes-cryptographiques) |
 | Guide de cybersécurité à l’usage des start-up du numérique | 2026-02-26 | Gestion des risques cyber | Sécuriser | Cybersécurité des start-up | [lien](https://messervices.cyber.gouv.fr/guides/guide-cybersecurite-start-up-numerique) |
 | Sécurisation du poste de travail multi-environnements (non classifiés) | 2026-02-20 | Les fondamentaux | Sécuriser | Les fondamentaux | [lien](https://messervices.cyber.gouv.fr/guides/fondamentaux-poste-multi-environnements) |
-| Transition post-quantique d’IPsec | 2026-02-02 | Cryptographie | Sécuriser | Cryptographie post-quantique | [lien](https://messervices.cyber.gouv.fr/guides/Transition-post-quantique-protocole-IPsec) |
-| Transition post-quantique de TLS 1.3 | 2026-02-02 | Cryptographie | Sécuriser | Cryptographie post-quantique | [lien](https://messervices.cyber.gouv.fr/guides/Transition-post-quantique-protocole-TLS-1-3) |
 | Transition post-quantique de SSHv2 | 2026-02-02 | Cryptographie | Sécuriser | Cryptographie post-quantique | [lien](https://messervices.cyber.gouv.fr/guides/Transition-post-quantique-protocole-SSHv2) |
+| Transition post-quantique de TLS 1.3 | 2026-02-02 | Cryptographie | Sécuriser | Cryptographie post-quantique | [lien](https://messervices.cyber.gouv.fr/guides/Transition-post-quantique-protocole-TLS-1-3) |
+| Transition post-quantique d’IPsec | 2026-02-02 | Cryptographie | Sécuriser | Cryptographie post-quantique | [lien](https://messervices.cyber.gouv.fr/guides/Transition-post-quantique-protocole-IPsec) |
 | Sécurisation d’une infrastructure VMware | 2026-01-26 | Les fondamentaux | Sécuriser | Les fondamentaux | [lien](https://messervices.cyber.gouv.fr/guides/securisation-dune-infrastructure-vmware) |
 | Sécuriser une migration numérique | 2026-01-23 | Les essentiels | Sécuriser | Migration | [lien](https://messervices.cyber.gouv.fr/guides/migration) |
+| ANSSI views on crypto agility *(en anglais, sans équivalent français)* | 2026-01-19 | Cryptographie | Sécuriser | Cryptographie post-quantique | [lien](https://messervices.cyber.gouv.fr/guides/ANSSI-views-on-crypto-agility) |
 | Préparer la remédiation | 2026-01-16 | Remédiation | Réagir | Cyberattaques et remédiation | [lien](https://messervices.cyber.gouv.fr/guides/cyberattaques-et-remediation-preparer-la-remedation) |
 | Outil de pilotage du projet de remédiation | 2026-01-01 | Remédiation | Réagir | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/outil-pilotage-projet-remediation) |
 | La cybersécurité des systèmes industriels - Mesures détaillées | 2025-12-19 | Systèmes industriels | Sécuriser | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/la-cybersecurite-des-systemes-industriels-mesures-detaillees) |
@@ -36,8 +37,8 @@ Trié du plus récent au plus ancien.
 | La supervision de sécurité : les clés de décision | 2025-08-26 | Supervision de sécurité | Sécuriser | La supervision de sécurité | [lien](https://messervices.cyber.gouv.fr/guides/la-supervision-de-securite-les-cles-de-decision) |
 | Architecture sécurisée de SI | 2025-08-08 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/architecture-securisee-de-si) |
 | Infrastructure de gestion de clés (IGC) | 2025-08-01 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/infrastructure-de-gestion-de-cles-igc) |
-| Modèle Zero Trust | 2025-06-20 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/modele-zero-trust) |
 | Modèle Zero Trust | 2025-06-20 | Les fondamentaux | Sécuriser | Les fondamentaux | [lien](https://messervices.cyber.gouv.fr/guides/zero-trust) |
+| Modèle Zero Trust | 2025-06-20 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/modele-zero-trust) |
 | Approche SSI pour l’Internet des objets industriels | 2025-05-30 | Systèmes industriels | Sécuriser | Internet des objets | [lien](https://messervices.cyber.gouv.fr/guides/approche-ssi-pour-linternet-des-objets-industriels) |
 | ★ Sélection d’un logiciel libre | 2025-05-02 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/selection-dun-logiciel-libre) |
 | La cybersécurité des systèmes industriels - Méthode de classification | 2025-04-11 | Systèmes industriels | Sécuriser | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/la-cybersecurite-des-systemes-industriels) |
@@ -51,12 +52,12 @@ Trié du plus récent au plus ancien.
 | Recommandations pour les architectures des interconnexions multiniveaux | 2024-10-25 | Autre | Sécuriser | Interconnexions multiniveaux | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-les-architectures-des-interconnexions-multiniveaux) |
 | Recommandations relatives aux architectures des services DNS | 2024-08-20 | Autre | Sécuriser | Services DNS | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-relatives-aux-architectures-des-services-dns) |
 | Le Cyberdico de l'ANSSI | 2024-07-15 | Autre | Être sensibilisé, Se former | Définitions | [lien](https://messervices.cyber.gouv.fr/guides/cyberdico-quest-ce-que-cest) |
-| Recommandations pour l’hébergement dans le cloud des SI sensibles  | 2024-07-09 | Autre | Sécuriser | Cloud et SI sensibles | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-lhebergement-des-si-sensibles-dans-le-cloud) |
+| Recommandations pour l’hébergement dans le cloud des SI sensibles | 2024-07-09 | Autre | Sécuriser | Cloud et SI sensibles | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-lhebergement-des-si-sensibles-dans-le-cloud) |
 | Recommandations de déploiement d’un service IAAS OpenStack SecNumCloud | 2024-05-03 | Autre | Sécuriser | OpenStack | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-deploiement-dun-service-iaas-openstack-secnumcloud) |
 | Recommandations de sécurité pour un système d’IA générative | 2024-04-29 | Intelligence artificielle | Sécuriser | IA générative | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-pour-un-systeme-dia-generative) |
 | Dénis de service distribués (DDoS) | 2024-04-26 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/denis-de-service-distribues-ddos) |
-| Piloter la remédiation | 2024-03-18 | Remédiation | Réagir | Cyberattaques et remédiation | [lien](https://messervices.cyber.gouv.fr/guides/cyberattaques-et-remediation-piloter-la-remediation) |
 | La remédiation du Tier 0 Active Directory | 2024-03-18 | Remédiation | Réagir | Cyberattaques et remédiation | [lien](https://messervices.cyber.gouv.fr/guides/cyberattaques-et-remediation-la-remediation-du-tier-0-active-directory) |
+| Piloter la remédiation | 2024-03-18 | Remédiation | Réagir | Cyberattaques et remédiation | [lien](https://messervices.cyber.gouv.fr/guides/cyberattaques-et-remediation-piloter-la-remediation) |
 | ★ DevSecOps | 2024-03-13 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/devsecops) |
 | Virtualisation | 2024-02-20 | Les essentiels | Sécuriser | Les essentiels | [lien](https://messervices.cyber.gouv.fr/guides/virtualisation) |
 | Cyberattaques et remédiation : les clés de décision | 2024-01-16 | Remédiation | Réagir | Cyberattaques et remédiation | [lien](https://messervices.cyber.gouv.fr/guides/cyberattaques-et-remediation-les-cles-de-decision) |
@@ -69,10 +70,10 @@ Trié du plus récent au plus ancien.
 | Recommandations pour le reconditionnement des ordinateurs de bureau ou portables | 2023-10-03 | Autre | Sécuriser | Reconditionnement | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-le-reconditionnement-des-ordinateurs-de-bureau-ou-portables) |
 | Les Mesures Cyber Préventives Prioritaires | 2023-05-17 | Gestion des risques cyber | Être sensibilisé, Sécuriser | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/les-mesures-cyber-preventives-prioritaires) |
 | Avis de l’ANSSI sur la migration vers la cryptographie post-quantique | 2022-04-11 | Cryptographie | Sécuriser | Cryptographie post-quantique | [lien](https://messervices.cyber.gouv.fr/guides/avis-de-lanssi-sur-la-migration-vers-la-cryptographie-post-quantique) |
-| Recommandations de configuration des commutateurs et pare-feux Siemens Scalance | 2022-02-11 | Systèmes industriels | Sécuriser | Siemens Scalance | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-configuration-des-commutateurs-et-pare-feux-siemens-scalance) |
 | Recommandations de configuration des commutateurs et pare-feux Hirschmann | 2022-02-11 | Systèmes industriels | Sécuriser | Hirschmann | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-configuration-des-commutateurs-et-pare-feux-hirschmann) |
-| Sécuriser la journalisation dans un environnement Microsoft Active Directory | 2022-01-28 | Autre | Sécuriser | Journalisation | [lien](https://messervices.cyber.gouv.fr/guides/securiser-la-journalisation-dans-un-environnement-microsoft-active-directory) |
+| Recommandations de configuration des commutateurs et pare-feux Siemens Scalance | 2022-02-11 | Systèmes industriels | Sécuriser | Siemens Scalance | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-configuration-des-commutateurs-et-pare-feux-siemens-scalance) |
 | ★ Recommandations de sécurité pour l’architecture d’un système de journalisation | 2022-01-28 | Autre | Sécuriser | Journalisation | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-pour-larchitecture-dun-systeme-de-journalisation) |
+| Sécuriser la journalisation dans un environnement Microsoft Active Directory | 2022-01-28 | Autre | Sécuriser | Journalisation | [lien](https://messervices.cyber.gouv.fr/guides/securiser-la-journalisation-dans-un-environnement-microsoft-active-directory) |
 | Crise cyber, les clés d’une gestion opérationnelle et stratégique | 2021-12-06 | Crise cyber | Réagir | Crise cyber | [lien](https://messervices.cyber.gouv.fr/guides/crise-cyber-les-cles-dune-gestion-operationnelle-et-strategique) |
 | ★ Recommandations relatives à l’authentification multifacteur et aux mots de passe | 2021-10-08 | Autre | Sécuriser | MFA et mots de passe | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-relatives-lauthentification-multifacteur-et-aux-mots-de-passe) |
 | Recommandations pour les architectures des SI sensibles ou DR | 2021-09-24 | Autre | Sécuriser | SI sensibles et DR | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-les-architectures-des-si-sensibles-ou-dr) |
@@ -98,7 +99,7 @@ Trié du plus récent au plus ancien.
 | Maîtrise du risque numérique - l’atout confiance | 2019-11-18 | Gestion des risques cyber | Être sensibilisé, Sécuriser | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/maitrise-du-risque-numerique-latout-confiance) |
 | Recommandations pour une utilisation sécurisée de Zed! | 2019-11-14 | Autre | Sécuriser | Zed! | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-une-utilisation-securisee-de-zed) |
 | Exigences de sécurité matérielles | 2019-11-08 | Autre | Sécuriser | Sécurité matérielle | [lien](https://messervices.cyber.gouv.fr/guides/exigences-de-securite-materielles) |
-| Bonnes pratiques à l’usage des professionnels en déplacement  | 2019-05-17 | Gestion des risques cyber | Être sensibilisé, Sécuriser | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/bonnes-pratiques-lusage-des-professionnels-en-deplacement) |
+| Bonnes pratiques à l’usage des professionnels en déplacement | 2019-05-17 | Gestion des risques cyber | Être sensibilisé, Sécuriser | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/bonnes-pratiques-lusage-des-professionnels-en-deplacement) |
 | Recommandations de configuration d'un système GNU/Linux | 2019-02-22 | Autre | Sécuriser | GNU/Linux | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-relatives-un-systeme-gnulinux) |
 | Cartographie du système d’information | 2018-11-21 | Gestion des risques cyber | Sécuriser | Cartographie | [lien](https://messervices.cyber.gouv.fr/guides/cartographie-du-systeme-dinformation) |
 | La méthode EBIOS Risk Manager - Le guide | 2018-10-09 | Gestion des risques cyber | Sécuriser | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/la-methode-ebios-risk-manager-le-guide) |
@@ -106,21 +107,21 @@ Trié du plus récent au plus ancien.
 | Protection du potentiel scientifique et technique de la nation | 2018-05-17 | Autre | Sécuriser | PPST | [lien](https://messervices.cyber.gouv.fr/guides/protection-du-potentiel-scientifique-et-technique-de-la-nation) |
 | Recommandations pour choisir des pare-feux maîtrisés dans les zones exposées à Internet | 2018-01-26 | Autre | Sécuriser | Pare-feux | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-choisir-des-pare-feux-maitrises-dans-les-zones-exposees-internet) |
 | ★ Recommandations pour la mise en place de cloisonnement système | 2017-12-22 | Autre | Sécuriser | Cloisonnement | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-la-mise-en-place-de-cloisonnement-systeme) |
-| Mise en œuvre des fonctionnalités de sécurité de Windows 10 reposant sur la virtualisation | 2017-11-10 | Autre | Sécuriser | Virtualisation | [lien](https://messervices.cyber.gouv.fr/guides/mise-en-oeuvre-des-fonctionnalites-de-securite-de-windows-10-reposant-sur-la) |
 | Bonnes pratiques pour l’acquisition et l’exploitation de noms de domaine | 2017-11-10 | Autre | Sécuriser | Noms de domaine | [lien](https://messervices.cyber.gouv.fr/guides/bonnes-pratiques-pour-lacquisition-et-lexploitation-de-noms-de-domaine) |
+| Mise en œuvre des fonctionnalités de sécurité de Windows 10 reposant sur la virtualisation | 2017-11-10 | Autre | Sécuriser | Virtualisation | [lien](https://messervices.cyber.gouv.fr/guides/mise-en-oeuvre-des-fonctionnalites-de-securite-de-windows-10-reposant-sur-la) |
 | Restreindre la collecte de données sous Windows 10 | 2017-07-06 | Autre | Sécuriser | Windows 10 | [lien](https://messervices.cyber.gouv.fr/guides/restreindre-la-collecte-de-donnees-sous-windows-10) |
 | Guide d’élaboration d’une charte d’utilisation des moyens informatiques et des outils numériques | 2017-06-19 | Autre | Sécuriser, Être sensibilisé | Charte | [lien](https://messervices.cyber.gouv.fr/guides/guide-delaboration-dune-charte-dutilisation-des-moyens-informatiques-et-des-outils) |
 | Élections législatives : Candidats, assurez votre sécurité numérique ! | 2017-05-24 | Autre | Sécuriser, Être sensibilisé | Elections | [lien](https://messervices.cyber.gouv.fr/guides/elections-legislatives-candidats-assurez-votre-securite-numerique) |
 | Recommandations pour une utilisation sécurisée de Cryhod | 2017-05-12 | Autre | Sécuriser | CryHod | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-une-utilisation-securisee-de-cryhod) |
 | ★ Guide d’hygiène informatique | 2017-01-23 | Gestion des risques cyber | Être sensibilisé, Sécuriser | Gestion des risques cyber | [lien](https://messervices.cyber.gouv.fr/guides/guide-dhygiene-informatique) |
-| Mettre en œuvre une politique de restrictions logicielles sous Windows | 2017-01-16 | Autre | Sécuriser | Restriction logicielle | [lien](https://messervices.cyber.gouv.fr/guides/mettre-en-oeuvre-une-politique-de-restrictions-logicielles-sous-windows) |
 | La télé-assistance sécurisée | 2017-01-16 | Autre | Sécuriser | La télé-assistance sécurisée | [lien](https://messervices.cyber.gouv.fr/guides/la-tele-assistance-securisee) |
+| Mettre en œuvre une politique de restrictions logicielles sous Windows | 2017-01-16 | Autre | Sécuriser | Restriction logicielle | [lien](https://messervices.cyber.gouv.fr/guides/mettre-en-oeuvre-une-politique-de-restrictions-logicielles-sous-windows) |
 | CRYPTO : LE WEBDOC’ | 2016-10-10 | Cryptographie | Sécuriser, Être sensibilisé, Se former | Crypto | [lien](https://messervices.cyber.gouv.fr/guides/crypto-le-webdoc) |
 | Guide des bonnes pratiques de sécurité informatique à bord des navires | 2016-10-04 | Autre | Sécuriser | Maritime | [lien](https://messervices.cyber.gouv.fr/guides/guide-des-bonnes-pratiques-de-securite-informatique-bord-des-navires) |
 | Recommandations et méthodologie pour le nettoyage d’une politique de filtrage réseau d’un pare-feu | 2016-08-09 | Autre | Sécuriser | Filtrage | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-et-methodologie-pour-le-nettoyage-dune-politique-de-filtrage-reseau) |
 | Sécuriser un environnement d’exécution Java sous Windows | 2016-07-28 | Autre | Sécuriser | Java | [lien](https://messervices.cyber.gouv.fr/guides/securiser-un-environnement-dexecution-java-sous-windows) |
-| Recommandations pour la sécurisation d’un commutateur de desserte | 2016-07-12 | Autre | Sécuriser | Commutateur de desserte | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-la-securisation-dun-commutateur-de-desserte) |
 | Recommandations de sécurité pour les architectures basées sur VMware vSphere ESXi | 2016-07-12 | Autre | Sécuriser | VMware vSphere ESXi | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-pour-les-architectures-basees-sur-vmware-vsphere-esxi) |
+| Recommandations pour la sécurisation d’un commutateur de desserte | 2016-07-12 | Autre | Sécuriser | Commutateur de desserte | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-pour-la-securisation-dun-commutateur-de-desserte) |
 | Définition d’une politique de filtrage réseau d'un pare-feu | 2016-04-05 | Autre | Sécuriser | Pare-feu | [lien](https://messervices.cyber.gouv.fr/guides/definition-dune-politique-de-pare-feu) |
 | Référentiel d’exigences de sécurité pour les prestataires d’intégration et de maintenance de systèmes industriels | 2016-03-09 | Systèmes industriels | Sécuriser | Systèmes industriels | [lien](https://messervices.cyber.gouv.fr/guides/referentiel-dexigences-de-securite-pour-les-prestataires-dintegration-et-de) |
 | Recommandations de sécurité relatives à IPsec | 2015-08-03 | Autre | Sécuriser | IPsec | [lien](https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-relatives-ipsec) |
@@ -138,8 +139,8 @@ Trié du plus récent au plus ancien.
 | Sécuriser les accès Wi-Fi | 2013-04-03 | Autre | Sécuriser | Wi-Fi | [lien](https://messervices.cyber.gouv.fr/guides/securiser-les-acces-wi-fi) |
 | Sécurité des systèmes de virtualisation | 2012-07-13 | Autre | Sécuriser | Virtualisation | [lien](https://messervices.cyber.gouv.fr/guides/securite-des-systemes-de-virtualisation) |
 | Externalisation et sécurité des systèmes d’information : un guide pour maîtriser les risques | 2010-12-03 | Gestion des risques cyber | Sécuriser | Externalisation | [lien](https://messervices.cyber.gouv.fr/guides/externalisation-et-securite-des-systemes-dinformation-un-guide-pour-maitriser-les) |
-| TDBSSI — Guide d’élaboration de tableaux de bord de sécurité des systèmes d’information | 2009-07-09 | Autre | Sécuriser | TDBSSI | [lien](https://messervices.cyber.gouv.fr/guides/tdbssi-guide-delaboration-de-tableaux-de-bord-de-securite-des-systemes-dinformation) |
 | Guide relatif à la maturité SSI | 2009-07-09 | Autre | Sécuriser | Maturité SSI | [lien](https://messervices.cyber.gouv.fr/guides/guide-relatif-la-maturite-ssi) |
+| TDBSSI — Guide d’élaboration de tableaux de bord de sécurité des systèmes d’information | 2009-07-09 | Autre | Sécuriser | TDBSSI | [lien](https://messervices.cyber.gouv.fr/guides/tdbssi-guide-delaboration-de-tableaux-de-bord-de-securite-des-systemes-dinformation) |
 
 ---
 
@@ -152,14 +153,14 @@ skills/anssi-guides/scripts/generate-catalogue.sh skills/anssi-guides/references
 ```
 
 Le générateur vérifie que les identifiants français sont uniques, que les champs structurés nécessaires sont présents et que les 13 fiches suivies par `securite-developpement` existent toujours. Il conserve leur marqueur ★.
-Le test hors ligne `skills/anssi-guides/scripts/test-generate-catalogue.sh` couvre aussi le filtrage de langue, le rejet des doublons, la disparition d’une fiche suivie et la préservation du catalogue en cas d’échec.
+Le test hors ligne `skills/anssi-guides/scripts/test-generate-catalogue.sh` couvre aussi le filtrage de langue, l’exception anglaise déclarée, le rejet des doublons, la disparition d’une fiche suivie et la préservation du catalogue en cas d’échec.
 
 Pour rechercher sans régénérer le fichier :
 
 ```bash
-curl -fsSL https://messervices.cyber.gouv.fr/api/guides | jq --arg q "tls" '
-  .[]
-  | select(.langue == "FR")
+curl -fsSL https://messervices.cyber.gouv.fr/api/guides | jq --arg q "tls" --slurpfile included_english skills/anssi-guides/scripts/included-english-guide-ids.json '
+  .[] | . as $guide
+  | select($guide.langue == "FR" or ($included_english[0] | index($guide.id)))
   | select(([.nom, .description, .thematique] + .collections + .besoins)
       | map(ascii_downcase) | any(contains($q | ascii_downcase)))
   | {id, nom, dateMiseAJour, collections, besoins, thematique, documents}
