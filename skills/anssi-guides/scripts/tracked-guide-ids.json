@@ -1,0 +1,15 @@
+[
+  "guide-dhygiene-informatique",
+  "securiser-un-site-web",
+  "recommandations-relatives-lauthentification-multifacteur-et-aux-mots-de-passe",
+  "mecanismes-cryptographiques",
+  "recommandations-de-securite-relatives-tls",
+  "recommandations-de-securite-pour-larchitecture-dun-systeme-de-journalisation",
+  "recommandations-pour-la-mise-en-place-de-cloisonnement-systeme",
+  "devsecops",
+  "bases-de-donnees-relationnelles",
+  "selection-dun-logiciel-libre",
+  "mise-en-oeuvre-securisee-dun-cms",
+  "regles-de-programmation-pour-le-developpement-securise-de-logiciels-en-langage-c",
+  "regles-de-programmation-pour-le-developpement-dapplications-securisees-en-rust"
+]

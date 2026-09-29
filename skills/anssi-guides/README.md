@@ -1,10 +1,10 @@
 # anssi-guides
 
-Skill d'aiguillage vers les guides publiés par l'ANSSI : trouver le bon guide dans le catalogue (126 guides), le consulter à la demande et répondre en citant la source exacte.
+Skill d'aiguillage vers les guides publiés par l'ANSSI : interroger le catalogue français via l'API MesServicesCyber, consulter le bon document et répondre en citant la source exacte.
 
 ## Positionnement
 
-Cette skill **localise et cite, elle ne pré-digère pas**. Elle maintient le catalogue (titres, dates, collections, URLs), pas une synthèse des règles — la consultation du contenu se fait à la demande, sur la page vitrine ou le PDF du guide concerné.
+Cette skill **localise et cite, elle ne pré-digère pas**. Elle interroge les métadonnées structurées de l'API (`collections`, `besoins`, `thematique`, `documents`), pas une synthèse des règles — la consultation du contenu se fait à la demande dans les documents indiqués par l'API.
 
 Elle est complémentaire de [`securite-developpement`](../securite-developpement/) :
 
@@ -20,13 +20,24 @@ Les 13 guides couverts par `securite-developpement` sont marqués ★ dans le ca
 ```
 anssi-guides/
 ├── SKILL.md                  # Workflow : chercher, aiguiller, consulter, citer
+├── scripts/
+│   ├── generate-catalogue.sh # Génération et validation depuis l'API
+│   ├── test-generate-catalogue.sh
+│   └── tracked-guide-ids.json
 └── references/
-    └── catalogue.md          # Les 126 guides + méthode de re-scan
+    └── catalogue.md          # Instantané des guides français + méthode de re-scan
 ```
 
 ## Maintenance
 
-Le catalogue est un instantané daté (date de scan en tête de `catalogue.md`). La méthode de re-scan, documentée en fin de fichier, permet de détecter publications et révisions ; toute révision d'un guide ★ doit être signalée pour que `securite-developpement` rejoue son extraction (`references/sources.md`).
+Le catalogue est un instantané daté (date de scan en tête de `catalogue.md`) généré depuis `https://messervices.cyber.gouv.fr/api/guides` :
+
+```bash
+skills/anssi-guides/scripts/generate-catalogue.sh > skills/anssi-guides/references/catalogue.md
+skills/anssi-guides/scripts/test-generate-catalogue.sh
+```
+
+Le générateur filtre les fiches françaises, valide les champs attendus et conserve le marquage ★ des 13 fiches suivies par `securite-developpement`. Toute révision d'une fiche ★ doit être signalée pour que cette skill rejoue son extraction (`references/sources.md`).
 
 Les PDF ne sont pas versionnés dans ce dépôt : la skill cite les guides, elle ne les redistribue pas.
 
