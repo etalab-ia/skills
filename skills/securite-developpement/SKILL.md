@@ -19,6 +19,7 @@ Quand on écrit du code, qu'on configure un serveur, un reverse proxy, une base 
 
 - Consulter le ou les domaines pertinents de [`references/checklist.md`](references/checklist.md).
 - Dès qu'une valeur concrète est en jeu — version de TLS, suite cryptographique, taille de clé, courbe elliptique, fonction de dérivation de mot de passe, durée de rétention des journaux — la reprendre depuis [`references/valeurs-anssi.md`](references/valeurs-anssi.md). **Ne jamais inventer ni approximer ces valeurs de mémoire.**
+- Si la réponse doit refléter la dernière version publiée, vérifier la fiche et les URLs de documents dans l'API MesServicesCyber selon la méthode de [`references/sources.md`](references/sources.md). Ne pas parser la page HTML du catalogue.
 - Signaler à l'utilisateur la règle appliquée et sa source ANSSI quand elle contraint un choix technique.
 
 ### Mode audit — évaluation de conformité
@@ -27,7 +28,7 @@ Quand l'utilisateur demande un audit, un rapport de conformité, ou de vérifier
 
 ### Hors périmètre
 
-Pour une question de sécurité hors des 14 domaines — architecture réseau, pare-feu, DNS, Active Directory, remédiation, systèmes industriels, IA générative… — utiliser la skill [`anssi-guides`](../anssi-guides/SKILL.md), qui cherche dans l'ensemble du catalogue ANSSI (126 guides).
+Pour une question de sécurité hors des 14 domaines — architecture réseau, pare-feu, DNS, Active Directory, remédiation, systèmes industriels, IA générative… — utiliser la skill [`anssi-guides`](../anssi-guides/SKILL.md), qui cherche dans les guides français de l'ANSSI et les publications anglaises sans équivalent via l'API MesServicesCyber.
 
 Même à l'intérieur des 14 domaines, quand la règle applicable est marquée `[DINUM]` — faute de source dans les 13 guides — vérifier dans [`anssi-guides`](../anssi-guides/SKILL.md) si le catalogue complet couvre le sujet : plusieurs de ces angles morts y ont un guide dédié (OpenID Connect et authentification déléguée, conteneurs Docker, sauvegarde). Appliquer la règle `[DINUM]` **et**, si un guide existe, le signaler.
 

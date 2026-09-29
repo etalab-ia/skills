@@ -1,6 +1,6 @@
 # Catalogue des guides ANSSI
 
-> **Note** : ce document est le compte-rendu de travail du scan. La version exploitable du catalogue — celle qui fait foi et qui est maintenue — vit dans la skill [`anssi-guides`](../skills/anssi-guides/references/catalogue.md).
+> **Note** : ce document est le compte-rendu historique du scan du 20 juillet 2026 ; ses comptes et son tableau ne sont plus maintenus. La version exploitable du catalogue — générée depuis l'[API MesServicesCyber](https://messervices.cyber.gouv.fr/api/guides), celle qui fait foi — vit dans la skill [`anssi-guides`](../skills/anssi-guides/references/catalogue.md).
 
 **Date de consultation : 20 juillet 2026.** Source du scan : le catalogue [messervices.cyber.gouv.fr/guides](https://messervices.cyber.gouv.fr/guides), qui est aujourd'hui le point d'entrée canonique — `cyber.gouv.fr/publications` n'est plus qu'une page d'aiguillage et renvoie vers ce catalogue.
 

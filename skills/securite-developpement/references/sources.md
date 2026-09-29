@@ -2,7 +2,7 @@
 
 Table de traçabilité des règles de [`checklist.md`](checklist.md) et des [`modules/`](modules/). Chaque règle porte entre crochets un identifiant qui se résout ici.
 
-**Date de consultation des guides : 2026-07-20.** Les versions ci-dessous sont celles en vigueur à cette date ; en cas de révision ANSSI, rejouer l'extraction (méthode en fin de fichier).
+**Date d'extraction du contenu des guides : 2026-07-20. Métadonnées du catalogue vérifiées via l'API : 2026-09-29.** Les versions ci-dessous sont celles vérifiées lors de l'extraction ; en cas de révision signalée par l'API ANSSI, rejouer l'extraction (méthode en fin de fichier).
 
 ---
 
@@ -197,11 +197,30 @@ Les critères : historique et notoriété du projet · maintien en conditions op
 
 ## Rejouer l'extraction
 
-Les guides sont des PDF ; les pages HTML de `messervices.cyber.gouv.fr` n'en sont que des vitrines. Pour mettre à jour ce référentiel après une révision ANSSI :
+Les guides sont des PDF ; l'API `https://messervices.cyber.gouv.fr/api/guides` est la source canonique pour découvrir leurs métadonnées et leurs URLs. Les pages HTML de `messervices.cyber.gouv.fr` ne doivent pas être parsées.
 
-1. Récupérer le PDF depuis la page vitrine du guide.
+Pour vérifier une fiche suivie et obtenir ses documents sans reconstruire d'URL :
+
+```bash
+guide_id="recommandations-de-securite-relatives-tls"
+curl -fsSL https://messervices.cyber.gouv.fr/api/guides | jq --arg id "$guide_id" '
+  first(.[] | select(.langue == "FR" and .id == $id))
+  | {id, nom, dateMiseAJour, documents}
+'
+```
+
+`dateMiseAJour` signale un changement de la fiche, mais ne remplace pas le numéro de version imprimé dans le document. Pour mettre à jour ce référentiel après une révision :
+
+1. Récupérer dans `documents[].url` le ou les PDF pertinents. Certaines fiches regroupent plusieurs documents ; vérifier chacun avant de conclure qu'une version a changé.
 2. `pdftotext -layout guide.pdf guide.txt` — plus rapide et plus fiable qu'une lecture page à page.
 3. Aller directement à la **liste récapitulative des recommandations**, en fin de document (le guide de cloisonnement en est dépourvu : ses recommandations sont dans le corps du texte).
 4. Mettre à jour la version, la date et les libellés ici, puis répercuter dans [`checklist.md`](checklist.md) et [`valeurs-anssi.md`](valeurs-anssi.md).
+
+Pour détecter en une fois les nouvelles publications et les changements des 13 fiches suivies, régénérer le catalogue de la skill [`anssi-guides`](../../anssi-guides/SKILL.md) et examiner le diff :
+
+```bash
+skills/anssi-guides/scripts/generate-catalogue.sh skills/anssi-guides/references/catalogue.md
+git diff -- skills/anssi-guides/references/catalogue.md
+```
 
 **Les PDF ne sont pas versionnés dans ce dépôt** : la skill cite les guides, elle ne les redistribue pas.
