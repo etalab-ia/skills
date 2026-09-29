@@ -33,7 +33,7 @@ jq '
 ' "$script_dir/tracked-guide-ids.json" >"$fixture"
 
 ANSSI_GUIDES_API_URL="file://$fixture" SCAN_DATE=2026-09-29 \
-  "$script_dir/generate-catalogue.sh" >"$output"
+  "$script_dir/generate-catalogue.sh" "$output"
 
 grep -q '^# Catalogue des guides ANSSI — 13 guides en français$' "$output"
 [ "$(grep -c '^| ★' "$output")" -eq 13 ]
@@ -44,17 +44,27 @@ if grep -q 'english-guide' "$output"; then
 fi
 
 jq '. + [.[0]]' "$fixture" >"$tmp_dir/duplicate.json"
+printf 'catalogue existant\n' >"$output"
+if ANSSI_GUIDES_API_URL="file://$tmp_dir/introuvable.json" \
+  "$script_dir/generate-catalogue.sh" "$output" >/dev/null 2>&1; then
+  echo "Un échec de récupération a été accepté" >&2
+  exit 1
+fi
+grep -qx 'catalogue existant' "$output"
+
 if ANSSI_GUIDES_API_URL="file://$tmp_dir/duplicate.json" \
-  "$script_dir/generate-catalogue.sh" >/dev/null 2>&1; then
+  "$script_dir/generate-catalogue.sh" "$output" >/dev/null 2>&1; then
   echo "Un identifiant français dupliqué a été accepté" >&2
   exit 1
 fi
+grep -qx 'catalogue existant' "$output"
 
 jq 'del(.[0])' "$fixture" >"$tmp_dir/missing.json"
 if ANSSI_GUIDES_API_URL="file://$tmp_dir/missing.json" \
-  "$script_dir/generate-catalogue.sh" >/dev/null 2>&1; then
+  "$script_dir/generate-catalogue.sh" "$output" >/dev/null 2>&1; then
   echo "La disparition d’un guide suivi a été acceptée" >&2
   exit 1
 fi
+grep -qx 'catalogue existant' "$output"
 
 echo "Catalogue generator tests passed"

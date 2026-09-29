@@ -24,7 +24,7 @@ Cette skill aiguille vers les guides publiés par l'ANSSI et les consulte à la 
 
 ## Pièges connus
 
-- La date affichée au catalogue est celle de **mise en ligne**, pas celle de la version du document. Version et référence (ANSSI-PA/PG) ne figurent que dans le PDF.
+- `dateMiseAJour` est la date de publication ou de mise à jour exposée par la fiche du catalogue ; elle ne donne ni la version du document ni sa référence ANSSI-PA/PG, à vérifier dans le PDF.
 - Certains sujets ont plusieurs guides d'époques très différentes (DDoS : 2015 et 2024 ; Active Directory : 2014, 2022, 2023-24 ; virtualisation : 2012, 2016, 2017, 2024) — toujours vérifier la date avant de citer.
 - Une même page vitrine peut recouvrir plusieurs documents (« Mécanismes cryptographiques » : deux guides distincts, 2021 et 2026).
 - Les « Essentiels » et « Fondamentaux » sont des fiches de sensibilisation de 1-2 pages, pas des guides prescriptifs : le dire quand on les cite.

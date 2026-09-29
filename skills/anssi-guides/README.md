@@ -33,11 +33,11 @@ anssi-guides/
 Le catalogue est un instantané daté (date de scan en tête de `catalogue.md`) généré depuis `https://messervices.cyber.gouv.fr/api/guides` :
 
 ```bash
-skills/anssi-guides/scripts/generate-catalogue.sh > skills/anssi-guides/references/catalogue.md
+skills/anssi-guides/scripts/generate-catalogue.sh skills/anssi-guides/references/catalogue.md
 skills/anssi-guides/scripts/test-generate-catalogue.sh
 ```
 
-Le générateur filtre les fiches françaises, valide les champs attendus et conserve le marquage ★ des 13 fiches suivies par `securite-developpement`. Toute révision d'une fiche ★ doit être signalée pour que cette skill rejoue son extraction (`references/sources.md`).
+Le générateur filtre les fiches françaises, valide les champs attendus et conserve le marquage ★ des 13 fiches suivies par `securite-developpement`. Le chemin de sortie est remplacé atomiquement seulement après une génération réussie. Toute révision d'une fiche ★ doit être signalée pour que cette skill rejoue son extraction (`references/sources.md`).
 
 Les PDF ne sont pas versionnés dans ce dépôt : la skill cite les guides, elle ne les redistribue pas.
 

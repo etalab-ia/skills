@@ -148,11 +148,11 @@ Trié du plus récent au plus ancien.
 Le catalogue est généré depuis l’API JSON, sans analyser la page HTML :
 
 ```bash
-skills/anssi-guides/scripts/generate-catalogue.sh > skills/anssi-guides/references/catalogue.md
+skills/anssi-guides/scripts/generate-catalogue.sh skills/anssi-guides/references/catalogue.md
 ```
 
 Le générateur vérifie que les identifiants français sont uniques, que les champs structurés nécessaires sont présents et que les 13 fiches suivies par `securite-developpement` existent toujours. Il conserve leur marqueur ★.
-Le test hors ligne `skills/anssi-guides/scripts/test-generate-catalogue.sh` couvre aussi le filtrage de langue, le rejet des doublons et la disparition d’une fiche suivie.
+Le test hors ligne `skills/anssi-guides/scripts/test-generate-catalogue.sh` couvre aussi le filtrage de langue, le rejet des doublons, la disparition d’une fiche suivie et la préservation du catalogue en cas d’échec.
 
 Pour rechercher sans régénérer le fichier :
 

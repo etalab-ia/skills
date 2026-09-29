@@ -219,7 +219,7 @@ curl -fsSL https://messervices.cyber.gouv.fr/api/guides | jq --arg id "$guide_id
 Pour détecter en une fois les nouvelles publications et les changements des 13 fiches suivies, régénérer le catalogue de la skill [`anssi-guides`](../../anssi-guides/SKILL.md) et examiner le diff :
 
 ```bash
-skills/anssi-guides/scripts/generate-catalogue.sh > skills/anssi-guides/references/catalogue.md
+skills/anssi-guides/scripts/generate-catalogue.sh skills/anssi-guides/references/catalogue.md
 git diff -- skills/anssi-guides/references/catalogue.md
 ```
 

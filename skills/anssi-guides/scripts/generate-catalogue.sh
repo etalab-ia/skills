@@ -3,11 +3,13 @@ set -eu
 
 API_URL=${ANSSI_GUIDES_API_URL:-https://messervices.cyber.gouv.fr/api/guides}
 SCAN_DATE=${SCAN_DATE:-$(date -u +%Y-%m-%d)}
+OUTPUT_PATH=${1:-}
 script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 tracked_ids_file="$script_dir/tracked-guide-ids.json"
 
 json_file=$(mktemp)
-trap 'rm -f "$json_file"' EXIT HUP INT TERM
+catalogue_tmp=
+trap 'rm -f "$json_file"; [ -z "$catalogue_tmp" ] || rm -f "$catalogue_tmp"' EXIT HUP INT TERM
 
 curl -fsSL "$API_URL" >"$json_file"
 
@@ -25,7 +27,8 @@ jq -e '
   )
 ' "$json_file" >/dev/null
 
-jq -r --arg scan_date "$SCAN_DATE" --slurpfile tracked_ids "$tracked_ids_file" '
+render_catalogue() {
+  jq -r --arg scan_date "$SCAN_DATE" --slurpfile tracked_ids "$tracked_ids_file" '
   def md:
     gsub("[\\r\\n]+"; " ") | gsub("\\|"; "\\|");
   def values:
@@ -82,11 +85,11 @@ jq -r --arg scan_date "$SCAN_DATE" --slurpfile tracked_ids "$tracked_ids_file" '
       "Le catalogue est généré depuis l\u2019API JSON, sans analyser la page HTML :",
       "",
       "```bash",
-      "skills/anssi-guides/scripts/generate-catalogue.sh > skills/anssi-guides/references/catalogue.md",
+      "skills/anssi-guides/scripts/generate-catalogue.sh skills/anssi-guides/references/catalogue.md",
       "```",
       "",
       "Le générateur vérifie que les identifiants français sont uniques, que les champs structurés nécessaires sont présents et que les 13 fiches suivies par `securite-developpement` existent toujours. Il conserve leur marqueur ★.",
-      "Le test hors ligne `skills/anssi-guides/scripts/test-generate-catalogue.sh` couvre aussi le filtrage de langue, le rejet des doublons et la disparition d\u2019une fiche suivie.",
+      "Le test hors ligne `skills/anssi-guides/scripts/test-generate-catalogue.sh` couvre aussi le filtrage de langue, le rejet des doublons, la disparition d\u2019une fiche suivie et la préservation du catalogue en cas d\u2019échec.",
       "",
       "Pour rechercher sans régénérer le fichier :",
       "",
@@ -105,3 +108,15 @@ jq -r --arg scan_date "$SCAN_DATE" --slurpfile tracked_ids "$tracked_ids_file" '
     | .[]
   end
 ' "$json_file"
+}
+
+if [ -z "$OUTPUT_PATH" ]; then
+  render_catalogue
+else
+  output_dir=$(dirname -- "$OUTPUT_PATH")
+  catalogue_tmp=$(mktemp "$output_dir/.catalogue.XXXXXX")
+  render_catalogue >"$catalogue_tmp"
+  chmod 0644 "$catalogue_tmp"
+  mv -f "$catalogue_tmp" "$OUTPUT_PATH"
+  catalogue_tmp=
+fi
