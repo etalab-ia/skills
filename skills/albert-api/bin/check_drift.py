@@ -41,7 +41,11 @@ def summarize(spec: dict) -> dict:
         for method, op in item.items():
             if method.lower() in HTTP_METHODS:
                 key = f"{method.upper()} {path}"
-                endpoints[key] = (op or {}).get("operationId", "")
+                op = op or {}
+                opid = op.get("operationId", "")
+                if op.get("deprecated"):
+                    opid += " [deprecated]"
+                endpoints[key] = opid
 
     # Enums nommés dans components.schemas : capte p.ex. les valeurs de
     # `method` (search), `response_format` (audio), `visibility` (collections).
