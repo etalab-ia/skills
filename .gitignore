@@ -7,3 +7,6 @@
 
 # Python (check_drift.py)
 __pycache__/
+
+# Dossiers de travail des skills (sources brutes, extractions temporaires)
+**/.source/
