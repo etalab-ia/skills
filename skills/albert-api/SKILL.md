@@ -37,13 +37,13 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 - **Header :** `Authorization: Bearer <token>` sur tous les endpoints `/v1/*`.
 - **Public :** réservé aux agents de la fonction publique. Demande d'accès en ligne (voir la doc humaine). L'accès distingue un mode **expérimentation** (quotas réduits) d'un mode **production** (sur dossier).
 - **Connaître ses droits :** `GET /v1/me/info` renvoie l'identité, les quotas et limites du compte. `GET /v1/me/usage` renvoie la consommation.
-- **Gérer ses clés :** `GET/POST /v1/me/keys`, `DELETE /v1/me/keys/{key}`. Créer une clé dédiée par usage/produit plutôt que réutiliser la clé personnelle.
+- **Gérer ses clés :** `GET/POST /v1/me/keys`, `DELETE /v1/me/keys/{key_id}`. Créer une clé dédiée par usage/produit plutôt que réutiliser la clé personnelle.
 
-> ⚠️ **Créer une clé : deux pièges vérifiés en live (2026-09-08), la spec OpenAPI est fausse sur les deux.**
-> 1. `POST /v1/me/keys` (corps `{"name": "...", "expires": <ts>}`) renvoie **201 `{"id", "key"}`** — le champ porte le nom **`key`**, pas `token` comme l'annonce le schéma `CreateKeyResponse`. Lire `resp["token"]` lève un `KeyError`.
-> 2. Le champ `token` du listing `GET /v1/me/keys` est **masqué** : même longueur qu'une vraie clé, mais tout appel avec renvoie `401/403 {"detail":"Invalid API key."}`. **La valeur exploitable n'existe qu'à la création** — pas récupérable ensuite. La perdre = clé orpheline, à supprimer et recréer.
+> ⚠️ **Créer une clé : piège vérifié en live (2026-10-16).**
+> 1. `POST /v1/me/keys` (corps `{"name": "...", "expires": <ts>}`) renvoie **201** avec une réponse dont le champ exploitable porte le nom **`value`** (champs renvoyés : `created`, `expires`, `id`, `name`, `object`, `user_id`, `value`). La spec 0.8.0 (`KeyResponse`) déclare ce champ `value` correctement — contrairement au constat du 08/09 où elle annonçait `token`/`key`. Lire `resp["token"]` lève toujours un `KeyError` : c'est `resp["value"]` qu'il faut utiliser.
+> 2. Le champ `value` d'un élément du listing `GET /v1/me/keys` est **masqué** : tout appel avec renvoie `401 {"detail":"Invalid API key."}` (vérifié sur `GET /v1/models`, code HTTP 200 avec la clé fraîchement créée, 401 avec celle du listing). **La valeur exploitable n'existe qu'à la création** — pas récupérable ensuite. La perdre = clé orpheline, à supprimer et recréer.
 >
-> Corollaire : **pas de renommage possible**. `/v1/me/keys/{key}` n'expose que `get` et `delete`, il n'y a pas de `PATCH` — renommer = créer + réinstaller la nouvelle valeur partout + supprimer l'ancienne.
+> Corollaire : **pas de renommage possible**. `/v1/me/keys/{key_id}` n'expose que `get` et `delete`, il n'y a pas de `PATCH` (confirmé dans la spec 0.8.0) — renommer = créer + réinstaller la nouvelle valeur partout + supprimer l'ancienne.
 >
 > Diagnostiquer une clé suspecte avec **`GET /v1/models`**, jamais avec `/v1/me/info` : ce dernier renvoie `403` là où `/v1/models` renvoie `401`, ce qui fait confondre « clé invalide » et « quota/compte ».
 
@@ -160,7 +160,11 @@ Le SDK `openai` n'expose pas de ressource `rerank` : cet endpoint s'appelle en H
 |---------|--------|
 | GET/PATCH | `/v1/me/info` |
 | GET | `/v1/me/usage` |
-| GET/POST · DELETE | `/v1/me/keys` · `/v1/me/keys/{key}` |
+| GET/POST | `/v1/me/keys` |
+| GET/DELETE | `/v1/me/keys/{key_id}` |
+| GET/PATCH | `/v1/me` |
+| GET | `/v1/usage` |
+| GET/POST · GET/DELETE | `/v1/keys` · `/v1/keys/{key_id}` — **admin**, gestion des clés de tous les utilisateurs |
 | GET | `/health` · `/health/models` · `/metrics` |
 
 ---
