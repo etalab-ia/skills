@@ -7,7 +7,7 @@ Skill pour assistants de code IA — auditer la conformité [RGAA 4.1.2](https:/
 Quand elle est activée, l'assistant IA peut :
 
 - **Auditer du code** HTML, React/JSX ou Rails/ERB selon les 106 critères RGAA 4.1.2 (basés sur WCAG 2.1 niveau AA), avec des corrections dans la stack du code audité
-- **Produire un rapport structuré** avec statut C/NC/NA par critère, non-conformités détaillées et corrections priorisées (🔴 Bloquant, 🟠 Majeur, 🟡 Mineur)
+- **Produire un rapport structuré** avec statut C/NC/NA/NT (non testé) par critère, en mode page ou composant, non-conformités détaillées et corrections priorisées (🔴 Bloquant, 🟠 Majeur, 🟡 Mineur)
 - **Exporter le rapport** dans `audits/rgaa-YYYY-MM-DD.md`
 
 C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il produit un rapport. Ce n'est pas un outil de génération de code.
@@ -16,7 +16,7 @@ C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il
 
 | Fichier | Description |
 |---------|-------------|
-| [`SKILL.md`](SKILL.md) | Workflow d'audit en 4 étapes et format de rapport standardisé |
+| [`SKILL.md`](SKILL.md) | Audit en trois phases (analyse du code, vérifications en conditions réelles, format de sortie) et format de rapport standardisé |
 | [`references/impacts.md`](references/impacts.md) | Impacts des défauts par mécanisme de blocage, pour la ligne « Impact utilisateur » |
 | [`references/criteres-images-cadres-couleurs.md`](references/criteres-images-cadres-couleurs.md) | Thèmes 1 à 3 : Images, Cadres, Couleurs |
 | [`references/criteres-multimedia-tableaux-liens-scripts.md`](references/criteres-multimedia-tableaux-liens-scripts.md) | Thèmes 4 à 7 : Multimédia, Tableaux, Liens, Scripts |
