@@ -48,7 +48,7 @@ The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-sk
 ## Conventions
 
 - All content is in **French**
-- Skills target React/TypeScript projects
+- Skills target React/TypeScript projects, except `rgaa`, which audits HTML, React/JSX and Rails/ERB code
 - SKILL.md files use YAML frontmatter (`---` delimiters) with `name` and `description` fields; RAG skills additionally use `provider` and `available-providers` fields
 - Reference files are split by theme/topic to keep individual files manageable
 - The rgaa skill is an audit tool (input: code to audit → output: structured report), not a code generation skill

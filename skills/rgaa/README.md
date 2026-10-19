@@ -1,12 +1,12 @@
 # rgaa
 
-Skill pour assistants de code IA — auditer la conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) de sites web et composants React/HTML.
+Skill pour assistants de code IA — auditer la conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) de sites web et composants HTML, React/JSX et Rails/ERB.
 
 ## Ce que fait cette skill
 
 Quand elle est activée, l'assistant IA peut :
 
-- **Auditer du code** HTML/React selon les 106 critères RGAA 4.1.2 (basés sur WCAG 2.1 niveau AA)
+- **Auditer du code** HTML, React/JSX ou Rails/ERB selon les 106 critères RGAA 4.1.2 (basés sur WCAG 2.1 niveau AA), avec des corrections dans la stack du code audité
 - **Produire un rapport structuré** avec statut C/NC/NA par critère, non-conformités détaillées et corrections priorisées (🔴 Bloquant, 🟠 Majeur, 🟡 Mineur)
 - **Exporter le rapport** dans `audits/rgaa-YYYY-MM-DD.md`
 
