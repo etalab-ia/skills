@@ -33,8 +33,10 @@ Chaque champ de formulaire doit avoir une étiquette associée via (ordre de pri
 
 ```erb
 <%# Label explicite for/id — classes fr-* du DSFR %>
-<label class="fr-label" for="user_email">Adresse e-mail</label>
-<input class="fr-input" type="email" id="user_email" name="user[email]">
+<div class="fr-input-group">
+  <label class="fr-label" for="user_email">Adresse e-mail</label>
+  <input class="fr-input" type="email" id="user_email" name="user[email]">
+</div>
 
 <%# aria-label si pas de label visible %>
 <input class="fr-input" type="search" name="q" aria-label="Rechercher sur le site">
@@ -65,8 +67,10 @@ L'étiquette doit permettre de comprendre la fonction exacte du champ. Si un int
 ```erb
 <%# ❌ <label class="fr-label" for="email">Saisir :</label> %>
 <%# ✅ intitulé explicite %>
-<label class="fr-label" for="email">Adresse e-mail professionnelle</label>
-<input class="fr-input" type="email" id="email" name="email">
+<div class="fr-input-group">
+  <label class="fr-label" for="email">Adresse e-mail professionnelle</label>
+  <input class="fr-input" type="email" id="email" name="email">
+</div>
 ```
 
 ---
@@ -106,8 +110,10 @@ Les champs de même fonction (ex: "Email" dans formulaire de contact et d'inscri
 
 ```erb
 <%# Label contigu au champ dans le DOM %>
-<label class="fr-label" for="ville">Ville</label>
-<input class="fr-input" id="ville" name="ville" type="text">
+<div class="fr-input-group">
+  <label class="fr-label" for="ville">Ville</label>
+  <input class="fr-input" id="ville" name="ville" type="text">
+</div>
 ```
 
 ---
@@ -193,16 +199,18 @@ Alternative ARIA : `role="group"` + `aria-label` ou `role="radiogroup"`.
 ### Correction — Rails / ERB
 
 ```erb
-<label class="fr-label" for="departement">Département</label>
-<select class="fr-select" id="departement" name="departement">
-  <optgroup label="Île-de-France">
-    <option value="75">Paris</option>
-    <option value="92">Hauts-de-Seine</option>
-  </optgroup>
-  <optgroup label="Auvergne-Rhône-Alpes">
-    <option value="69">Rhône</option>
-  </optgroup>
-</select>
+<div class="fr-select-group">
+  <label class="fr-label" for="departement">Département</label>
+  <select class="fr-select" id="departement" name="departement">
+    <optgroup label="Île-de-France">
+      <option value="75">Paris</option>
+      <option value="92">Hauts-de-Seine</option>
+    </optgroup>
+    <optgroup label="Auvergne-Rhône-Alpes">
+      <option value="69">Rhône</option>
+    </optgroup>
+  </select>
+</div>
 ```
 
 ---
@@ -262,8 +270,10 @@ Chaque bouton doit avoir un intitulé décrivant son action.
 <%# Mention unique, en tête de formulaire, plutôt que répétée sous chaque champ %>
 <p class="fr-hint-text">Les champs marqués d'un * sont obligatoires.</p>
 
-<label class="fr-label" for="nom">Nom <span aria-hidden="true">*</span></label>
-<input class="fr-input" id="nom" name="nom" required aria-required="true">
+<div class="fr-input-group">
+  <label class="fr-label" for="nom">Nom <span aria-hidden="true">*</span></label>
+  <input class="fr-input" id="nom" name="nom" required aria-required="true">
+</div>
 ```
 
 ### Messages d'erreur
@@ -291,11 +301,13 @@ Chaque bouton doit avoir un intitulé décrivant son action.
 #### Correction — Rails / ERB
 
 ```erb
-<label class="fr-label" for="email">Adresse e-mail</label>
-<input class="fr-input" type="email" id="email" name="email" aria-invalid="true" aria-describedby="error-email">
-<p id="error-email" class="fr-error-text" role="alert">
-  Erreur : veuillez saisir une adresse e-mail valide (ex : jeanne.martin@example.com)
-</p>
+<div class="fr-input-group fr-input-group--error">
+  <label class="fr-label" for="email">Adresse e-mail</label>
+  <input class="fr-input" type="email" id="email" name="email" aria-invalid="true" aria-describedby="error-email">
+  <p id="error-email" class="fr-error-text" role="alert">
+    Erreur : veuillez saisir une adresse e-mail valide (ex : jeanne.martin@example.com)
+  </p>
+</div>
 ```
 
 ```javascript
@@ -321,9 +333,11 @@ document.querySelector('[aria-invalid="true"]')?.focus()
 #### Correction — Rails / ERB
 
 ```erb
-<label class="fr-label" for="tel">Téléphone</label>
-<span class="fr-hint-text" id="hint-tel">Format attendu : 01 99 00 12 34</span>
-<input class="fr-input" id="tel" type="tel" aria-describedby="hint-tel">
+<div class="fr-input-group">
+  <label class="fr-label" for="tel">Téléphone</label>
+  <span class="fr-hint-text" id="hint-tel">Format attendu : 01 99 00 12 34</span>
+  <input class="fr-input" id="tel" type="tel" aria-describedby="hint-tel">
+</div>
 ```
 
 > **Astuce — numéros de téléphone d'exemple.** Pour illustrer un champ téléphone, utiliser une plage **réservée à la fiction par l'ARCEP** plutôt qu'un numéro inventé : ces numéros ne sont pas attribuables et ne peuvent ni appeler ni être appelés, donc aucun risque de tomber sur un vrai abonné. Fixe : `01 99 00 XX XX`, `02 61 91 XX XX`, `03 53 01 XX XX`, `04 65 71 XX XX`, `05 36 49 XX XX` ; mobile : `06 39 98 XX XX`. Voir le [plan de numérotation en France](https://fr.wikipedia.org/wiki/Plan_de_num%C3%A9rotation_en_France) (numéros réservés aux œuvres audiovisuelles, décision ARCEP n° 2018-0881).
