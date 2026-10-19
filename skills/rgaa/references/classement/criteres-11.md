@@ -1,0 +1,24 @@
+# Classement des critères — thème 11
+
+Classement provisoire, en attente de l’avis du pôle accessibilité numérique. Proposé par Isabelle Lafont.
+
+- **code** : le verdict (C, NC ou NA) se tranche à la lecture du code.
+- **mixte** : le code prouve une NC, ou une conformité quand la ligne le prévoit (critères « si nécessaire », contrastes entièrement déterminés dans le code) ; chaque ligne dit laquelle. Sans preuve dans le code, NT.
+- **conditions réelles** : une vérification posée en phase 2 suffit ; sans réponse, NT.
+- **jugement humain** : toujours NT, jamais C ; NA si le critère est sans objet.
+
+## Thème 11 — Formulaires
+
+- **11.1** Étiquette de champ — code
+- **11.2** Étiquette pertinente — mixte. Le code prouve : NC sur une étiquette générique (« Champ 1 », « Saisir », « Valeur »), ou sur un nom accessible qui ne contient pas l’intitulé visible. Reste : juger, formulaire sous les yeux, que l’étiquette donne la fonction exacte du champ.
+- **11.3** Étiquettes cohérentes pour une même fonction — jugement humain. Reste : comparer les étiquettes des champs de même fonction dans la page et dans l’ensemble de pages ; en mode composant, la comparaison sort du fragment audité.
+- **11.4** Étiquette et champ accolés — mixte. Le code prouve : NC quand du contenu (texte, autre champ, bouton) est intercalé entre l’étiquette et le champ dans le code, ou que l’étiquette est placée dans une autre zone de la page ; un conteneur de mise en page (grille, `fr-input-group`) n’est pas une séparation. Reste : voir le rendu pour vérifier que l’étiquette est accolée au champ, au-dessus ou à gauche (à droite pour une case à cocher ou un bouton radio).
+- **11.5** Champs de même nature regroupés si nécessaire — mixte. Le code prouve : C quand les champs de même nature sont dans un `<fieldset>` ou un conteneur `role="group"` ou `role="radiogroup"` ; NC sur un groupe de boutons radio ou de cases à cocher répondant à une même question, ou sur une date ou une période saisie en plusieurs champs (« Du » / « Au », jour / mois / année), sans regroupement. Reste : juger, formulaire sous les yeux, quels autres champs sont de même nature (adresse, date en plusieurs champs).
+- **11.6** Légende des regroupements de champs — code
+- **11.7** Légende pertinente — mixte. Le code prouve : NC sur une légende générique (« Groupe », « Options », « Informations »). Reste : juger que la légende dit ce que le regroupement demande.
+- **11.8** Items d’une liste de choix regroupés de manière pertinente — mixte. Le code prouve : NC sur un `<optgroup>` sans `label`, ou sur des options de même nature séparées par des options factices (« --- Fruits --- ») sans `<optgroup>`. Reste : juger si les options devraient être regroupées et si le `label` des `<optgroup>` est pertinent.
+- **11.9** Intitulé de bouton pertinent — mixte. Le code prouve : NC sur un bouton sans intitulé, d’intitulé générique (« OK », « Cliquer ici ») ou dont le nom accessible ne contient pas l’intitulé visible. Reste : juger, contexte sous les yeux, que l’intitulé dit l’action déclenchée.
+- **11.10** Contrôle de saisie pertinent — mixte. Le code prouve : NC sur un champ obligatoire signalé seulement par la couleur, sans `required` ni `aria-required`, ou par un astérisque non expliqué ou par `required` sans indication visible, sur un format obligatoire absent de l’étiquette ou d’une aide reliée, sur un message d’erreur non relié au champ. Reste : déclencher les erreurs dans le navigateur pour vérifier les messages produits par le serveur ou par un script. NA quand ni le code audité ni ses fichiers liés (script, classe du composant) ne montrent de contrôle de saisie : `required`, `pattern`, type de champ contraint (`email`, `url`, `tel`, `number`, `date`, `time`…), validation par script, affichage d’erreur.
+- **11.11** Suggestions de correction des erreurs si nécessaire — mixte. Le code prouve : NC sur un message d’erreur de format qui ne donne ni le format ni un exemple (« Valeur invalide »). Reste : déclencher les erreurs dans le navigateur ; les messages produits par le serveur ou par une bibliothèque de validation ne se lisent pas dans le code audité. NA quand ni le code audité ni ses fichiers liés (script, classe du composant) ne montrent de contrôle de saisie : `required`, `pattern`, type de champ contraint (`email`, `url`, `tel`, `number`, `date`, `time`…), validation par script, affichage d’erreur.
+- **11.12** Données saisies modifiables, mises à jour ou récupérables — mixte. Le code prouve : C quand une case de confirmation explicite ou une étape de vérification précède la validation. Reste : sans confirmation dans le code, vérifier dans le service qu’on peut modifier, annuler ou récupérer les données après la validation.
+- **11.13** Finalité d’un champ déductible (remplissage automatique) — code

@@ -52,6 +52,7 @@ The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-sk
 - SKILL.md files use YAML frontmatter (`---` delimiters) with `name` and `description` fields; RAG skills additionally use `provider` and `available-providers` fields
 - Reference files are split by theme/topic to keep individual files manageable
 - The rgaa skill is an audit tool (input: code to audit → output: structured report), not a code generation skill
+- In the rgaa skill, each criterion is described twice: its test in `references/criteres-*.md`, its evaluation mode (code, mixte, conditions réelles, jugement humain) in `references/classement/`. Any change to a criterion touches both files; then run `skills/rgaa/scripts/check-classement.py` (offline test: `skills/rgaa/scripts/test-check-classement.sh`)
 - Commit messages follow conventional commits format (e.g., `feat(skill-name):`, `docs(readme):`, `refactor(skill-name):`)
 
 ## Tests

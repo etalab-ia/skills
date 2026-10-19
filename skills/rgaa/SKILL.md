@@ -39,12 +39,23 @@ Lire le code et établir les verdicts sans poser de question :
 
 1. Déterminer la stack (section précédente) et le mode page ou composant (ci-dessous).
 2. Lire aussi les fichiers liés au code audité quand ils existent (script, styles, classe du composant) : ils portent souvent les comportements à vérifier.
-3. Parcourir les thèmes à évaluer en consultant les fichiers de référence.
-4. Attribuer à chaque critère un statut, en appliquant la règle de tri par impact :
+3. Lire les cinq fichiers de classement (`references/classement/`, voir « Référence détaillée des critères ») : ils donnent le mode d’évaluation de chaque critère. Puis parcourir les thèmes à évaluer en consultant les fichiers de référence.
+4. Attribuer à chaque critère un statut, en appliquant la règle de tri par impact et le mode du critère :
    - **C** — Conforme : critère respecté
    - **NC** — Non conforme : critère violé (identifier l’élément et le problème)
    - **NA** — Non applicable : critère sans objet pour ce contenu (justifier)
-   - **NT** — Non testé : le verdict dépend du rendu ou d’une aide technique et ne peut pas être établi à la lecture du code (contrastes non calculables, zoom 200 %, focus visible, restitution par un lecteur d’écran), ou d’une vérification hors du fragment audité (critère qui compare plusieurs pages, comme 11.3 en mode composant). Ne jamais conclure C par défaut sur ces points.
+   - **NT** — Non testé : le mode du critère ne permet pas de conclure à la lecture du code, et aucune réponse de phase 2 ne l’a tranché. Chaque NT renvoie à la ligne de son classement. Ne jamais conclure C par défaut.
+
+**Mode d’évaluation de chaque critère** (classement provisoire, en attente de l’avis du pôle accessibilité numérique) :
+
+- **code** : le verdict (C, NC ou NA) se tranche à la lecture du code.
+- **mixte** : le code prouve une NC, ou une conformité quand la ligne le prévoit (critères « si nécessaire », contrastes entièrement déterminés dans le code) ; chaque ligne dit laquelle. Sans preuve dans le code, NT.
+- **conditions réelles** : une vérification posée en phase 2 suffit ; sans réponse, NT.
+- **jugement humain** : toujours NT, jamais C.
+
+Dans tous les modes, NA reste possible quand le code montre que le critère est sans objet (aucune image → 1.3 et 1.8 NA).
+
+Les cas listés après « Le code prouve : NC… » sont des exemples, pas une liste fermée : tout défaut visible dans le code et dont l’impact est nommé reste une NC, même absent de la ligne.
 
 **Mode page ou composant :**
 
@@ -58,26 +69,36 @@ En mode composant, les thèmes 8 (Éléments obligatoires) et 12 (Navigation) ne
 Le RGAA vérifie un défaut restitué à la personne qui consulte la page. Raisonner par impact, pas par récitation de règle :
 
 1. **Avant de conclure NC** : nommer l’impact concret, c’est-à-dire le blocage et l’outil concerné (voir [references/impacts.md](references/impacts.md)). Sans impact réel (élément purement décoratif, règle sans objet dans ce cas), ce n’est pas une NC : classer C ou NA.
-2. **Avant de conclure C** : avoir parcouru le critère et vérifié qu’aucun motif à risque n’est présent. L’absence de défaut visible ne suffit pas.
+2. **Avant de conclure C** : vérifier que le mode du critère le permet. C n’est possible qu’en mode code, quand la ligne « mixte » prévoit un C (« Le code prouve : C… »), ou après une réponse de phase 2 à la question que cite le critère. Avoir parcouru le critère et vérifié qu’aucun motif à risque n’est présent. L’absence de défaut visible ne suffit pas : en mode mixte, elle donne NT.
 3. **Avant de conclure NA** : vérifier que le critère ne s’applique vraiment pas à ce contenu, pas seulement qu’aucun défaut n’a été trouvé.
 
 **Critère officiel :** chaque NC renvoie au critère officiel, par un lien de la forme `https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/#11.1`. Les « non-conformités types » des fichiers de référence sont des exemples : la règle reste le critère officiel et ses tests. Ne pas citer de numéro de test, les fichiers de référence n’en contiennent pas encore.
 
 ### Phase 2 — Vérifications en conditions réelles
 
-Après l’analyse, poser en un seul message les vérifications que le code seul ne permet pas :
+Après l’analyse, poser en un seul message les vérifications que le code seul ne permet pas, prises dans ce catalogue fermé : aucune autre question. Une question rattache les critères dont la ligne de classement la cite (« question « Clavier » »). Ne la poser que si au moins un de ces critères est applicable et encore NT après la phase 1. En mode composant, les critères des thèmes 8 et 12 ne déclenchent aucune question.
+
+| Question | Priorité | Libellé posé |
+|---|---|---|
+| **Clavier** | 🔴 | Test au clavier effectué ? (Tab, Maj+Tab, Entrée, Espace, Échap, flèches sur chaque élément interactif ; on sort de chaque composant au clavier) |
+| **Focus visible** | 🔴 | Focus visible sur tous les éléments interactifs ? |
+| **CAPTCHA** | 🔴 | Le CAPTCHA propose-t-il une autre forme d’accès (audio, question) ? |
+| **Titre de la page** | 🔴 | Le titre de la page est-il pertinent et spécifique ? |
+| **Zoom et reflow** | 🟠 | Zoom à 200 %, fenêtre de 320 px de large et espacement du texte augmenté testés ? (aucun texte coupé, pas de défilement horizontal) |
+| **Contrastes** | 🟠 | Contrastes vérifiés ? (texte, composants d’interface, liens dans un texte) |
+| **Sans feuille de style** | 🟠 | Contenu consulté sans feuille de style ? (information toujours présente, ordre de lecture compréhensible) |
+| **Orientation** | 🟡 | Contenu consulté en portrait puis en paysage ? |
+
+Exemple de message, quand seuls les critères des questions « Clavier » et « Contrastes » restent NT :
 
 ```
 Avant de finaliser le rapport, quelques vérifications que le code seul ne permet pas :
 
-🔴 Test au clavier effectué ? (Tab, Maj+Tab, Entrée, Échap sur les éléments interactifs)
-🟠 Zoom à 200 % testé ? (aucun texte coupé, pas de défilement horizontal)
-🔴 Focus visible sur tous les éléments interactifs ?
-🟠 Contrastes vérifiés ? (seulement si les couleurs ne sont pas calculables depuis le code)
-🔴 En mode page : le titre de la page est-il pertinent et spécifique ?
+🔴 Test au clavier effectué ? (Tab, Maj+Tab, Entrée, Espace, Échap, flèches sur chaque élément interactif ; on sort de chaque composant au clavier)
+🟠 Contrastes vérifiés ? (texte, composants d’interface, liens dans un texte)
 ```
 
-Chaque réponse confirme ou corrige les verdicts concernés : un critère NT passe en C ou NC. Sans réponse, il reste NT.
+Chaque réponse confirme ou corrige les verdicts des critères qui citent la question : un critère NT passe en C ou NC. Sans réponse, il reste NT.
 
 ### Phase 3 — Format de sortie
 
@@ -91,7 +112,7 @@ Audit terminé. Quel résultat souhaites-tu ?
 3. Les deux
 ```
 
-Sans réponse, ou en exécution non interactive (agent, script) : sauter les phases 2 et 3, laisser en NT les critères qui dépendent du rendu dans le navigateur, produire le rapport et l’exporter.
+Sans réponse, ou en exécution non interactive (agent, script) : sauter les phases 2 et 3, laisser en NT les critères « conditions réelles » et les critères « mixte » dont le code ne prouve rien, produire le rapport et l’exporter.
 
 ## Format du rapport de conformité
 
@@ -147,6 +168,8 @@ En mode composant, les lignes 8 et 12 portent « non évalués — mode composan
 
 Avant / après, dans la stack retenue.
 
+Priorité : celle de la NC la plus grave (un même champ en 🔴 au 11.10 et en 🟠 au 3.1 → 🔴).
+
 ---
 
 ### Critères conformes
@@ -159,7 +182,7 @@ Avant / après, dans la stack retenue.
 
 ### Critères non testés
 
-- **{ID}** — {vérification à mener en conditions réelles}
+- **{ID}** — {« Reste » de la ligne du classement, adapté à l’élément audité}
 
 ### Limites du mode composant _(si applicable)_
 
@@ -176,6 +199,8 @@ Ces critères nécessitent la page complète pour être évalués, entre autres 
 ## Export du rapport
 
 Quand le rapport est demandé en phase 3, ou par défaut sans réponse :
+
+Si la personne a demandé un autre emplacement, il prime sur `audits/`.
 
 1. Créer le dossier `audits/` à la racine du projet s'il n'existe pas
 2. Écrire le rapport complet dans `audits/rgaa-AAAA-MM-JJ.md` (date du jour, format ISO)
@@ -195,11 +220,11 @@ Si un fichier du même nom existe déjà, ajouter un suffixe incrémental : `rga
 
 ## Référence détaillée des critères
 
-Chaque fichier de référence liste les critères avec leur condition, test de code, non-conformité type et priorité, ainsi que leur impact et leurs corrections par stack quand ils existent.
+Chaque fichier de référence liste les critères avec leur condition, test de code, non-conformité type et priorité, ainsi que leur impact et leurs corrections par stack quand ils existent. Chaque fichier de classement donne, en une ligne par critère, son mode d’évaluation, ce que le code prouve et ce qui reste à vérifier. Lire les cinq fichiers de classement en phase 1, avant les références : chaque audit attribue un statut aux 106 critères.
 
-- **Images, Cadres, Couleurs** (thèmes 1–3, 14 critères) : [references/criteres-images-cadres-couleurs.md](references/criteres-images-cadres-couleurs.md)
-- **Multimédia, Tableaux, Liens, Scripts** (thèmes 4–7, 28 critères) : [references/criteres-multimedia-tableaux-liens-scripts.md](references/criteres-multimedia-tableaux-liens-scripts.md)
-- **Éléments obligatoires, Structure, Présentation** (thèmes 8–10, 28 critères) : [references/criteres-structure-presentation.md](references/criteres-structure-presentation.md)
-- **Formulaires** (thème 11, 13 critères) : [references/criteres-formulaires.md](references/criteres-formulaires.md)
-- **Navigation, Consultation** (thèmes 12–13, 23 critères) : [references/criteres-navigation-consultation.md](references/criteres-navigation-consultation.md)
+- **Images, Cadres, Couleurs** (thèmes 1–3, 14 critères) : [references/criteres-images-cadres-couleurs.md](references/criteres-images-cadres-couleurs.md) ; classement : [references/classement/criteres-1-3.md](references/classement/criteres-1-3.md)
+- **Multimédia, Tableaux, Liens, Scripts** (thèmes 4–7, 28 critères) : [references/criteres-multimedia-tableaux-liens-scripts.md](references/criteres-multimedia-tableaux-liens-scripts.md) ; classement : [references/classement/criteres-4-7.md](references/classement/criteres-4-7.md)
+- **Éléments obligatoires, Structure, Présentation** (thèmes 8–10, 28 critères) : [references/criteres-structure-presentation.md](references/criteres-structure-presentation.md) ; classement : [references/classement/criteres-8-10.md](references/classement/criteres-8-10.md)
+- **Formulaires** (thème 11, 13 critères) : [references/criteres-formulaires.md](references/criteres-formulaires.md) ; classement : [references/classement/criteres-11.md](references/classement/criteres-11.md)
+- **Navigation, Consultation** (thèmes 12–13, 23 critères) : [references/criteres-navigation-consultation.md](references/criteres-navigation-consultation.md) ; classement : [references/classement/criteres-12-13.md](references/classement/criteres-12-13.md)
 - **Impacts par mécanisme de blocage** (tous thèmes, pour la ligne « Impact utilisateur ») : [references/impacts.md](references/impacts.md)
