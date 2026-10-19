@@ -200,6 +200,8 @@ Ces critères nécessitent la page complète pour être évalués, entre autres 
 
 Quand le rapport est demandé en phase 3, ou par défaut sans réponse :
 
+Si la personne a demandé un autre emplacement, il prime sur `audits/`.
+
 1. Créer le dossier `audits/` à la racine du projet s'il n'existe pas
 2. Écrire le rapport complet dans `audits/rgaa-AAAA-MM-JJ.md` (date du jour, format ISO)
 3. Afficher également le rapport dans la conversation
