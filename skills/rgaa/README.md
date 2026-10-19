@@ -1,13 +1,13 @@
 # rgaa
 
-Skill pour assistants de code IA — auditer la conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) de sites web et composants React/HTML.
+Skill pour assistants de code IA — auditer la conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) de sites web et composants HTML, React/JSX et Rails/ERB.
 
 ## Ce que fait cette skill
 
 Quand elle est activée, l'assistant IA peut :
 
-- **Auditer du code** HTML/React selon les 106 critères RGAA 4.1.2 (basés sur WCAG 2.1 niveau AA)
-- **Produire un rapport structuré** avec statut C/NC/NA par critère, non-conformités détaillées et corrections priorisées (🔴 Bloquant, 🟠 Majeur, 🟡 Mineur)
+- **Auditer du code** HTML, React/JSX ou Rails/ERB selon les 106 critères RGAA 4.1.2 (basés sur WCAG 2.1 niveau AA), avec des corrections dans la stack du code audité
+- **Produire un rapport structuré** avec statut C/NC/NA/NT (non testé) par critère, en mode page ou composant, non-conformités détaillées et corrections priorisées (🔴 Bloquant, 🟠 Majeur, 🟡 Mineur)
 - **Exporter le rapport** dans `audits/rgaa-YYYY-MM-DD.md`
 
 C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il produit un rapport. Ce n'est pas un outil de génération de code.
@@ -16,7 +16,8 @@ C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il
 
 | Fichier | Description |
 |---------|-------------|
-| [`SKILL.md`](SKILL.md) | Workflow d'audit en 4 étapes et format de rapport standardisé |
+| [`SKILL.md`](SKILL.md) | Audit en trois phases (analyse du code, vérifications en conditions réelles, format de sortie) et format de rapport standardisé |
+| [`references/impacts.md`](references/impacts.md) | Impacts des défauts par mécanisme de blocage, pour la ligne « Impact utilisateur » |
 | [`references/criteres-images-cadres-couleurs.md`](references/criteres-images-cadres-couleurs.md) | Thèmes 1 à 3 : Images, Cadres, Couleurs |
 | [`references/criteres-multimedia-tableaux-liens-scripts.md`](references/criteres-multimedia-tableaux-liens-scripts.md) | Thèmes 4 à 7 : Multimédia, Tableaux, Liens, Scripts |
 | [`references/criteres-structure-presentation.md`](references/criteres-structure-presentation.md) | Thèmes 8 à 10 : Éléments obligatoires, Structure, Présentation |
@@ -54,3 +55,5 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 ## Licence
 
 MIT
+
+`references/impacts.md` et la méthode d’audit par impact sont adaptés du dépôt [Isalafont/claude-skill-rgaa-dev](https://github.com/Isalafont/claude-skill-rgaa-dev) d’Isabelle Lafont (Licence Ouverte 2.0), en co-maintenance avec la DINUM.

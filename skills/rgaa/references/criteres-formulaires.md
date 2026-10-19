@@ -81,7 +81,7 @@ Les champs de même fonction (ex: "Email" dans formulaire de contact et d'inscri
 
 **Test :** Comparer les étiquettes de champs de même type sur différentes pages ou formulaires du site.
 **Non-conformité type :** "Adresse email" sur une page, "Courriel" sur une autre pour le même type de champ.
-**Impact :** des intitulés divergents pour une même donnée d'un formulaire à l'autre désorientent, en particulier en cas de troubles cognitifs.
+**Impact :** des intitulés divergents pour une même donnée d'un formulaire à l'autre obligent à se demander s’il s’agit de la même information : la personne qui s’appuie sur des repères constants pour remplir un formulaire perd ces repères.
 **Priorité :** 🟡 Mineur
 
 > Pas de correction locale : critère trans-pages. Harmoniser les libellés à l'échelle du site (centraliser dans les locales i18n côté Rails, dans un dictionnaire de libellés côté React).
@@ -251,7 +251,7 @@ Chaque bouton doit avoir un intitulé décrivant son action.
 
 **Test :** Vérifier que les champs obligatoires ont une indication visible (astérisque ou texte) ET `required` ou `aria-required="true"`.
 **Non-conformité type :** Champ obligatoire sans `required` ; obligation signalée visuellement (couleur seule) sans attribut ARIA.
-**Impact :** une obligation signalée par la seule couleur n'est ni restituée par le lecteur d'écran, ni perçue par une personne ayant un trouble de la vision des couleurs ; l'envoi échoue sans qu'on sache quel champ compléter.
+**Impact :** une obligation signalée par la seule couleur n'est ni restituée par le lecteur d'écran, ni perçue quand cette couleur ne se distingue pas ; l'envoi échoue sans qu'on sache quel champ compléter.
 **Priorité :** 🔴 Bloquant
 
 #### Correction — React / JSX
@@ -261,7 +261,7 @@ Chaque bouton doit avoir un intitulé décrivant son action.
   Nom <span aria-hidden="true">*</span>
 </label>
 <input id="nom" required aria-required="true" />
-<p className="sr-only">Les champs marqués d'un * sont obligatoires</p>
+<p className="fr-sr-only">Les champs marqués d'un * sont obligatoires</p>
 ```
 
 #### Correction — Rails / ERB
@@ -319,7 +319,7 @@ document.querySelector('[aria-invalid="true"]')?.focus()
 
 **Test :** Vérifier que le format attendu est indiqué avant ou au moment de la saisie (pas seulement après erreur), et lié au champ via `aria-describedby`.
 **Non-conformité type :** Champ de date sans indication du format attendu (JJ/MM/AAAA).
-**Impact :** sans indication de format en amont, la contrainte n'est découverte qu'après l'erreur, ce qui multiplie les tentatives (impact fort en saisie vocale et en cas de troubles cognitifs).
+**Impact :** sans indication de format en amont, la contrainte n'est découverte qu'après l'erreur, ce qui multiplie les tentatives ; chaque nouvel essai coûte davantage à la personne qui dicte sa saisie ou qui a besoin de consignes explicites.
 **Priorité :** 🟠 Majeur
 
 #### Correction — React / JSX
@@ -417,7 +417,7 @@ Champs concernant l'utilisateur : attribut `autocomplete` avec la bonne valeur.
 
 **Test :** Vérifier que les champs demandant des données personnelles (nom, prénom, email, téléphone, adresse...) ont l'attribut `autocomplete` avec la valeur normalisée correspondante.
 **Non-conformité type :** `<input type="email" name="email">` sans `autocomplete="email"`.
-**Impact :** sans `autocomplete`, le remplissage automatique ne fonctionne pas — surcoût de saisie pour les personnes à mobilité réduite, en saisie vocale ou en cas de troubles cognitifs.
+**Impact :** sans `autocomplete`, le remplissage automatique ne fonctionne pas : chaque donnée personnelle doit être tapée ou dictée, un surcoût important pour qui saisit avec un contacteur, à la voix, ou peine à mémoriser ses informations.
 **Priorité :** 🟡 Mineur
 
 ### Correction — React / JSX
