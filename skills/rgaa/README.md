@@ -22,6 +22,23 @@ C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il
 | [`references/criteres-structure-presentation.md`](references/criteres-structure-presentation.md) | Thèmes 8 à 10 : Éléments obligatoires, Structure, Présentation |
 | [`references/criteres-formulaires.md`](references/criteres-formulaires.md) | Thème 11 : Formulaires (13 critères) |
 | [`references/criteres-navigation-consultation.md`](references/criteres-navigation-consultation.md) | Thèmes 12 à 13 : Navigation, Consultation |
+| [`scripts/check-dsfr-classes.py`](scripts/check-dsfr-classes.py) | Vérifie les classes `fr-*` des exemples contre le CSS DSFR publié |
+
+## Vérifier les classes DSFR des exemples
+
+Les exemples de code des références sont recopiés tels quels : une classe `fr-*` inventée s’y propage dans les projets. Après avoir modifié une référence, lancer depuis le dossier de la skill :
+
+```bash
+python3 scripts/check-dsfr-classes.py
+```
+
+Le script lit les blocs de code de `references/*.md`, télécharge le CSS de la dernière version publiée de `@gouvfr/dsfr` et signale chaque classe inconnue avec fichier et ligne (code de sortie 1). `--dsfr-version x.y.z` rejoue une vérification contre une version précise, `--css fichier.css` utilise un CSS local.
+
+Le script a son propre test, sans réseau :
+
+```bash
+sh scripts/test-check-dsfr-classes.sh
+```
 
 ## Installation
 
