@@ -96,7 +96,7 @@ Indiquer dans l’en-tête du rapport la stack retenue et ce qui l’a détermin
 - **{ID}** — {justification courte}
 ```
 
-**Impact utilisateur :** reprendre la ligne **Impact** du critère dans sa référence quand elle existe. Sinon, décrire le mécanisme du blocage et l’outil concerné, par exemple : « Pour une personne qui utilise un lecteur d’écran, le lien est restitué caractère par caractère : la destination est inintelligible. » Ne jamais désigner une catégorie de handicap.
+**Impact utilisateur :** reprendre la ligne **Impact** du critère dans sa référence quand elle existe. Sinon, décrire le mécanisme du blocage et l’outil concerné en s’appuyant sur [references/impacts.md](references/impacts.md), par exemple : « Pour une personne qui utilise un lecteur d’écran, le lien est restitué caractère par caractère : la destination est inintelligible. » Ne jamais désigner une catégorie de handicap.
 
 ## Export du rapport
 
@@ -114,8 +114,8 @@ Si un fichier du même nom existe déjà, ajouter un suffixe incrémental : `rga
 
 | Priorité | Définition | Exemples |
 |----------|------------|---------|
-| 🔴 **Bloquant** | Bloque l'accès au contenu ou à la fonctionnalité pour un utilisateur AT | Image sans `alt`, champ sans label, lien vide, piège au clavier |
-| 🟠 **Majeur** | Impact fort sur l'expérience mais contournable par certains AT | Contraste insuffisant, focus non visible, hiérarchie de titres cassée, lien non explicite |
+| 🔴 **Bloquant** | Bloque l'accès au contenu ou à la fonctionnalité pour un utilisateur AT | Image sans `alt`, champ sans label, lien vide, piège au clavier, focus non visible |
+| 🟠 **Majeur** | Impact fort sur l'expérience mais contournable par certains AT | Contraste insuffisant, hiérarchie de titres cassée, lien non explicite |
 | 🟡 **Mineur** | Gêne légère, dégradation de l'expérience sans blocage | `autocomplete` manquant, `caption` de tableau absent, nouvelle fenêtre non signalée |
 
 ## Référence détaillée des critères
@@ -127,3 +127,4 @@ Chaque fichier de référence liste les critères avec leur condition, test de c
 - **Éléments obligatoires, Structure, Présentation** (thèmes 8–10, 28 critères) : [references/criteres-structure-presentation.md](references/criteres-structure-presentation.md)
 - **Formulaires** (thème 11, 13 critères) : [references/criteres-formulaires.md](references/criteres-formulaires.md)
 - **Navigation, Consultation** (thèmes 12–13, 23 critères) : [references/criteres-navigation-consultation.md](references/criteres-navigation-consultation.md)
+- **Impacts par mécanisme de blocage** (tous thèmes, pour la ligne « Impact utilisateur ») : [references/impacts.md](references/impacts.md)

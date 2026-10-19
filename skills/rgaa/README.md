@@ -17,6 +17,7 @@ C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il
 | Fichier | Description |
 |---------|-------------|
 | [`SKILL.md`](SKILL.md) | Workflow d'audit en 4 étapes et format de rapport standardisé |
+| [`references/impacts.md`](references/impacts.md) | Impacts des défauts par mécanisme de blocage, pour la ligne « Impact utilisateur » |
 | [`references/criteres-images-cadres-couleurs.md`](references/criteres-images-cadres-couleurs.md) | Thèmes 1 à 3 : Images, Cadres, Couleurs |
 | [`references/criteres-multimedia-tableaux-liens-scripts.md`](references/criteres-multimedia-tableaux-liens-scripts.md) | Thèmes 4 à 7 : Multimédia, Tableaux, Liens, Scripts |
 | [`references/criteres-structure-presentation.md`](references/criteres-structure-presentation.md) | Thèmes 8 à 10 : Éléments obligatoires, Structure, Présentation |
@@ -54,3 +55,5 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 ## Licence
 
 MIT
+
+`references/impacts.md` et la méthode d’audit par impact sont adaptés du dépôt [Isalafont/claude-skill-rgaa-dev](https://github.com/Isalafont/claude-skill-rgaa-dev) d’Isabelle Lafont (Licence Ouverte 2.0), en co-maintenance avec la DINUM.
