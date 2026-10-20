@@ -16,8 +16,8 @@ Règles de génération :
               POSIX relatifs et triés. Sont exclus les fichiers cachés (nom
               commençant par "."), les dossiers __pycache__ et les index.json.
   - version : les 12 premiers caractères hexadécimaux d'un sha256 calculé sur
-              (chemin + contenu) de chaque fichier, dans l'ordre trié. Résultat
-              identique sur toutes les machines (pas de date ni de commit).
+              (chemin + \0 + contenu) de chaque fichier, dans l'ordre trié.
+              Résultat identique sur toutes les machines (pas de date ni de commit).
   - skills triées par name. Sortie JSON avec indentation 2, ensure_ascii=False
     et un saut de ligne final.
 
@@ -62,13 +62,14 @@ def collect_files(root: str) -> list:
 
 
 def compute_version(root: str, files: list) -> str:
-    """12 premiers hex d'un sha256 sur (chemin + contenu) de chaque fichier trié."""
+    """12 premiers hex d'un sha256 sur (chemin + \0 + contenu) de chaque fichier trié."""
     h = hashlib.sha256()
     for rel in files:
         full = os.path.join(root, *rel.split("/"))
         with open(full, "rb") as fh:
             content = fh.read()
         h.update(rel.encode("utf-8"))
+        h.update(b"\0")
         h.update(content)
     return h.hexdigest()[:12]
 
@@ -104,7 +105,7 @@ def dump_index(index: dict) -> str:
 
 def generate_all(repo_root: str):
     """Retourne {chemin_relatif: contenu} pour les deux index."""
-    outputs = {
+    return {
         os.path.join("skills", "index.json"): dump_index(
             build_index(os.path.join(repo_root, "skills"))
         ),
@@ -112,10 +113,6 @@ def generate_all(repo_root: str):
             build_index(os.path.join(repo_root, "skills", ".experimental"))
         ),
     }
-    results = {}
-    for rel, content in outputs.items():
-        results[rel] = content
-    return results
 
 
 def main(argv=None, repo_root=None) -> int:

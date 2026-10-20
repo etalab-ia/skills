@@ -2,7 +2,7 @@
   "skills": [
     {
       "name": "presentation-docs",
-      "version": "72064aa5b5c9",
+      "version": "8de3937c9340",
       "files": [
         "README.md",
         "SKILL.md",
@@ -14,7 +14,7 @@
     },
     {
       "name": "rag-index",
-      "version": "ff0962faf26e",
+      "version": "e1197db0fc66",
       "files": [
         "README.md",
         "SKILL.md"
@@ -22,7 +22,7 @@
     },
     {
       "name": "rag-parse",
-      "version": "6356fd3117f5",
+      "version": "ee0e7d858fd2",
       "files": [
         "README.md",
         "SKILL.md"
@@ -30,7 +30,7 @@
     },
     {
       "name": "rag-search",
-      "version": "7a5799e86c7e",
+      "version": "30c627d2e4bb",
       "files": [
         "README.md",
         "SKILL.md"

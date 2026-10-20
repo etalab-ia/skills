@@ -86,6 +86,21 @@ class BuildIndexTest(unittest.TestCase):
                 idx1["skills"][0]["version"], idx3["skills"][0]["version"]
             )
 
+    def test_version_separates_path_and_content(self):
+        # Deux skills aux octets (chemin + contenu) identiques sans séparateur :
+        # ("ab", "c") et ("a", "bc"). Le séparateur \0 dans compute_version
+        # garantit des versions différentes.
+        def single_file_version(filename, content):
+            root = tempfile.mkdtemp()
+            self.addCleanup(shutil.rmtree, root, ignore_errors=True)
+            with open(os.path.join(root, filename), "wb") as fh:
+                fh.write(content)
+            return build_index.compute_version(root, [filename])
+
+        v1 = single_file_version("ab", b"c")
+        v2 = single_file_version("a", b"bc")
+        self.assertNotEqual(v1, v2)
+
 
 class CheckTest(unittest.TestCase):
     def build_tree(self):

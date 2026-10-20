@@ -51,7 +51,7 @@ The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-sk
 - Skills target React/TypeScript projects
 - SKILL.md files use YAML frontmatter (`---` delimiters) with `name` and `description` fields; RAG skills additionally use `provider` and `available-providers` fields
 - Reference files are split by theme/topic to keep individual files manageable
-- après toute modification d'une skill, lancer `python3 scripts/build_index.py` (contrôlé en CI)
+- After any change to a skill, run `python3 scripts/build_index.py` to regenerate `skills/index.json` and `skills/.experimental/index.json` (checked in CI)
 - The rgaa skill is an audit tool (input: code to audit → output: structured report), not a code generation skill
 - Commit messages follow conventional commits format (e.g., `feat(skill-name):`, `docs(readme):`, `refactor(skill-name):`)
 

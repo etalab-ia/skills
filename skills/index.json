@@ -2,7 +2,7 @@
   "skills": [
     {
       "name": "albert-api",
-      "version": "a888d24298e2",
+      "version": "ddbe22f9b7cf",
       "files": [
         "README.md",
         "SKILL.md",
@@ -12,7 +12,7 @@
     },
     {
       "name": "anssi-guides",
-      "version": "59958c1f6783",
+      "version": "31d8a79d6e73",
       "files": [
         "README.md",
         "SKILL.md",
@@ -25,7 +25,7 @@
     },
     {
       "name": "datagouv-apis",
-      "version": "1e983f70b438",
+      "version": "e87f21f90730",
       "files": [
         "README.md",
         "SKILL.md"
@@ -33,7 +33,7 @@
     },
     {
       "name": "lasuite-ui-kit",
-      "version": "ec76281a3df3",
+      "version": "7400c4f3116b",
       "files": [
         "README.md",
         "SKILL.md",
@@ -44,7 +44,7 @@
     },
     {
       "name": "react-dsfr",
-      "version": "5df152fb2ff0",
+      "version": "9fb360d9b3b0",
       "files": [
         "README.md",
         "SKILL.md",
@@ -54,7 +54,7 @@
     },
     {
       "name": "rgaa",
-      "version": "f30e80bd745f",
+      "version": "09640f0d4775",
       "files": [
         "README.md",
         "SKILL.md",
@@ -67,7 +67,7 @@
     },
     {
       "name": "securite-developpement",
-      "version": "37b02ddcd338",
+      "version": "ff668f64c0cf",
       "files": [
         "README.md",
         "SKILL.md",
@@ -83,7 +83,7 @@
     },
     {
       "name": "usage-ia-agents-etat",
-      "version": "a5e90f124cbf",
+      "version": "43ba39aba6e1",
       "files": [
         "README.md",
         "SKILL.md",
