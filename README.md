@@ -71,6 +71,18 @@ npx skills add etalab-ia/skills -a claude-code
 npx skills add etalab-ia/skills -a opencode
 ```
 
+OpenCode peut aussi charger les skills via la config `skills.urls`, qui pointe vers un index consommable par OpenCode (`index.json`) servi par GitHub raw :
+
+```json
+{
+  "skills": {
+    "urls": ["https://raw.githubusercontent.com/etalab-ia/skills/main/skills/"]
+  }
+}
+```
+
+Pour les skills expérimentales, ajouter l'URL `https://raw.githubusercontent.com/etalab-ia/skills/main/skills/.experimental/`. Pour figer une version, remplacer `main` par un SHA de commit dans l'URL ; chaque skill fournit sa propre `version` dans `index.json`, ce qui déclenche son retéléchargement quand elle change.
+
 ### Mistral Vibe
 
 Copier les fichiers `SKILL.md` et `references/` dans le dossier de votre projet comme fichiers de référence dans `INSTRUCTIONS.md`.

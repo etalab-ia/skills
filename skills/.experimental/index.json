@@ -1,0 +1,40 @@
+{
+  "skills": [
+    {
+      "name": "presentation-docs",
+      "version": "72064aa5b5c9",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "master-prompts/externe-impactante.md",
+        "master-prompts/fidele.md",
+        "master-prompts/formelle-institutionnelle.md",
+        "master-prompts/interne-conviviale.md"
+      ]
+    },
+    {
+      "name": "rag-index",
+      "version": "ff0962faf26e",
+      "files": [
+        "README.md",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "rag-parse",
+      "version": "6356fd3117f5",
+      "files": [
+        "README.md",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "rag-search",
+      "version": "7a5799e86c7e",
+      "files": [
+        "README.md",
+        "SKILL.md"
+      ]
+    }
+  ]
+}

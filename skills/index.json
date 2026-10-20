@@ -1,0 +1,97 @@
+{
+  "skills": [
+    {
+      "name": "albert-api",
+      "version": "a888d24298e2",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "bin/check_drift.py",
+        "openapi.snapshot.json"
+      ]
+    },
+    {
+      "name": "anssi-guides",
+      "version": "59958c1f6783",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "references/catalogue.md",
+        "scripts/generate-catalogue.sh",
+        "scripts/included-english-guide-ids.json",
+        "scripts/test-generate-catalogue.sh",
+        "scripts/tracked-guide-ids.json"
+      ]
+    },
+    {
+      "name": "datagouv-apis",
+      "version": "1e983f70b438",
+      "files": [
+        "README.md",
+        "SKILL.md"
+      ]
+    },
+    {
+      "name": "lasuite-ui-kit",
+      "version": "ec76281a3df3",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "references/components.md",
+        "references/cunningham.md",
+        "references/setup.md"
+      ]
+    },
+    {
+      "name": "react-dsfr",
+      "version": "5df152fb2ff0",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "references/components.md",
+        "references/setup.md"
+      ]
+    },
+    {
+      "name": "rgaa",
+      "version": "f30e80bd745f",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "references/criteres-formulaires.md",
+        "references/criteres-images-cadres-couleurs.md",
+        "references/criteres-multimedia-tableaux-liens-scripts.md",
+        "references/criteres-navigation-consultation.md",
+        "references/criteres-structure-presentation.md"
+      ]
+    },
+    {
+      "name": "securite-developpement",
+      "version": "37b02ddcd338",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "references/checklist.md",
+        "references/findings-schema.json",
+        "references/modules/cms.md",
+        "references/modules/langage-c.md",
+        "references/modules/langage-rust.md",
+        "references/rapport.md",
+        "references/sources.md",
+        "references/valeurs-anssi.md"
+      ]
+    },
+    {
+      "name": "usage-ia-agents-etat",
+      "version": "a5e90f124cbf",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "references/5-principes-fondamentaux.md",
+        "references/comprendre-iag.md",
+        "references/fiches-pratiques.md",
+        "references/outils-et-donnees.md"
+      ]
+    }
+  ]
+}
