@@ -37,6 +37,7 @@ jobs:
           BLOB: ${{ steps.check.outputs.blob }}
         run: |
           cp /tmp/upstream/SKILL.md skills/datagouv-apis/SKILL.md
+          python3 scripts/build_index.py
           echo "$BLOB" > .sync-state/datagouv.sha
       - name: Create PR
         if: steps.check.outputs.changed == 'true'
@@ -53,7 +54,9 @@ jobs:
           git push origin --delete "$BRANCH" 2>/dev/null || true
 
           git checkout -b "$BRANCH"
-          git add skills/datagouv-apis/SKILL.md .sync-state/datagouv.sha
+          git add skills/datagouv-apis/SKILL.md \
+            skills/index.json skills/.experimental/index.json \
+            .sync-state/datagouv.sha
           git commit -m "chore(datagouv): sync upstream changes"
           git push origin "$BRANCH"
           gh pr create \

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A collection of AI coding assistant skills ("skills") for French government software development standards. Each skill is a self-contained directory with a `SKILL.md` (frontmatter + instructions) and optional `references/` folder with detailed documentation. Skills are installed by copying them into `~/.claude/skills/` (Claude Code) or `~/.config/opencode/skills/` (OpenCode).
 
-This is a **documentation-only repo** — no build system, no tests, no dependencies. All files are Markdown.
+This is a **documentation-only repo** — no build system, no dependencies. All files are Markdown; the only scripts are small Python/shell generators (the skills index and the ANSSI catalogue) with their tests.
 
 ## Architecture
 
@@ -51,6 +51,7 @@ The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-sk
 - Skills target React/TypeScript projects
 - SKILL.md files use YAML frontmatter (`---` delimiters) with `name` and `description` fields; RAG skills additionally use `provider` and `available-providers` fields
 - Reference files are split by theme/topic to keep individual files manageable
+- After any change to a skill, run `python3 scripts/build_index.py` to regenerate `skills/index.json` and `skills/.experimental/index.json` (checked in CI)
 - The rgaa skill is an audit tool (input: code to audit → output: structured report), not a code generation skill
 - Commit messages follow conventional commits format (e.g., `feat(skill-name):`, `docs(readme):`, `refactor(skill-name):`)
 
