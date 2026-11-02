@@ -34,6 +34,8 @@ python3 scripts/check-dsfr-classes.py
 
 Le script lit les blocs de code de `references/*.md`, télécharge le CSS de la dernière version publiée de `@gouvfr/dsfr` et signale chaque classe inconnue avec fichier et ligne (code de sortie 1). `--dsfr-version x.y.z` rejoue une vérification contre une version précise, `--css fichier.css` utilise un CSS local.
 
+Le script ne vérifie que l’existence des classes : une classe obsolète encore publiée passe. Comparer aussi le balisage de chaque exemple à celui du composant dans le paquet `@gouvfr/dsfr` (`example/component/`).
+
 Le script a son propre test, sans réseau :
 
 ```bash
