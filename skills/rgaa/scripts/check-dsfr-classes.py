@@ -36,9 +36,13 @@ CSS_BLOCK = re.compile(r"([^{}]*)([{}])")
 CSS_CLASS = re.compile(r"\.((?:[\w-]|\\.)+)")
 CSS_ESCAPE = re.compile(r"\\(.)")
 IDENTIFIER_VALUE = re.compile(
-    r"""\b(?:id|for|htmlFor|name|href|aria-[\w-]+|data-[\w-]+)\s*[=:]\s*\{?\s*(["'`])(.*?)\1"""
+    r"""\b(?:id|for|htmlFor|name|href|hrefLang|hreflang|lang|aria-[\w-]+|data-[\w-]+)\s*[=:]\s*\{?\s*(["'`])(.*?)\1"""
 )
-FR_CLASS = re.compile(r"(?<![\w-])fr-[a-z0-9]+(?:(?:--|__|-)[a-z0-9]+)*(?:@[a-z]+)?(?![\w-])")
+COMMENT = re.compile(
+    r"""<%#.*?(?:%>|$)|<!--.*?(?:-->|$)|(?<![\w/"'`])/\*.*?(?:\*/|$)"""
+    r"""|(?<![\w:/"'`])//.*$|(?:^|(?<=\s))#\s.*$"""
+)
+FR_CLASS = re.compile(r"(?<![\w/-])fr-[a-z0-9]+(?:(?:--|__|-)[a-z0-9]+)*(?:@[a-z]+)?(?![\w-])")
 
 
 class CheckError(Exception):
@@ -93,8 +97,13 @@ def code_lines(markdown: str):
 
 
 def class_tokens(line: str) -> list[str]:
-    """Classes fr-* d'une ligne, hors valeurs d'identifiants (id, for, aria-*…)."""
-    masked = IDENTIFIER_VALUE.sub(lambda m: " " * len(m.group(0)), line)
+    """Classes fr-* d'une ligne, hors commentaires, chemins et valeurs d'identifiants.
+
+    Masquage plutôt que liste des constructions porteuses de classes : une
+    construction inconnue donne au pire une fausse alerte, jamais un oubli.
+    """
+    masked = COMMENT.sub("", line)
+    masked = IDENTIFIER_VALUE.sub(lambda m: " " * len(m.group(0)), masked)
     return FR_CLASS.findall(masked)
 
 

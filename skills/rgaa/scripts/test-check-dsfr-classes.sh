@@ -20,6 +20,8 @@ clean="$tmp_dir/formulaires-propre.md"
 faulty="$tmp_dir/formulaires-fautif.md"
 rails="$tmp_dir/rails.md"
 react="$tmp_dir/react.md"
+not_classes="$tmp_dir/hors-classes.md"
+comments="$tmp_dir/commentaires.md"
 output="$tmp_dir/sortie.txt"
 
 cat >"$css" <<'EOF'
@@ -76,6 +78,49 @@ cat >"$react" <<'EOF'
 </div>
 ```
 EOF
+
+cat >"$not_classes" <<'EOF'
+```tsx
+// fr-radio n’est pas une classe du DSFR
+const route = "/fr-aide"
+const page = `/aide/fr-radio`
+<html lang="fr-fr">
+<html lang={"fr-fr"}>
+<a hrefLang="fr-fr" href="/aide">Aide</a>
+{/* fr-radio */}
+<!-- fr-radio -->
+<%# fr-radio %>
+# fr-radio
+/* fr-radio */
+<a href="https://exemple.gouv.fr/fr-aide" class="fr-btn">Aide</a>
+```
+EOF
+
+cat >"$comments" <<'EOF'
+```erb
+<input class="fr-radio"> // fr-inconnue
+<%# commentaire %><input class="fr-radio">
+<!-- commentaire --><input class="fr-radio">
+<a href="https://exemple.gouv.fr/aide" class="fr-radio">Aide</a>
+<input class="fr-radio"> # commentaire
+<img src="assets/*.png" class="fr-radio">
+<div style="color: #fff" class="fr-radio"></div>
+```
+EOF
+
+status=0
+python3 "$script" --css "$css" "$not_classes" >"$output" 2>&1 || status=$?
+[ "$status" -eq 0 ] || fail "Un commentaire, une langue ou une route a été pris pour une classe (code $status) : $(cat "$output")"
+
+status=0
+python3 "$script" --css "$css" "$comments" >"$output" 2>&1 || status=$?
+[ "$status" -eq 1 ] || fail "Une classe voisine d’un commentaire n’a pas été vérifiée (code $status) : $(cat "$output")"
+for line in 2 3 4 5 6 7 8; do
+  grep -q "commentaires.md:$line: classe inconnue « fr-radio »" "$output" ||
+    fail "La classe fr-radio de la ligne $line a été masquée : $(cat "$output")"
+done
+[ "$(grep -c 'classe inconnue' "$output")" -eq 7 ] ||
+  fail "Une classe dans un commentaire a été vérifiée : $(cat "$output")"
 
 status=0
 python3 "$script" --css "$css" "$clean" >"$output" 2>&1 || status=$?
