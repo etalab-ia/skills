@@ -303,10 +303,12 @@ Chaque bouton doit avoir un intitulé décrivant son action.
 ```erb
 <div class="fr-input-group fr-input-group--error">
   <label class="fr-label" for="email">Adresse e-mail</label>
-  <input class="fr-input" type="email" id="email" name="email" aria-invalid="true" aria-describedby="error-email">
-  <p id="error-email" class="fr-error-text" role="alert">
-    Erreur : veuillez saisir une adresse e-mail valide (ex : jeanne.martin@example.com)
-  </p>
+  <input class="fr-input" type="email" id="email" name="email" aria-invalid="true" aria-describedby="email-messages">
+  <div class="fr-messages-group" id="email-messages" aria-live="polite">
+    <p class="fr-message fr-message--error" id="error-email">
+      Erreur : veuillez saisir une adresse e-mail valide (ex : jeanne.martin@example.com)
+    </p>
+  </div>
 </div>
 ```
 
@@ -364,9 +366,11 @@ En cas d'erreur, suggérer le type de données attendu et donner un exemple.
 ### Correction — Rails / ERB
 
 ```erb
-<p id="error-date" class="fr-error-text" role="alert">
-  Format de date invalide. Saisissez une date au format JJ/MM/AAAA (ex : 15/03/2024).
-</p>
+<div class="fr-messages-group" id="date-messages" aria-live="polite">
+  <p class="fr-message fr-message--error" id="error-date">
+    Format de date invalide. Saisissez une date au format JJ/MM/AAAA (ex : 15/03/2024).
+  </p>
+</div>
 ```
 
 > **Astuce — exemples de valeurs.** Quand un champ porte déjà un exemple dans son indication de format (`hint`), donner dans le message d'erreur une valeur **différente** : deux valeurs distinctes montrent clairement qu'il s'agit d'illustrations et non d'une saisie attendue. Ex. hint `email@example.com`, message d'erreur `jeanne.martin@example.com`. Pour les e-mails, utiliser un **domaine réservé à la documentation** (RFC 2606 : `example.com`, `example.net`, `example.org`, TLD `.example`) plutôt qu'un domaine réel — `example.fr` n'est pas réservé. C'est l'équivalent des numéros de téléphone de fiction (cf. critère 11.10).
