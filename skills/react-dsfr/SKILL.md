@@ -1,6 +1,6 @@
 ---
 name: react-dsfr
-description: Créer des interfaces React conformes au Design System de l'État français (DSFR) avec @codegouvfr/react-dsfr. Utiliser cette skill quand l'utilisateur demande de créer des pages, composants ou interfaces en React utilisant le DSFR, quand il mentionne react-dsfr, le design system de l'État, ou quand le projet utilise @codegouvfr/react-dsfr. Couvre les composants natifs react-dsfr (pas MUI), le routing, les icônes, les couleurs et les patterns de mise en page.
+description: Créer des interfaces React conformes au Design System de l'État français (DSFR) avec @codegouvfr/react-dsfr. Utiliser cette skill quand l'utilisateur demande de créer des pages, composants ou interfaces en React utilisant le DSFR, quand il mentionne react-dsfr, le design system de l'État, ou quand le projet utilise @codegouvfr/react-dsfr. Couvre les composants natifs react-dsfr (pas MUI), le routing, les icônes, les couleurs et les patterns de mise en page. Pour du HTML sans React (classes `fr-*` de @gouvfr/dsfr, moteur de gabarits), utiliser plutôt la skill dsfr.
 ---
 
 # react-dsfr
