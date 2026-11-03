@@ -1,5 +1,5 @@
 {
-  "version": "0.8.0",
+  "version": "0.9.1",
   "endpoints": {
     "DELETE /v1/collections/{collection_id}": "delete_collection_v1_collections__collection_id__delete",
     "DELETE /v1/documents/{document_id}": "delete_document_v1_documents__document_id__delete",
@@ -24,12 +24,15 @@
     "GET /v1/me/usage": "get_usages_v1_me_usage_get [deprecated]",
     "GET /v1/models": "get_models_v1_models_get",
     "GET /v1/models/{model}": "get_model_v1_models__model__get",
+    "GET /v1/organizations/me": "get_my_organization_v1_organizations_me_get",
     "GET /v1/usage": "get_usages_v1_usage_get",
     "PATCH /v1/collections/{collection_id}": "update_collection_v1_collections__collection_id__patch",
+    "PATCH /v1/keys/{key_id}": "update_key_v1_keys__key_id__patch",
     "PATCH /v1/me": "update_me_v1_me_patch",
     "PATCH /v1/me/info": "update_me_v1_me_info_patch [deprecated]",
+    "PATCH /v1/me/keys/{key_id}": "update_key_v1_me_keys__key_id__patch [deprecated]",
     "POST /v1/audio/transcriptions": "create_audio_transcription_v1_audio_transcriptions_post",
-    "POST /v1/chat/completions": "chat_completions_v1_chat_completions_post",
+    "POST /v1/chat/completions": "create_chat_completions_v1_chat_completions_post",
     "POST /v1/collections": "create_collection_v1_collections_post",
     "POST /v1/documents": "create_document_v1_documents_post",
     "POST /v1/documents/{document_id}/chunks": "create_document_chunks_v1_documents__document_id__chunks_post",
@@ -289,6 +292,11 @@
       "/v1/rerank",
       "/v1/search"
     ],
+    "KeyStatus": [
+      "active",
+      "expired",
+      "revoked"
+    ],
     "LimitType": [
       "rpd",
       "rpm",
@@ -332,7 +340,6 @@
     ],
     "RouterType": [
       "automatic-speech-recognition",
-      "image-text-to-text",
       "image-to-text",
       "text-classification",
       "text-embeddings-inference",

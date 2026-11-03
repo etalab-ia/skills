@@ -37,13 +37,13 @@ API d'inférence de l'État français, opérée par le département IAE de la DI
 - **Header :** `Authorization: Bearer <token>` sur tous les endpoints `/v1/*`.
 - **Public :** réservé aux agents de la fonction publique. Demande d'accès en ligne (voir la doc humaine). L'accès distingue un mode **expérimentation** (quotas réduits) d'un mode **production** (sur dossier).
 - **Connaître ses droits :** `GET /v1/me` renvoie l'identité, les quotas et limites du compte. `GET /v1/usage` renvoie la consommation.
-- **Gérer ses clés :** `GET/POST /v1/keys`, `DELETE /v1/keys/{key_id}`. Créer une clé dédiée par usage/produit plutôt que réutiliser la clé personnelle.
+- **Gérer ses clés :** `GET/POST /v1/keys` (listing : `offset`, `limit`, `sort_by`, `sort_order`, `status` = `active`\|`expired`\|`revoked`), `GET/PATCH/DELETE /v1/keys/{key_id}` (`PATCH` renomme, `DELETE` révoque). Créer une clé dédiée par usage/produit plutôt que réutiliser la clé personnelle.
 
 > ⚠️ **Créer une clé : piège vérifié en live (2026-10-16) sur la route canonique `POST /v1/keys`.**
 > 1. `POST /v1/keys` (corps `{"name": "...", "expires": <ts>}`) renvoie **201** avec une réponse dont le champ exploitable porte le nom **`value`** (champs renvoyés : `created`, `expires`, `id`, `name`, `object`, `user_id`, `value`). La spec 0.8.0 (`KeyResponse`) déclare ce champ `value` correctement — contrairement au constat du 08/09 où elle annonçait `token`/`key`. Lire `resp["token"]` lève toujours un `KeyError` : c'est `resp["value"]` qu'il faut utiliser.
 > 2. Le champ `value` d'un élément du listing `GET /v1/keys` est **masqué** : tout appel avec renvoie `401 {"detail":"Invalid API key."}` (vérifié sur `GET /v1/models`, code HTTP 200 avec la clé fraîchement créée, 401 avec celle du listing). **La valeur exploitable n'existe qu'à la création** — pas récupérable ensuite. La perdre = clé orpheline, à supprimer et recréer.
 >
-> Corollaire : **pas de renommage possible**. `/v1/keys/{key_id}` n'expose que `get` et `delete`, il n'y a pas de `PATCH` (confirmé dans la spec 0.8.0) — renommer = créer + réinstaller la nouvelle valeur partout + supprimer l'ancienne.
+> Corollaire : **renommage possible depuis la 0.9.1** via `PATCH /v1/keys/{key_id}` (corps `{"name": "..."}`, testé en live le 2026-11-03 : 200, nom mis à jour). Avant (spec 0.8.0), il fallait créer + réinstaller la nouvelle valeur partout + supprimer l'ancienne. La valeur, elle, reste invisible hors création.
 >
 > Diagnostiquer une clé suspecte avec **`GET /v1/models`** ou `GET /v1/me` : pour une clé invalide (`"invalid-test-key"`, test 2026-10-16) les deux renvoient **401** — pas de distinction `/v1/models` vs `/v1/me` à exploiter ; un `403` signe alors un quota/compte plutôt qu'une clé invalide.
 
@@ -93,13 +93,12 @@ curl -s https://albert.api.etalab.gouv.fr/v1/models \
 
 ### Instantané du catalogue
 
-Relevé le **2026-08-26**, revérifié le **2026-09-03** (conforme au catalogue live), **à revérifier via `GET /v1/models`** : le catalogue évolue et cette table sera périmée.
+Relevé en live le **2026-11-03** (clé réelle, `GET /v1/models`), **à revérifier via `GET /v1/models`** : le catalogue évolue et cette table sera périmée.
 
 | `type` | Usage | `id` canoniques |
 |--------|-------|-----------------|
-| `text-generation` | Chat / complétion | `deepseek-v4-flash`, `mistral-medium-2508`, `qwen3-coder-30b-A3b-instruct`, `openai/gpt-oss-120b` |
-| `image-text-to-text` | Vision (image + texte) | `mistral-medium-3-5-128b`, `gemma-4-31b-it`, `mistral-small-3-2-24b-instruct-2506`, `ministral-3-8b-instruct-2512`, `lightonocr-2-1b` |
-| `text-embeddings-inference` | Embeddings | `bge-m3`, `qwen3-vl-embedding-8b`, `mistral-embed-2312` |
+| `text-generation` | Chat / complétion, y compris vision (pas de type dédié depuis la 0.9.1) | `deepseek-v4-flash-0731`, `mistral-medium-3-5`, `gemma-4-31b-it`, `mistral-small-3-2-24b-instruct-2506`, `ministral-3-8b-instruct-2512`, `qwen3-coder-30b-a3b-instruct`, `gpt-oss-120b`, `lightonocr-2-1b` |
+| `text-embeddings-inference` | Embeddings | `bge-m3`, `qwen3-vl-embedding-8b` |
 | `text-classification` | Rerank | `bge-reranker-v2-m3` |
 | `automatic-speech-recognition` | Transcription audio | `whisper-large-v3` |
 | `image-to-text` | OCR | `mistral-ocr-2512` |
@@ -140,7 +139,7 @@ Le SDK `openai` n'expose pas de ressource `rerank` : cet endpoint s'appelle en H
 | Méthode | Chemin | Corps | Notes |
 |---------|--------|-------|-------|
 | POST | `/v1/audio/transcriptions` | `multipart` : `file*`, `model*` ; `language`, `prompt`, `response_format` (`json`\|`text`\|`verbose_json`\|`diarized_json`\|`srt`\|`vtt`), `temperature` | `diarized_json` = transcription avec séparation des locuteurs. |
-| POST | `/v1/ocr` | `json` : `document*` (**objet**, pas une URL nue : `{"type":"document_url","document_url":"…"}` pour un PDF, ou `{"type":"image_url","image_url":"…"}` pour une image), `model`, `pages`, `image_limit`, `include_image_base64` | OCR d'un PDF/image accessible par URL. |
+| POST | `/v1/ocr` | `json` : `document*` (**objet**, pas une URL nue : `{"type":"document_url","document_url":"…"}` pour un PDF, ou `{"type":"image_url","image_url":"…"}` pour une image), `model*`, `document_annotation_prompt` ; `pages`, `image_limit`, `include_image_base64` ne sont plus déclarés dans la spec 0.9.1 (champs en plus acceptés) | OCR d'un PDF/image accessible par URL. |
 
 ### RAG — collections, documents, recherche
 
@@ -159,6 +158,7 @@ Le SDK `openai` n'expose pas de ressource `rerank` : cet endpoint s'appelle en H
 | Méthode | Chemin |
 |---------|--------|
 | GET/PATCH | `/v1/me` |
+| GET | `/v1/organizations/me` |
 | GET | `/v1/usage` |
 | GET/POST | `/v1/keys` |
 | GET/DELETE | `/v1/keys/{key_id}` |
@@ -197,7 +197,7 @@ client = OpenAI(
 )
 
 resp = client.chat.completions.create(
-    model="mistral-medium-2508",  # un id de type text-generation (cf. GET /v1/models)
+    model="mistral-medium-3-5",  # un id de type text-generation (cf. GET /v1/models)
     messages=[{"role": "user", "content": "Explique le RGPD en une phrase."}],
     temperature=0.2,
 )
@@ -213,7 +213,7 @@ curl -s https://albert.api.etalab.gouv.fr/v1/models \
 curl -s https://albert.api.etalab.gouv.fr/v1/chat/completions \
   -H "Authorization: Bearer $ALBERT_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"model":"mistral-medium-2508","messages":[{"role":"user","content":"Bonjour"}]}'
+  -d '{"model":"mistral-medium-3-5","messages":[{"role":"user","content":"Bonjour"}]}'
 ```
 
 ### Embeddings
@@ -296,7 +296,7 @@ Enregistrer Albert comme modèle OpenAI-compatible dans `~/.config/io.datasette.
 
 ```yaml
 - model_id: albert-mistral
-  model_name: mistral-medium-2508   # un id renvoyé par GET /v1/models
+  model_name: mistral-medium-3-5   # un id renvoyé par GET /v1/models
   api_base: https://albert.api.etalab.gouv.fr/v1
   api_key_name: albert
 ```
@@ -316,7 +316,7 @@ export OPENAI_BASE_URL="https://albert.api.etalab.gouv.fr/v1"
 export OPENAI_API_KEY="$ALBERT_API_KEY"   # déjà exporté côté env, pas en dur
 
 openai api models.list
-openai api chat.completions.create -m mistral-medium-2508 -g user "Bonjour"
+openai api chat.completions.create -m mistral-medium-3-5 -g user "Bonjour"
 ```
 
 > Pour les capacités propres à Albert (RAG, OCR, gestion des collections/clés), il n'y a pas de sous-commande CLI standard : utiliser `curl` (cf. exemples ci-dessus) ou le SDK. Ne jamais passer le token en argument de commande (visible dans `ps` et l'historique) : le lire depuis l'environnement ou un gestionnaire de clés (`llm keys`).
