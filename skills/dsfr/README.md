@@ -5,7 +5,7 @@ Skill pour assistants de code IA — documentation du [Système de design de l'�
 > [!CAUTION]
 > **Usage réservé à l'État.** Les [modalités d'utilisation du DSFR](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md) le réservent aux sites en .gouv.fr et aux applications mobiles des services de l'État (et des opérateurs agréés par leur ministère de tutelle). Hors de ce cadre, il peut créer une confusion avec un service public officiel, réprimée par l'article 433-13 du code pénal. La skill demande à l'assistant de vérifier que le projet relève de l'État et de refuser sinon.
 
-> **Note** : cette skill est synchronisée automatiquement depuis le repo upstream [`numerique-gouv/dsfr-skill`](https://github.com/numerique-gouv/dsfr-skill), où elle est générée depuis le paquet npm `@gouvfr/dsfr` (version dans [`VERSION.md`](VERSION.md)). Le générateur, les évals et le plugin Claude Code y restent : pour contribuer, ouvrir une PR sur le repo upstream. Un workflow GitHub Actions vérifie chaque semaine (lundi 9h UTC) si le contenu a changé et ouvre une PR de synchronisation le cas échéant. Seul ce README est propre à ce repo.
+> **Note** : cette skill est synchronisée automatiquement depuis le repo upstream [`numerique-gouv/dsfr-skill`](https://github.com/numerique-gouv/dsfr-skill), où elle est générée depuis le paquet npm `@gouvfr/dsfr` (version dans [`VERSION.md`](VERSION.md)). Le générateur, les évals et le plugin Claude Code y restent : pour contribuer, ouvrir une PR sur le repo upstream. Un workflow GitHub Actions vérifie chaque semaine (lundi 9h UTC) si le contenu a changé et ouvre une PR de synchronisation le cas échéant. Seuls ce README et `LICENSE.md` sont propres à ce repo.
 
 ## Ce que fait cette skill
 
@@ -38,7 +38,7 @@ Quand elle est activée, l'assistant IA sait :
 | `reference/` | Classes CSS, icônes et pictogrammes de la version |
 | [`scripts/verifier.mjs`](scripts/verifier.mjs) | Vérificateur HTML sans dépendance |
 
-La skill compte 345 fichiers : avec la config `skills.urls` d'OpenCode, son installation déclenche autant de requêtes vers GitHub raw.
+La skill compte 347 fichiers : avec la config `skills.urls` d'OpenCode, son installation déclenche autant de requêtes vers GitHub raw.
 
 ## Installation
 
@@ -69,3 +69,7 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 - [Système de design de l'État](https://www.systeme-de-design.gouv.fr/)
 - [`@gouvfr/dsfr` sur GitHub](https://github.com/GouvernementFR/dsfr)
 - [numerique-gouv/dsfr-skill](https://github.com/numerique-gouv/dsfr-skill) — générateur, évals, plugin Claude Code
+
+## Licence
+
+[Licence Ouverte 2.0](LICENSE.md), celle du repo upstream, et non la licence MIT du reste de ce repo.

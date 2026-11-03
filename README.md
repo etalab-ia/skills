@@ -84,7 +84,7 @@ OpenCode peut aussi charger les skills via la config `skills.urls`, qui pointe v
 }
 ```
 
-Pour les skills expérimentales, ajouter l'URL `https://raw.githubusercontent.com/etalab-ia/skills/main/skills/.experimental/`. Pour figer une version, remplacer `main` par un SHA de commit dans l'URL ; chaque skill fournit sa propre `version` dans `index.json`, ce qui déclenche son retéléchargement quand elle change. La skill `dsfr` compte 345 fichiers, téléchargés un par un.
+Pour les skills expérimentales, ajouter l'URL `https://raw.githubusercontent.com/etalab-ia/skills/main/skills/.experimental/`. Pour figer une version, remplacer `main` par un SHA de commit dans l'URL ; chaque skill fournit sa propre `version` dans `index.json`, ce qui déclenche son retéléchargement quand elle change. La skill `dsfr` compte 347 fichiers, téléchargés un par un.
 
 ### Mistral Vibe
 
@@ -189,4 +189,4 @@ templates/
 
 ## Licence
 
-MIT
+MIT, sauf la skill [`dsfr`](skills/dsfr/), sous [Licence Ouverte 2.0](skills/dsfr/LICENSE.md) comme son repo upstream.
