@@ -10,6 +10,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 
 | Skill | Description |
 |-------|-------------|
+| [**dsfr**](skills/dsfr/) | [Design System de l'État](https://www.systeme-de-design.gouv.fr/) en HTML et CSS (classes `fr-*`) : 51 composants, fondamentaux, modèles de pages et de formulaires, vérificateur — synchronisée depuis [numerique-gouv/dsfr-skill](https://github.com/numerique-gouv/dsfr-skill). ⚠️ Usage réservé aux sites de l'État |
 | [**react-dsfr**](skills/react-dsfr/) | Interfaces React conformes au [Design System de l'État](https://www.systeme-de-design.gouv.fr/) avec `@codegouvfr/react-dsfr` |
 | [**rgaa**](skills/rgaa/) | Auto-évaluation [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) assistée par IA — 106 critères d’accessibilité numérique |
 | [**lasuite-ui-kit**](skills/lasuite-ui-kit/) | Interfaces React pour [LaSuite](https://lasuite.numerique.gouv.fr/) avec `@gouvfr-lasuite/ui-kit` et `@gouvfr-lasuite/cunningham-react` |
@@ -30,6 +31,8 @@ Non portées par la DINUM, dépendances tierces non auditées, pas de garantie d
 | [**rag-search**](skills/.experimental/rag-search/) ⚠️ | Rechercher dans une base de connaissances indexée avec [qmd](https://github.com/tobi/qmd) |
 
 Chaque skill a son propre README avec des exemples d'utilisation et des liens utiles.
+
+> **DSFR : usage réservé à l'État.** Les [modalités d'utilisation du DSFR](https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md) le réservent aux sites en .gouv.fr et aux applications mobiles des services de l'État. `dsfr` et `react-dsfr` ne doivent pas servir à un site privé, associatif ou de collectivité, ni à imiter un service public (article 433-13 du code pénal).
 
 ## Templates d'instructions
 
@@ -81,7 +84,7 @@ OpenCode peut aussi charger les skills via la config `skills.urls`, qui pointe v
 }
 ```
 
-Pour les skills expérimentales, ajouter l'URL `https://raw.githubusercontent.com/etalab-ia/skills/main/skills/.experimental/`. Pour figer une version, remplacer `main` par un SHA de commit dans l'URL ; chaque skill fournit sa propre `version` dans `index.json`, ce qui déclenche son retéléchargement quand elle change.
+Pour les skills expérimentales, ajouter l'URL `https://raw.githubusercontent.com/etalab-ia/skills/main/skills/.experimental/`. Pour figer une version, remplacer `main` par un SHA de commit dans l'URL ; chaque skill fournit sa propre `version` dans `index.json`, ce qui déclenche son retéléchargement quand elle change. La skill `dsfr` compte 345 fichiers, téléchargés un par un.
 
 ### Mistral Vibe
 
@@ -91,6 +94,17 @@ Copier les fichiers `SKILL.md` et `references/` dans le dossier de votre projet 
 
 ```
 skills/
+├── dsfr/                   # synchronisée depuis numerique-gouv/dsfr-skill
+│   ├── README.md
+│   ├── SKILL.md
+│   ├── demarrage.md
+│   ├── audit.md
+│   ├── composants/         # 51 composants : doc, accessibilité, exemples HTML
+│   ├── fondamentaux/
+│   ├── modeles/
+│   ├── reference/          # classes, icônes, pictogrammes
+│   └── scripts/
+│       └── verifier.mjs
 ├── react-dsfr/
 │   ├── README.md
 │   ├── SKILL.md
