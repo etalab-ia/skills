@@ -33,8 +33,9 @@
     },
     {
       "name": "dsfr",
-      "version": "91826682cc84",
+      "version": "8e7db5d64404",
       "files": [
+        "LICENSE.md",
         "README.md",
         "SKILL.md",
         "VERSION.md",
