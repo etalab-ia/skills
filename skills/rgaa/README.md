@@ -20,6 +20,10 @@ C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il
 | [`references/impacts.md`](references/impacts.md) | Impacts des défauts par mécanisme de blocage, pour la ligne « Impact utilisateur » |
 | [`references/classement/`](references/classement/) | Mode d’évaluation de chacun des 106 critères (code, mixte, conditions réelles, jugement humain), en cinq fichiers par groupe de thèmes — classement provisoire, en attente de l’avis du pôle accessibilité numérique |
 | [`scripts/check-classement.py`](scripts/check-classement.py) | Vérifie la complétude du classement des critères |
+| [`references/corrections/`](references/corrections/) | Corrections React / JSX et Rails / ERB par critère, lues seulement pour corriger une non-conformité |
+| [`references/glossaire.md`](references/glossaire.md) | Glossaire officiel, généré, consulté terme par terme |
+| [`sources/`](sources/) | Copie des fichiers officiels `criteres.json` et `glossaire.json` (DINUM, Licence Ouverte 2.0) |
+| [`scripts/officiel.py`](scripts/officiel.py) | Génère et contrôle le texte officiel des critères dans les références |
 | [`references/criteres-images-cadres-couleurs.md`](references/criteres-images-cadres-couleurs.md) | Thèmes 1 à 3 : Images, Cadres, Couleurs |
 | [`references/criteres-multimedia-tableaux-liens-scripts.md`](references/criteres-multimedia-tableaux-liens-scripts.md) | Thèmes 4 à 7 : Multimédia, Tableaux, Liens, Scripts |
 | [`references/criteres-structure-presentation.md`](references/criteres-structure-presentation.md) | Thèmes 8 à 10 : Éléments obligatoires, Structure, Présentation |
@@ -50,7 +54,7 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 
 ## Vérifier le classement des critères
 
-Le classement dit, pour chaque critère, ce que l’assistant peut trancher à la lecture du code. Après avoir modifié un fichier de `references/classement/` ou le catalogue des questions de phase 2 du `SKILL.md`, lancer depuis le dossier de la skill :
+Le classement dit, pour chaque critère, ce que l’assistant peut trancher à la lecture du code. Après avoir modifié un fichier de `references/classement/` ou le catalogue des questions de phase 2 du `SKILL.md`, lancer depuis le dossier de la skill (Python 3.8 minimum, sans dépendance) :
 
 ```bash
 python3 scripts/check-classement.py
@@ -62,6 +66,18 @@ Le script a son propre test, sans réseau :
 
 ```bash
 sh scripts/test-check-classement.sh
+```
+
+## Texte officiel des critères
+
+Chaque critère des fichiers `references/criteres-*.md` porte un bloc « Texte officiel » : intitulé, tests numérotés, cas particuliers et notes techniques, copiés mot pour mot de la méthodologie officielle. L’assistant juge chaque critère contre ces tests et cite le test en défaut avant de conclure NC. Un critère classé « jugement humain » ne porte que son intitulé : l’assistant n’en tranche pas les tests.
+
+Ces blocs sont générés depuis [`sources/`](sources/) et ne se modifient jamais à la main. Après un changement de la source ou du classement, puis avant chaque commit :
+
+```bash
+python3 scripts/officiel.py --write   # régénère les blocs et le glossaire
+python3 scripts/officiel.py           # contrôle : code de sortie 1 au moindre écart
+sh scripts/test-officiel.sh           # test du script, sans réseau
 ```
 
 ## Liens utiles
