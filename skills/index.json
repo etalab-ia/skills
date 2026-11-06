@@ -54,7 +54,7 @@
     },
     {
       "name": "rgaa",
-      "version": "57e793c9d36b",
+      "version": "6816c481f3df",
       "files": [
         "README.md",
         "SKILL.md",
@@ -62,7 +62,8 @@
         "references/criteres-images-cadres-couleurs.md",
         "references/criteres-multimedia-tableaux-liens-scripts.md",
         "references/criteres-navigation-consultation.md",
-        "references/criteres-structure-presentation.md"
+        "references/criteres-structure-presentation.md",
+        "references/impacts.md"
       ]
     },
     {
