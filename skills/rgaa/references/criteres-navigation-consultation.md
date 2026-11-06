@@ -113,7 +113,7 @@ Chaque zone principale doit être identifiable via landmark ARIA ou titre.
 
 ### 12.11 Contenus additionnels atteignables au clavier
 
-**Test :** Vérifier que les contenus apparaissant au survol ou au focus (tooltips, sous-menus) sont atteignables et consultables au clavier sans disparaître.
+**Test :** Vérifier que les contenus apparaissant au survol, au focus ou à l’activation (tooltips, sous-menus, listes déroulantes personnalisées) sont atteignables et consultables au clavier sans disparaître.
 **Non-conformité type :** Sous-menu qui s'ouvre au survol mais se ferme dès qu'on essaie de le parcourir au clavier.
 **Priorité :** 🟠 Majeur
 
