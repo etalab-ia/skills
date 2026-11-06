@@ -1,0 +1,16 @@
+name: Check skills index
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run index build tests
+        run: python3 scripts/test_build_index.py
+      - name: Check index.json is up to date
+        run: python3 scripts/build_index.py --check
