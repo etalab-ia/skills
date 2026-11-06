@@ -61,8 +61,8 @@ Les cas listés après « Le code prouve : NC… » sont des exemples, pas une l
 
 **Mode page ou composant :**
 
-- **Page** : document complet (`<html>`, `<head>`), layout ou gabarit de route (`app/views/layouts/`, `pages/`, `app/**/page.tsx`, `index.html`).
-- **Composant** : tout le reste (composant, partial, fragment de page).
+- **Page** : document complet (`<html>`, `<head>`), layout ou gabarit de route (`app/views/layouts/`, `pages/`, `app/**/page.tsx`, `index.html`). Une vue d’action Rails (`app/views/<ressource>/<action>.html.erb`) est un gabarit de route : l’évaluer avec le layout qui l’enveloppe.
+- **Composant** : tout le reste (composant, partial `_*.html.erb`, fragment de page).
 
 En mode composant, 13 critères ne sont pas évalués, car ils dépendent de la page complète ou de l’ensemble de pages : 8.1, 8.3 à 8.6, 9.2 et 12.1 à 12.7. Les compter à part, en « non évalués — mode composant », jamais en NA. Les autres critères de ces thèmes s’évaluent sur le fragment audité. Indiquer le mode dans l’en-tête du rapport.
 
