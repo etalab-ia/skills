@@ -54,16 +54,23 @@
     },
     {
       "name": "rgaa",
-      "version": "6816c481f3df",
+      "version": "a28ccfb09fd9",
       "files": [
         "README.md",
         "SKILL.md",
+        "references/classement/criteres-1-3.md",
+        "references/classement/criteres-11.md",
+        "references/classement/criteres-12-13.md",
+        "references/classement/criteres-4-7.md",
+        "references/classement/criteres-8-10.md",
         "references/criteres-formulaires.md",
         "references/criteres-images-cadres-couleurs.md",
         "references/criteres-multimedia-tableaux-liens-scripts.md",
         "references/criteres-navigation-consultation.md",
         "references/criteres-structure-presentation.md",
-        "references/impacts.md"
+        "references/impacts.md",
+        "scripts/check-classement.py",
+        "scripts/test-check-classement.sh"
       ]
     },
     {
