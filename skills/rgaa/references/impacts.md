@@ -91,7 +91,7 @@ Pour une personne sensible aux mouvements ou aux flashs, une animation qu’on n
 
 | Défaut | Impact | Critères |
 |--------|--------|----------|
-| Contenu qui clignote plus de 3 fois par seconde | Risque de crise d’épilepsie | 13.7 |
+| Contenu étendu qui clignote 3 fois par seconde ou plus | Risque de crise d’épilepsie | 13.7 |
 | Animation impossible à mettre en pause ou à arrêter | Nausées, vertiges, impossibilité de se concentrer sur la lecture | 13.8 |
 
 ---
