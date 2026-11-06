@@ -121,17 +121,21 @@ Audit terminé. Quel résultat souhaites-tu ?
 
 Sans réponse, ou en exécution non interactive (agent, script) : sauter les phases 2 et 3, laisser en NT les critères « conditions réelles » et les critères « mixte » dont le code ne prouve rien, produire le rapport et l’exporter.
 
-## Format du rapport de conformité
+## Format du rapport
 
 ```markdown
-## Audit RGAA 4.1.2 — Rapport de conformité
+## Rapport d’auto-évaluation RGAA assistée par IA
 
-**Date :** JJ/MM/AAAA
-**Périmètre audité :** [description du code / page / composant]
-**Stack :** [HTML | React / JSX | Rails / ERB] (déduite de [l’extension du fichier | la syntaxe du code | le projet])
-**Mode :** [page | composant]
-**Résultat global :** X% conforme
-(X critères applicables — X conformes, X non conformes ; X non applicables, X non testés et X non évalués en mode composant, exclus du taux)
+> Produit par une IA à partir du code : ce n’est pas un audit de conformité RGAA, et une partie des critères reste à vérifier par une personne.
+
+- **Référentiel :** RGAA 4.1.2
+- **Date :** JJ/MM/AAAA
+- **Périmètre :** [description du code / page / composant]
+- **Stack :** [HTML | React / JSX | Rails / ERB] (déduite de [l’extension du fichier | la syntaxe du code | le projet])
+- **Mode :** [page | composant]
+- **Bilan :** X conformes, X non conformes, X non testés, X non applicables[, X non évalués (mode composant)] (106 critères)
+- **À vérifier par une personne :** les X critères non testés, listés dans « Critères non testés »
+- **Taux sur les critères tranchés :** X % (X C sur X C + NC), indicatif, ne vaut pas déclaration de conformité
 
 ---
 
