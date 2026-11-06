@@ -85,7 +85,7 @@ Après l’analyse, poser en un seul message les vérifications que le code seul
 | **Focus visible** | 🔴 | Focus visible sur tous les éléments interactifs ? |
 | **CAPTCHA** | 🔴 | Le CAPTCHA propose-t-il une autre forme d’accès (audio, question) ? |
 | **Titre de la page** | 🔴 | Le titre de la page est-il pertinent et spécifique ? |
-| **Zoom et reflow** | 🟠 | Zoom à 200 %, fenêtre de 320 px de large, fenêtre de 256 px de haut et espacement du texte augmenté testés ? (aucun texte coupé, pas de défilement horizontal à 320 px, pas de défilement vertical à 256 px pour un contenu qui se lit verticalement) |
+| **Zoom et reflow** | 🟠 | Zoom à 200 %, fenêtre de 320 px de large, fenêtre de 256 px de haut et espacement du texte augmenté testés ? (aucun texte coupé, pas de défilement horizontal à 320 px, pas de défilement vertical à 256 px pour un contenu en écriture verticale, conçu pour défiler horizontalement : une page en français n’est pas concernée) |
 | **Contrastes** | 🟠 | Contrastes vérifiés ? (texte, composants d’interface, liens dans un texte) |
 | **Sans feuille de style** | 🟠 | Contenu consulté sans feuille de style ? (information toujours présente, ordre de lecture compréhensible) |
 | **Orientation** | 🟡 | Contenu consulté en portrait puis en paysage ? |
@@ -93,13 +93,17 @@ Après l’analyse, poser en un seul message les vérifications que le code seul
 Exemple de message, quand seuls les critères des questions « Clavier » et « Contrastes » restent NT :
 
 ```
-Avant de finaliser le rapport, quelques vérifications que le code seul ne permet pas :
+Avant de finaliser le rapport, quelques vérifications que le code seul ne permet pas. Pour chacune, indique le résultat et les défauts observés (élément, touche ou écran concerné), pas seulement si le test a été fait :
 
 🔴 Test au clavier et au pointeur effectué ? (Tab, Maj+Tab, Entrée, Espace, Échap, flèches sur chaque élément interactif ; on sort de chaque composant au clavier ; chaque commande s’utilise au pointeur ; un contenu additionnel reste visible quand le pointeur passe dessus)
 🟠 Contrastes vérifiés ? (texte, composants d’interface, liens dans un texte)
 ```
 
-Chaque réponse confirme ou corrige les verdicts des critères qui citent la question : un critère NT passe en C ou NC. Sans réponse, il reste NT.
+Chaque réponse confirme ou corrige les verdicts des critères qui citent la question. Un « oui » ou « fait » dit que le test a eu lieu, pas qu’il a réussi : sans résultat, redemander le résultat et les défauts observés avant de lever NT. Puis, critère par critère :
+
+- **NC** : la réponse rapporte un défaut qui relève du critère. Le décrire avec l’élément concerné.
+- **C** : la réponse couvre ce que le critère vérifie (sa ligne « Reste : ») et ne rapporte aucun défaut.
+- **NT** : pas de réponse, réponse sans résultat, ou réponse qui ne couvre pas ce que vérifie le critère.
 
 ### Phase 3 — Format de sortie
 
@@ -217,7 +221,7 @@ Si un fichier du même nom existe déjà, ajouter un suffixe incrémental : `rga
 |----------|------------|---------|
 | 🔴 **Bloquant** | Bloque l'accès au contenu ou à la fonctionnalité pour une personne qui utilise une aide technique | Image sans `alt`, champ sans label, lien vide, piège au clavier, focus non visible |
 | 🟠 **Majeur** | Impact fort sur l'expérience mais contournable selon l’aide technique utilisée | Contraste insuffisant, hiérarchie de titres cassée, lien non explicite |
-| 🟡 **Mineur** | Gêne légère, dégradation de l'expérience sans blocage | `autocomplete` manquant, `caption` de tableau absent, nouvelle fenêtre non signalée |
+| 🟡 **Mineur** | Gêne légère, dégradation de l’expérience sans blocage | `autocomplete` manquant, `caption` de tableau absent, nouvelle fenêtre ouverte au chargement |
 
 ## Référence détaillée des critères
 

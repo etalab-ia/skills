@@ -50,7 +50,7 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 
 ## Vérifier le classement des critères
 
-Le classement dit, pour chaque critère, ce que l’assistant peut trancher à la lecture du code. Après avoir modifié un fichier de `references/classement/` ou le catalogue des questions de phase 2 du `SKILL.md`, lancer depuis le dossier de la skill :
+Le classement dit, pour chaque critère, ce que l’assistant peut trancher à la lecture du code. Après avoir modifié un fichier de `references/classement/` ou le catalogue des questions de phase 2 du `SKILL.md`, lancer depuis le dossier de la skill (Python 3.8 minimum, sans dépendance) :
 
 ```bash
 python3 scripts/check-classement.py
