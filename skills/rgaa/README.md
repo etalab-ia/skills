@@ -68,7 +68,7 @@ Une fois la skill installée, l'assistant IA peut répondre à des demandes comm
 
 - *"Audite l'accessibilité de ce composant formulaire"*
 - *"Mon site est-il conforme RGAA ? Voici le code de la page d'accueil"*
-- *"Génère un rapport de conformité RGAA pour ces composants React"*
+- *"Génère un rapport d’auto-évaluation RGAA pour ces composants React"*
 - *"Quelles sont les non-conformités RGAA de ce HTML ?"*
 
 ## Vérifier le classement des critères

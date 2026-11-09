@@ -121,7 +121,7 @@ Component docs: https://www.systeme-de-design.gouv.fr/version-courante/fr/compos
 | Rails | `dsfr-view-components` | https://github.com/betagouv/dsfr-view-components |
 | Keycloak | `keycloak-theme-dsfr` | https://github.com/codegouvfr/keycloak-theme-dsfr |
 
-> Use the DSFR implementation matching your project's stack. RGAA 4.2 accessibility compliance is built in.
+> Use the DSFR implementation matching your project's stack. RGAA 4.1.2 accessibility compliance is built in.
 
 > For React projects, the `react-dsfr` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides detailed component reference and code patterns.
 
@@ -139,10 +139,10 @@ Component docs: https://www.systeme-de-design.gouv.fr/version-courante/fr/compos
 
 ## Accessibility — RGAA
 
-RGAA 4.2 compliance (WCAG 2.1 AA) is mandatory.
+RGAA 4.1.2 compliance (WCAG 2.1 AA) is mandatory.
 Ref: https://accessibilite.numerique.gouv.fr/
 
-> For a comprehensive audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 106-criteria audit tool that produces structured conformity reports.
+> To prepare an audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) runs an AI-assisted self-assessment of the 106 criteria. Its structured report supports an audit; it is not a conformity audit.
 
 ### Images
 
@@ -408,7 +408,7 @@ fix/description-courte
 The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides AI coding assistant skills tailored for French government projects:
 
 - **react-dsfr** — React component reference for the DSFR design system (`@codegouvfr/react-dsfr`)
-- **rgaa** — Full 106-criteria RGAA accessibility audit tool with structured conformity reports
+- **rgaa** — AI-assisted RGAA 4.1.2 self-assessment (106 criteria); produces a structured report that supports an audit, not a conformity audit
 - **securite-developpement** — Comprehensive 12-rule security checklist for government app development
 - **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular data)
 
@@ -426,7 +426,7 @@ The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides 
 **DSFR & accessibility:**
 - [DSFR — Components](https://www.systeme-de-design.gouv.fr/)
 - [react-dsfr](https://github.com/codegouvfr/react-dsfr)
-- [RGAA 4.2](https://accessibilite.numerique.gouv.fr/)
+- [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/)
 
 **Security & compliance:**
 - [ANSSI — Security rules](https://cyber.gouv.fr/les-regles-de-securite)
