@@ -48,7 +48,7 @@ The `datagouv-apis` skill is synced from an external repo (`datagouv/datagouv-sk
 ## Conventions
 
 - All content is in **French**
-- Skills target React/TypeScript projects
+- Skills target React/TypeScript projects, except `rgaa`, which audits HTML, React/JSX and Rails/ERB code
 - SKILL.md files use YAML frontmatter (`---` delimiters) with `name` and `description` fields; RAG skills additionally use `provider` and `available-providers` fields
 - Reference files are split by theme/topic to keep individual files manageable
 - After any change to a skill, run `python3 scripts/build_index.py` to regenerate `skills/index.json` and `skills/.experimental/index.json` (checked in CI)
