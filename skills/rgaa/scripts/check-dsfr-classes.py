@@ -42,7 +42,7 @@ COMMENT = re.compile(
     r"""<%#.*?(?:%>|$)|<!--.*?(?:-->|$)|(?<![\w/"'`])/\*.*?(?:\*/|$)"""
     r"""|(?<![\w:/"'`])//.*$|(?:^|(?<=\s))#\s.*$"""
 )
-FR_CLASS = re.compile(r"(?<![\w/-])fr-[a-z0-9]+(?:(?:--|__|-)[a-z0-9]+)*(?:@[a-z]+)?(?![\w-])")
+FR_CLASS = re.compile(r"(?<![\w/-])fr-[\w@-]+")
 
 
 class CheckError(Exception):
@@ -99,8 +99,12 @@ def code_lines(markdown: str):
 def class_tokens(line: str) -> list[str]:
     """Classes fr-* d'une ligne, hors commentaires, chemins et valeurs d'identifiants.
 
-    Masquage plutôt que liste des constructions porteuses de classes : une
-    construction inconnue donne au pire une fausse alerte, jamais un oubli.
+    Le jeton est pris entier (`fr-` suivi de tout caractère de classe, `@md`
+    compris) : une classe mal formée (`fr-radio-`, `fr-Radio`) est ainsi
+    vérifiée comme les autres au lieu d'échapper à l'extraction. Le masquage
+    des commentaires, chemins et valeurs d'identifiants, lui, se contente de
+    retirer ce qui n'est pas une classe : une construction inconnue donne au
+    pire une fausse alerte, jamais un oubli.
     """
     masked = COMMENT.sub("", line)
     masked = IDENTIFIER_VALUE.sub(lambda m: " " * len(m.group(0)), masked)

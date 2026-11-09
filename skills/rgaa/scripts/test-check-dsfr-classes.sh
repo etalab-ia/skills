@@ -18,6 +18,7 @@ fail() {
 css="$tmp_dir/dsfr-minimal.css"
 clean="$tmp_dir/formulaires-propre.md"
 faulty="$tmp_dir/formulaires-fautif.md"
+malformed="$tmp_dir/formulaires-malformes.md"
 rails="$tmp_dir/rails.md"
 react="$tmp_dir/react.md"
 not_classes="$tmp_dir/hors-classes.md"
@@ -62,6 +63,14 @@ cat >>"$faulty" <<'EOF'
 ```
 EOF
 
+cat >"$malformed" <<'EOF'
+```erb
+<input class="fr-input fr-radio-" type="radio" id="civilite_mme">
+<button class="fr-btn--" type="submit">Envoyer</button>
+<span class="fr-Radio">Civilité</span>
+```
+EOF
+
 cat >"$rails" <<'EOF'
 ```ruby
 <%= f.radio_button :civilite, :mme, class: %w[fr-btn fr-radio] %>
@@ -84,6 +93,8 @@ cat >"$not_classes" <<'EOF'
 // fr-radio n’est pas une classe du DSFR
 const route = "/fr-aide"
 const page = `/aide/fr-radio`
+const motif = "les classes fr-* du DSFR"
+<%# classes fr-* du DSFR %>
 <html lang="fr-fr">
 <html lang={"fr-fr"}>
 <a hrefLang="fr-fr" href="/aide">Aide</a>
@@ -134,6 +145,16 @@ grep -q "formulaires-fautif.md:$faulty_line: classe inconnue « fr-radio »" "$o
   fail "La classe fr-radio n’est pas signalée avec fichier et ligne : $(cat "$output")"
 [ "$(grep -c 'classe inconnue' "$output")" -eq 1 ] ||
   fail "Une classe hors bloc de code ou un identifiant a été signalé : $(cat "$output")"
+
+status=0
+python3 "$script" --css "$css" "$malformed" >"$output" 2>&1 || status=$?
+[ "$status" -eq 1 ] || fail "Une classe fr-* mal formée a été acceptée (code $status) : $(cat "$output")"
+for name in 'fr-radio-' 'fr-btn--' 'fr-Radio'; do
+  grep -q "classe inconnue « $name »" "$output" ||
+    fail "La classe mal formée $name n’est pas signalée : $(cat "$output")"
+done
+[ "$(grep -c 'classe inconnue' "$output")" -eq 3 ] ||
+  fail "Le fichier aux classes mal formées n’a pas donné trois signalements : $(cat "$output")"
 
 status=0
 python3 "$script" --css "$css" "$rails" >"$output" 2>&1 || status=$?
