@@ -27,7 +27,8 @@ Indiquer dans l’en-tête du rapport la stack retenue et ce qui l’a détermin
 
 **Choisir la correction :**
 
-- Quand le critère a des blocs « Correction — React / JSX » et « Correction — Rails / ERB » dans sa référence, reprendre le bloc de la stack retenue. Si le bloc manque pour ce critère, rédiger la correction dans la stack retenue. Si le bloc ne convient pas au défaut, ou si le projet a déjà son propre mécanisme, adapter la correction et le signaler.
+- Les corrections sont dans `references/corrections/`, sous le même nom de fichier que la référence du thème. Ne les lire que pour rédiger la correction d’une NC.
+- Quand le critère a des blocs « Correction — React / JSX » et « Correction — Rails / ERB », reprendre le bloc de la stack retenue. Si le bloc manque pour ce critère, rédiger la correction dans la stack retenue. Si le bloc ne convient pas au défaut, ou si le projet a déjà son propre mécanisme, adapter la correction et le signaler.
 - Quand la référence n’a qu’un exemple, sans bloc par stack : en React / JSX, le reprendre ; en Rails / ERB, le transposer (`className` → `class`, `htmlFor` → `for`, expressions JSX → ERB) et le signaler par « exemple transposé depuis React » ; en HTML ou pour une autre stack, en donner la version HTML.
 - Ne jamais inventer de classe `fr-*` du DSFR : n’utiliser que celles déjà présentes dans les références ou dans le code audité.
 - Même règle pour le balisage d’un composant DSFR : si aucun bloc de la référence ni le code audité ne le montre, ne pas écrire sa structure de mémoire ; renvoyer à la documentation du composant sur [le site du DSFR](https://www.systeme-de-design.gouv.fr/).
@@ -40,7 +41,7 @@ Lire le code et établir les verdicts sans poser de question :
 
 1. Déterminer la stack (section précédente) et le mode page ou composant (ci-dessous).
 2. Lire aussi les fichiers liés au code audité quand ils existent (script, styles, classe du composant) : ils portent souvent les comportements à vérifier.
-3. Lire les cinq fichiers de classement (`references/classement/`, voir « Référence détaillée des critères ») : ils donnent le mode d’évaluation de chaque critère. Puis parcourir les thèmes à évaluer en consultant les fichiers de référence.
+3. Lire les cinq fichiers de classement (`references/classement/`, voir « Référence détaillée des critères ») : ils donnent le mode d’évaluation de chaque critère. Puis parcourir les thèmes à évaluer en consultant les fichiers de référence. Pour chaque critère, lire son bloc « Texte officiel » : l’intitulé, les tests numérotés, les cas particuliers et les notes techniques, copiés mot pour mot de la méthodologie officielle. Le verdict se juge contre ces tests ; les cas particuliers disent souvent quand le critère est NA. Un terme en italique est défini dans le glossaire officiel ([references/glossaire.md](references/glossaire.md)) : quand le verdict dépend de sa définition, chercher le terme parmi les titres `###` du glossaire, sans lire le fichier en entier.
 4. Attribuer à chaque critère un statut, en appliquant la règle de tri par impact et le mode du critère :
    - **C** — Conforme : critère respecté
    - **NC** — Non conforme : critère violé (identifier l’élément et le problème)
@@ -71,9 +72,10 @@ Le RGAA vérifie un défaut restitué à la personne qui consulte la page. Raiso
 
 1. **Avant de conclure NC** : nommer l’impact concret, c’est-à-dire le blocage et l’outil concerné (voir [references/impacts.md](references/impacts.md)). Sans impact réel (élément purement décoratif, règle sans objet dans ce cas), ce n’est pas une NC : classer C ou NA.
 2. **Avant de conclure C** : vérifier que le mode du critère le permet. C n’est possible qu’en mode code, quand la ligne « mixte » prévoit un C (« Le code prouve : C… »), ou après une réponse de phase 2 à la question que cite le critère. Avoir parcouru le critère et vérifié qu’aucun motif à risque n’est présent. L’absence de défaut visible ne suffit pas : en mode mixte, elle donne NT.
-3. **Avant de conclure NA** : vérifier que le critère ne s’applique vraiment pas à ce contenu, pas seulement qu’aucun défaut n’a été trouvé.
+3. **Avant de conclure NA** : vérifier que le critère ne s’applique vraiment pas à ce contenu, pas seulement qu’aucun défaut n’a été trouvé. NA quand l’élément visé par les tests officiels est absent, même si cette absence est la NC d’un autre critère : la justification renvoie à cette NC (aucun `<th>` → 5.7 NA, « en-têtes absents : NC en 5.6 »). Sauf si la ligne de classement en dispose autrement.
+4. **Un élément, plusieurs critères** : un élément qui échoue aux tests de plusieurs critères est NC dans chacun, sans dédoublonnage. La correction groupée les résout en une modification.
 
-**Critère officiel :** chaque NC renvoie au critère officiel, par un lien de la forme `https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/#11.1`. Les « non-conformités types » des fichiers de référence sont des exemples : la règle reste le critère officiel et ses tests. Ne pas citer de numéro de test, les fichiers de référence n’en contiennent pas encore.
+**Critère officiel :** avant de conclure NC, désigner le test officiel que le code ne satisfait pas (« test 1.1.5 ») et citer la condition en cause. Sans test officiel en défaut, pas de NC : reprendre l’analyse ou classer NT. Chaque NC renvoie au critère officiel, par un lien de la forme `https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/#11.1`, et propose une correction. Les « non-conformités types » des fichiers de référence sont des exemples : la règle reste le texte officiel. Un critère classé « jugement humain » n’a que son intitulé officiel : il suffit à décider NA, ses tests restent à l’auditeur.
 
 ### Phase 2 — Vérifications en conditions réelles
 
@@ -85,7 +87,7 @@ Après l’analyse, poser en un seul message les vérifications que le code seul
 | **Focus visible** | 🔴 | Focus visible sur tous les éléments interactifs ? |
 | **CAPTCHA** | 🔴 | Le CAPTCHA propose-t-il une autre forme d’accès (audio, question) ? |
 | **Titre de la page** | 🔴 | Le titre de la page est-il pertinent et spécifique ? |
-| **Zoom et reflow** | 🟠 | Zoom à 200 %, fenêtre de 320 px de large, fenêtre de 256 px de haut et espacement du texte augmenté testés ? (aucun texte coupé, pas de défilement horizontal à 320 px, pas de défilement vertical à 256 px pour un contenu qui se lit verticalement) |
+| **Zoom et reflow** | 🟠 | Zoom à 200 %, fenêtre de 320 px de large, fenêtre de 256 px de haut et espacement du texte augmenté testés ? (aucun texte coupé, pas de défilement horizontal à 320 px, pas de défilement vertical à 256 px pour un contenu en écriture verticale, conçu pour défiler horizontalement : une page en français n’est pas concernée) |
 | **Contrastes** | 🟠 | Contrastes vérifiés ? (texte, composants d’interface, liens dans un texte) |
 | **Sans feuille de style** | 🟠 | Contenu consulté sans feuille de style ? (information toujours présente, ordre de lecture compréhensible) |
 | **Orientation** | 🟡 | Contenu consulté en portrait puis en paysage ? |
@@ -93,13 +95,17 @@ Après l’analyse, poser en un seul message les vérifications que le code seul
 Exemple de message, quand seuls les critères des questions « Clavier » et « Contrastes » restent NT :
 
 ```
-Avant de finaliser le rapport, quelques vérifications que le code seul ne permet pas :
+Avant de finaliser le rapport, quelques vérifications que le code seul ne permet pas. Pour chacune, indique le résultat et les défauts observés (élément, touche ou écran concerné), pas seulement si le test a été fait :
 
 🔴 Test au clavier et au pointeur effectué ? (Tab, Maj+Tab, Entrée, Espace, Échap, flèches sur chaque élément interactif ; on sort de chaque composant au clavier ; chaque commande s’utilise au pointeur ; un contenu additionnel reste visible quand le pointeur passe dessus)
 🟠 Contrastes vérifiés ? (texte, composants d’interface, liens dans un texte)
 ```
 
-Chaque réponse confirme ou corrige les verdicts des critères qui citent la question : un critère NT passe en C ou NC. Sans réponse, il reste NT.
+Chaque réponse confirme ou corrige les verdicts des critères qui citent la question. Un « oui » ou « fait » dit que le test a eu lieu, pas qu’il a réussi : sans résultat, redemander le résultat et les défauts observés avant de lever NT. Puis, critère par critère :
+
+- **NC** : la réponse rapporte un défaut qui relève du critère. Le décrire avec l’élément concerné.
+- **C** : la réponse couvre ce que le critère vérifie (sa ligne « Reste : ») et ne rapporte aucun défaut.
+- **NT** : pas de réponse, réponse sans résultat, ou réponse qui ne couvre pas ce que vérifie le critère.
 
 ### Phase 3 — Format de sortie
 
@@ -125,7 +131,7 @@ Sans réponse, ou en exécution non interactive (agent, script) : sauter les pha
 **Stack :** [HTML | React / JSX | Rails / ERB] (déduite de [l’extension du fichier | la syntaxe du code | le projet])
 **Mode :** [page | composant]
 **Résultat global :** X% conforme
-(X critères applicables — X conformes, X non conformes, X non applicables ; X non testés et X non évalués en mode composant, exclus du taux)
+(X critères applicables — X conformes, X non conformes ; X non applicables, X non testés et X non évalués en mode composant, exclus du taux)
 
 ---
 
@@ -156,6 +162,7 @@ En mode composant, les lignes 8, 9 et 12 ne comptent que les critères évalués
 
 **[NC] {ID} — {Intitulé du critère}** ([critère officiel](https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/#{ID}))
 - **Élément concerné :** `<code>` ou description de l’endroit dans la page
+- **Test officiel en défaut :** {ID}.{n} — condition non satisfaite, citée du texte officiel
 - **Problème :** description précise de la violation
 - **Impact utilisateur :** mécanisme du blocage et outil concerné
 - **Correction :** action concrète à mener, dans la stack retenue
@@ -217,11 +224,13 @@ Si un fichier du même nom existe déjà, ajouter un suffixe incrémental : `rga
 |----------|------------|---------|
 | 🔴 **Bloquant** | Bloque l'accès au contenu ou à la fonctionnalité pour une personne qui utilise une aide technique | Image sans `alt`, champ sans label, lien vide, piège au clavier, focus non visible |
 | 🟠 **Majeur** | Impact fort sur l'expérience mais contournable selon l’aide technique utilisée | Contraste insuffisant, hiérarchie de titres cassée, lien non explicite |
-| 🟡 **Mineur** | Gêne légère, dégradation de l'expérience sans blocage | `autocomplete` manquant, `caption` de tableau absent, nouvelle fenêtre non signalée |
+| 🟡 **Mineur** | Gêne légère, dégradation de l’expérience sans blocage | `autocomplete` manquant, `caption` de tableau absent, nouvelle fenêtre ouverte au chargement |
+
+Chaque NC reprend la ligne **Priorité** de sa référence. Ne s’en écarter que si l’impact du défaut constaté diffère de la ligne **Impact** de la référence, et l’écrire : « 🟡 Mineur (référence : 🔴 ; motif) ».
 
 ## Référence détaillée des critères
 
-Chaque fichier de référence liste les critères avec leur condition, test de code, non-conformité type et priorité, ainsi que leur impact et leurs corrections par stack quand ils existent. Chaque fichier de classement donne, en une ligne par critère, son mode d’évaluation, ce que le code prouve et ce qui reste à vérifier. Lire les cinq fichiers de classement en phase 1, avant les références : chaque audit attribue un statut aux 106 critères.
+Chaque fichier de référence liste les critères avec leur texte officiel (bloc « Texte officiel », généré depuis la méthodologie officielle : ne jamais le reformuler), leur non-conformité type, leur impact et leur priorité. Les corrections par stack sont dans `references/corrections/`, sous le même nom de fichier. Chaque fichier de classement donne, en une ligne par critère, son mode d’évaluation, ce que le code prouve et ce qui reste à vérifier. Lire les cinq fichiers de classement en phase 1, avant les références : chaque audit attribue un statut aux 106 critères.
 
 - **Images, Cadres, Couleurs** (thèmes 1–3, 14 critères) : [references/criteres-images-cadres-couleurs.md](references/criteres-images-cadres-couleurs.md) ; classement : [references/classement/criteres-1-3.md](references/classement/criteres-1-3.md)
 - **Multimédia, Tableaux, Liens, Scripts** (thèmes 4–7, 28 critères) : [references/criteres-multimedia-tableaux-liens-scripts.md](references/criteres-multimedia-tableaux-liens-scripts.md) ; classement : [references/classement/criteres-4-7.md](references/classement/criteres-4-7.md)
@@ -229,3 +238,4 @@ Chaque fichier de référence liste les critères avec leur condition, test de c
 - **Formulaires** (thème 11, 13 critères) : [references/criteres-formulaires.md](references/criteres-formulaires.md) ; classement : [references/classement/criteres-11.md](references/classement/criteres-11.md)
 - **Navigation, Consultation** (thèmes 12–13, 23 critères) : [references/criteres-navigation-consultation.md](references/criteres-navigation-consultation.md) ; classement : [references/classement/criteres-12-13.md](references/classement/criteres-12-13.md)
 - **Impacts par mécanisme de blocage** (tous thèmes, pour la ligne « Impact utilisateur ») : [references/impacts.md](references/impacts.md)
+- **Glossaire officiel** (à consulter terme par terme, jamais en entier) : [references/glossaire.md](references/glossaire.md)

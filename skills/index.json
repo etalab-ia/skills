@@ -54,7 +54,7 @@
     },
     {
       "name": "rgaa",
-      "version": "7e40784a1993",
+      "version": "26d70a113634",
       "files": [
         "README.md",
         "SKILL.md",
@@ -63,16 +63,24 @@
         "references/classement/criteres-12-13.md",
         "references/classement/criteres-4-7.md",
         "references/classement/criteres-8-10.md",
+        "references/corrections/criteres-formulaires.md",
+        "references/corrections/criteres-images-cadres-couleurs.md",
+        "references/corrections/criteres-multimedia-tableaux-liens-scripts.md",
+        "references/corrections/criteres-navigation-consultation.md",
+        "references/corrections/criteres-structure-presentation.md",
         "references/criteres-formulaires.md",
         "references/criteres-images-cadres-couleurs.md",
         "references/criteres-multimedia-tableaux-liens-scripts.md",
         "references/criteres-navigation-consultation.md",
         "references/criteres-structure-presentation.md",
+        "references/glossaire.md",
         "references/impacts.md",
         "scripts/check-classement.py",
         "scripts/check-dsfr-classes.py",
+        "scripts/officiel.py",
         "scripts/test-check-classement.sh",
-        "scripts/test-check-dsfr-classes.sh"
+        "scripts/test-check-dsfr-classes.sh",
+        "scripts/test-officiel.sh"
       ]
     },
     {

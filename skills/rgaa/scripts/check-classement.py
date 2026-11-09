@@ -14,8 +14,10 @@ Usage :
     python3 scripts/check-classement.py --skill SKILL.md
 
 Codes de sortie : 0 conforme, 1 classement incomplet ou mal formé,
-2 erreur d’usage ou de lecture. Aucune dépendance externe.
+2 erreur d’usage ou de lecture. Aucune dépendance externe ; Python 3.8 minimum.
 """
+
+from __future__ import annotations
 
 import argparse
 import os
