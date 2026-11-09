@@ -14,7 +14,9 @@ Ce script génère deux fichiers :
 Règles de génération :
   - files   : tous les fichiers réguliers de la skill, récursivement, en chemins
               POSIX relatifs et triés. Sont exclus les fichiers cachés (nom
-              commençant par "."), les dossiers __pycache__ et les index.json.
+              commençant par "."), les dossiers __pycache__, les index.json et
+              le dossier sources/ à la racine de la skill (matériau de
+              génération, jamais lu à l'usage).
   - version : les 12 premiers caractères hexadécimaux d'un sha256 calculé sur
               (chemin + \0 + contenu) de chaque fichier, dans l'ordre trié.
               Résultat identique sur toutes les machines (pas de date ni de commit).
@@ -33,6 +35,8 @@ import sys
 
 # Fichiers et dossiers exclus de `files`.
 _EXCLUDED_DIRS = {"__pycache__"}
+# Dossiers exclus seulement à la racine de la skill.
+_EXCLUDED_TOP_DIRS = {"sources"}
 
 
 def _is_hidden(relpath: str) -> bool:
@@ -46,7 +50,11 @@ def collect_files(root: str) -> list:
     for dirpath, dirnames, filenames in os.walk(root):
         # On retire sur place les dossiers à ne pas parcourir.
         dirnames[:] = [
-            d for d in dirnames if d not in _EXCLUDED_DIRS and not d.startswith(".")
+            d
+            for d in dirnames
+            if d not in _EXCLUDED_DIRS
+            and not d.startswith(".")
+            and not (dirpath == root and d in _EXCLUDED_TOP_DIRS)
         ]
         for filename in filenames:
             if filename.startswith("."):

@@ -54,7 +54,7 @@
     },
     {
       "name": "rgaa",
-      "version": "334165ec2636",
+      "version": "26d70a113634",
       "files": [
         "README.md",
         "SKILL.md",
@@ -80,10 +80,7 @@
         "scripts/officiel.py",
         "scripts/test-check-classement.sh",
         "scripts/test-check-dsfr-classes.sh",
-        "scripts/test-officiel.sh",
-        "sources/README.md",
-        "sources/criteres.json",
-        "sources/glossaire.json"
+        "scripts/test-officiel.sh"
       ]
     },
     {

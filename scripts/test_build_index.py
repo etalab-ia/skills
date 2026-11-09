@@ -2,7 +2,8 @@
 """Tests de scripts/build_index.py sur une arborescence temporaire.
 
 Cas couverts :
-  - les fichiers cachés et __pycache__ sont exclus de `files`, et
+  - les fichiers cachés, __pycache__ et le dossier sources/ de premier
+    niveau sont exclus de `files`, et
     `skills/.experimental` n'est pas listé dans l'index officiel ;
   - `version` est stable d'une exécution à l'autre et change si un octet
     d'un fichier change ;
@@ -54,6 +55,23 @@ class CollectFilesTest(unittest.TestCase):
 
             files = build_index.collect_files(root)
             self.assertEqual(files, ["SKILL.md", "ok.txt"])
+
+    def test_excludes_top_level_sources_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = os.path.join(tmp, "skill")
+            for rel in (
+                "SKILL.md",
+                "sources/criteres.json",
+                "sources/README.md",
+                "references/sources/garde.md",
+            ):
+                path = os.path.join(root, rel)
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+                with open(path, "w", encoding="utf-8") as fh:
+                    fh.write("x\n")
+
+            files = build_index.collect_files(root)
+            self.assertEqual(files, ["SKILL.md", "references/sources/garde.md"])
 
 
 class BuildIndexTest(unittest.TestCase):

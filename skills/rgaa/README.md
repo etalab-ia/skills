@@ -22,7 +22,7 @@ C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il
 | [`scripts/check-classement.py`](scripts/check-classement.py) | Vérifie la complétude du classement des critères |
 | [`references/corrections/`](references/corrections/) | Corrections React / JSX et Rails / ERB par critère, lues seulement pour corriger une non-conformité |
 | [`references/glossaire.md`](references/glossaire.md) | Glossaire officiel, généré, consulté terme par terme |
-| [`sources/`](sources/) | Copie des fichiers officiels `criteres.json` et `glossaire.json` (DINUM, Licence Ouverte 2.0) |
+| [`sources/`](sources/) | Copie des fichiers officiels `criteres.json` et `glossaire.json` (DINUM, Licence Ouverte 2.0). Sert seulement à régénérer les blocs « Texte officiel » : absent de `index.json`, donc non distribué |
 | [`scripts/officiel.py`](scripts/officiel.py) | Génère et contrôle le texte officiel des critères dans les références |
 | [`references/criteres-images-cadres-couleurs.md`](references/criteres-images-cadres-couleurs.md) | Thèmes 1 à 3 : Images, Cadres, Couleurs |
 | [`references/criteres-multimedia-tableaux-liens-scripts.md`](references/criteres-multimedia-tableaux-liens-scripts.md) | Thèmes 4 à 7 : Multimédia, Tableaux, Liens, Scripts |
