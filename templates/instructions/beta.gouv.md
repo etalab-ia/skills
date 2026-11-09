@@ -121,7 +121,7 @@ Component docs: https://www.systeme-de-design.gouv.fr/version-courante/fr/compos
 | Rails | `dsfr-view-components` | https://github.com/betagouv/dsfr-view-components |
 | Keycloak | `keycloak-theme-dsfr` | https://github.com/codegouvfr/keycloak-theme-dsfr |
 
-> Use the DSFR implementation matching your project's stack. RGAA 4.2 accessibility compliance is built in.
+> Use the DSFR implementation matching your project's stack. RGAA 4.1.2 accessibility compliance is built in.
 
 > For React projects, the `react-dsfr` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides detailed component reference and code patterns.
 
@@ -139,7 +139,7 @@ Component docs: https://www.systeme-de-design.gouv.fr/version-courante/fr/compos
 
 ## Accessibility — RGAA
 
-RGAA 4.2 compliance (WCAG 2.1 AA) is mandatory.
+RGAA 4.1.2 compliance (WCAG 2.1 AA) is mandatory.
 Ref: https://accessibilite.numerique.gouv.fr/
 
 > For a comprehensive audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 106-criteria audit tool that produces structured conformity reports.
@@ -426,7 +426,7 @@ The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides 
 **DSFR & accessibility:**
 - [DSFR — Components](https://www.systeme-de-design.gouv.fr/)
 - [react-dsfr](https://github.com/codegouvfr/react-dsfr)
-- [RGAA 4.2](https://accessibilite.numerique.gouv.fr/)
+- [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/)
 
 **Security & compliance:**
 - [ANSSI — Security rules](https://cyber.gouv.fr/les-regles-de-securite)

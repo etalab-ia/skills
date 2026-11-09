@@ -75,7 +75,7 @@ MainLayout, Header, LeftPanel, RightPanel, Footer, Tabs, DropdownMenu, Input, Te
 
 ## Accessibility — RGAA
 
-RGAA 4.2 compliance (WCAG 2.1 AA) is mandatory.
+RGAA 4.1.2 compliance (WCAG 2.1 AA) is mandatory.
 Ref: https://accessibilite.numerique.gouv.fr/ + [handbook/accessibility](https://suitenumerique.gitbook.io/handbook/accessibility)
 
 > For a comprehensive audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 106-criteria audit tool that produces structured conformity reports.
