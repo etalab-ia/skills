@@ -54,7 +54,7 @@
     },
     {
       "name": "rgaa",
-      "version": "09640f0d4775",
+      "version": "692b32a00676",
       "files": [
         "README.md",
         "SKILL.md",
@@ -62,7 +62,9 @@
         "references/criteres-images-cadres-couleurs.md",
         "references/criteres-multimedia-tableaux-liens-scripts.md",
         "references/criteres-navigation-consultation.md",
-        "references/criteres-structure-presentation.md"
+        "references/criteres-structure-presentation.md",
+        "scripts/check-dsfr-classes.py",
+        "scripts/test-check-dsfr-classes.sh"
       ]
     },
     {
