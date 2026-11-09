@@ -11,7 +11,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | Skill | Description |
 |-------|-------------|
 | [**react-dsfr**](skills/react-dsfr/) | Interfaces React conformes au [Design System de l'État](https://www.systeme-de-design.gouv.fr/) avec `@codegouvfr/react-dsfr` |
-| [**rgaa**](skills/rgaa/) | Audit de conformité [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) — 106 critères d'accessibilité numérique |
+| [**rgaa**](skills/rgaa/) | Auto-évaluation [RGAA 4.1.2](https://accessibilite.numerique.gouv.fr/) assistée par IA — 106 critères d’accessibilité numérique |
 | [**lasuite-ui-kit**](skills/lasuite-ui-kit/) | Interfaces React pour [LaSuite](https://lasuite.numerique.gouv.fr/) avec `@gouvfr-lasuite/ui-kit` et `@gouvfr-lasuite/cunningham-react` |
 | [**securite-developpement**](skills/securite-developpement/) | 14 domaines de sécurité + 3 modules conditionnels (C, Rust, CMS), générés par la DINUM en s'appuyant sur [13 guides de l'ANSSI](skills/securite-developpement/references/sources.md) |
 | [**anssi-guides**](skills/anssi-guides/) | Trouver et consulter le bon guide dans le catalogue ANSSI (128 guides français + 1 publication anglaise sans équivalent au 29 septembre 2026), alimenté par l'API MesServicesCyber — aiguillage et citation, complémentaire de `securite-developpement` |

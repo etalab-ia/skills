@@ -1,15 +1,16 @@
 ---
 name: rgaa
 description: >-
-  Outil d'audit de conformité RGAA 4.1.2 pour sites web et composants HTML, React/JSX et Rails/ERB.
-  Utiliser cette skill pour auditer la conformité RGAA d'un site ou d'un composant :
-  quand l'utilisateur demande un audit d'accessibilité, un rapport de conformité RGAA,
-  quand il veut savoir si son code/site respecte le RGAA, quand il mentionne "audit RGAA",
-  "conformité RGAA", "non-conformités", "déclaration d'accessibilité", ou quand il partage
+  Auto-évaluation RGAA 4.1.2 assistée par IA pour sites web et composants HTML, React/JSX
+  et Rails/ERB : un rapport d’aide à l’audit, pas un audit de conformité.
+  Utiliser cette skill pour évaluer un site ou un composant au regard du RGAA :
+  quand l’utilisateur demande un audit d’accessibilité ou un rapport de conformité RGAA,
+  quand il veut savoir si son code/site respecte le RGAA, quand il mentionne « audit RGAA »,
+  « conformité RGAA », « non-conformités », « déclaration d’accessibilité », ou quand il partage
   du code HTML, React ou ERB pour vérification a posteriori.
 ---
 
-# RGAA 4.1.2 — Outil d'audit de conformité
+# RGAA 4.1.2 — Auto-évaluation assistée par IA
 
 Référentiel d'accessibilité numérique français. 106 critères répartis en 13 thématiques. Basé sur WCAG 2.1 niveau AA.
 
