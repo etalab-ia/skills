@@ -180,4 +180,27 @@ status=0
 python3 "$script" --css "$css" --dsfr-version 1.15.4 "$clean" >"$output" 2>&1 || status=$?
 [ "$status" -eq 2 ] || fail "--css et --dsfr-version ont été acceptés ensemble (code $status)"
 
+status=0
+python3 - "$script_dir" "$tmp_dir" >"$output" 2>&1 <<'PY' || status=$?
+import importlib.util
+import pathlib
+import sys
+
+script_dir, tmp_dir = sys.argv[1], sys.argv[2]
+spec = importlib.util.spec_from_file_location(
+    "check_dsfr_classes", pathlib.Path(script_dir) / "check-dsfr-classes.py"
+)
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+references = pathlib.Path(tmp_dir) / "references"
+(references / "corrections").mkdir(parents=True, exist_ok=True)
+(references / "themes.md").write_text("x", encoding="utf-8")
+(references / "corrections" / "formulaires.md").write_text("x", encoding="utf-8")
+module.REFERENCES = references
+names = sorted(pathlib.Path(path).name for path in module.default_files())
+assert names == ["formulaires.md", "themes.md"], names
+PY
+[ "$status" -eq 0 ] || fail "Les sous-dossiers de references/ échappent au contrôle par défaut : $(cat "$output")"
+
 echo "DSFR class checker tests passed"

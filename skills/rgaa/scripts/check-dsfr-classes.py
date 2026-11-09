@@ -7,7 +7,7 @@ classes `fr-*` des blocs de code Markdown et les cherche dans le CSS de la
 dernière version publiée de `@gouvfr/dsfr` (résolue à chaque lancement).
 
 Usage :
-    python3 scripts/check-dsfr-classes.py                    # references/*.md
+    python3 scripts/check-dsfr-classes.py                    # references/**/*.md
     python3 scripts/check-dsfr-classes.py fichier.md         # fichiers choisis
     python3 scripts/check-dsfr-classes.py --dsfr-version 1.15.4
     python3 scripts/check-dsfr-classes.py --css dsfr.min.css # CSS local
@@ -136,12 +136,12 @@ def check(files: list[str], known: set[str], source: str) -> int:
 
 
 def default_files() -> list[str]:
-    return [os.path.relpath(path) for path in sorted(REFERENCES.glob("*.md"))]
+    return [os.path.relpath(path) for path in sorted(REFERENCES.rglob("*.md"))]
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("files", nargs="*", help="fichiers Markdown (défaut : references/*.md)")
+    parser.add_argument("files", nargs="*", help="fichiers Markdown (défaut : references/**/*.md)")
     source = parser.add_mutually_exclusive_group()
     source.add_argument("--css", action="append", help="fichier CSS local (répétable)")
     source.add_argument("--dsfr-version", help="version précise du DSFR (défaut : la dernière)")
