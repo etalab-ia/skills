@@ -19,6 +19,7 @@ css="$tmp_dir/dsfr-minimal.css"
 clean="$tmp_dir/formulaires-propre.md"
 faulty="$tmp_dir/formulaires-fautif.md"
 malformed="$tmp_dir/formulaires-malformes.md"
+quoted="$tmp_dir/valeurs-commentaires.md"
 rails="$tmp_dir/rails.md"
 react="$tmp_dir/react.md"
 not_classes="$tmp_dir/hors-classes.md"
@@ -71,6 +72,14 @@ cat >"$malformed" <<'EOF'
 ```
 EOF
 
+cat >"$quoted" <<'EOF'
+```erb
+<input title="Étape # 1" class="fr-radio">
+<span title="Aide // assistance" className="fr-radio" />
+<input title="a \" b" class="fr-radio">
+```
+EOF
+
 cat >"$rails" <<'EOF'
 ```ruby
 <%= f.radio_button :civilite, :mme, class: %w[fr-btn fr-radio] %>
@@ -95,6 +104,8 @@ const route = "/fr-aide"
 const page = `/aide/fr-radio`
 const motif = "les classes fr-* du DSFR"
 <%# classes fr-* du DSFR %>
+<%# ne pas écrire "fr-radio" %>
+{/* "fr-radio" */}
 <html lang="fr-fr">
 <html lang={"fr-fr"}>
 <a hrefLang="fr-fr" href="/aide">Aide</a>
@@ -155,6 +166,16 @@ for name in 'fr-radio-' 'fr-btn--' 'fr-Radio'; do
 done
 [ "$(grep -c 'classe inconnue' "$output")" -eq 3 ] ||
   fail "Le fichier aux classes mal formées n’a pas donné trois signalements : $(cat "$output")"
+
+status=0
+python3 "$script" --css "$css" "$quoted" >"$output" 2>&1 || status=$?
+[ "$status" -eq 1 ] || fail "Une valeur contenant un marqueur de commentaire a masqué la classe suivante (code $status) : $(cat "$output")"
+for line in 2 3 4; do
+  grep -q "valeurs-commentaires.md:$line: classe inconnue « fr-radio »" "$output" ||
+    fail "La classe de la ligne $line a été masquée par un marqueur dans une chaîne : $(cat "$output")"
+done
+[ "$(grep -c 'classe inconnue' "$output")" -eq 3 ] ||
+  fail "Les valeurs entre guillemets n’ont pas donné trois signalements : $(cat "$output")"
 
 status=0
 python3 "$script" --css "$css" "$rails" >"$output" 2>&1 || status=$?

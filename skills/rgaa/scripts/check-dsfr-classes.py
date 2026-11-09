@@ -42,6 +42,7 @@ COMMENT = re.compile(
     r"""<%#.*?(?:%>|$)|<!--.*?(?:-->|$)|(?<![\w/"'`])/\*.*?(?:\*/|$)"""
     r"""|(?<![\w:/"'`])//.*$|(?:^|(?<=\s))#\s.*$"""
 )
+QUOTES = "'\"`"
 FR_CLASS = re.compile(r"(?<![\w/-])fr-[\w@-]+")
 
 
@@ -96,18 +97,52 @@ def code_lines(markdown: str):
             yield number, line
 
 
+def strip_comments(line: str) -> str:
+    """Retire les commentaires d'une ligne, guillemets respectés.
+
+    Un marqueur de commentaire à l'intérieur d'une chaîne (`title="Étape # 1"`,
+    `title="Aide // assistance"`) n'ouvre pas de commentaire : sans cela la fin
+    de la ligne disparaîtrait et une classe invalide placée après lui
+    échapperait au contrôle. Un commentaire, lui, avale tout jusqu'à sa fin,
+    guillemets compris.
+    """
+    kept, index, length, quote = [], 0, len(line), ""
+    while index < length:
+        char = line[index]
+        if quote:
+            kept.append(char)
+            index += 1
+            if char == "\\" and index < length:
+                kept.append(line[index])
+                index += 1
+            elif char == quote:
+                quote = ""
+            continue
+        if char in QUOTES:
+            quote = char
+            kept.append(char)
+            index += 1
+            continue
+        comment = COMMENT.match(line, index)
+        if comment:
+            index = comment.end()
+            continue
+        kept.append(char)
+        index += 1
+    return "".join(kept)
+
+
 def class_tokens(line: str) -> list[str]:
     """Classes fr-* d'une ligne, hors commentaires, chemins et valeurs d'identifiants.
 
     Le jeton est pris entier (`fr-` suivi de tout caractère de classe, `@md`
     compris) : une classe mal formée (`fr-radio-`, `fr-Radio`) est ainsi
     vérifiée comme les autres au lieu d'échapper à l'extraction. Le masquage
-    des commentaires, chemins et valeurs d'identifiants, lui, se contente de
-    retirer ce qui n'est pas une classe : une construction inconnue donne au
-    pire une fausse alerte, jamais un oubli.
+    des commentaires, chemins et valeurs d'identifiants est aveugle aux
+    constructions qu'il ne connaît pas : il ne retire que du texte, donc une
+    construction inconnue donne au pire une fausse alerte, jamais un oubli.
     """
-    masked = COMMENT.sub("", line)
-    masked = IDENTIFIER_VALUE.sub(lambda m: " " * len(m.group(0)), masked)
+    masked = IDENTIFIER_VALUE.sub(lambda m: " " * len(m.group(0)), strip_comments(line))
     return FR_CLASS.findall(masked)
 
 
