@@ -259,7 +259,7 @@ document.querySelector('[aria-invalid="true"]')?.focus()
 <div class="fr-input-group">
   <label class="fr-label" for="tel">Téléphone</label>
   <span class="fr-hint-text" id="hint-tel">Format attendu : 01 99 00 12 34</span>
-  <input class="fr-input" id="tel" type="tel" aria-describedby="hint-tel">
+  <input class="fr-input" id="tel" name="telephone" type="tel" aria-describedby="hint-tel">
 </div>
 ```
 
