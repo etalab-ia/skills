@@ -93,7 +93,7 @@ Les champs de même fonction (ex: "Email" dans formulaire de contact et d'inscri
 - Champs texte/select : étiquette au-dessus ou à gauche
 - Checkbox/radio : étiquette en-dessous ou à droite
 
-**Test :** Vérifier visuellement et dans le code la proximité entre chaque label et son champ. Le label et le champ doivent être contigus dans le DOM.
+**Test :** Vérifier sur le rendu que chaque label est visuellement proche de son champ, sans confusion possible sur leur relation. L’ordre du DOM ne suffit pas à conclure : le CSS peut repositionner les éléments.
 **Non-conformité type :** Label en haut de page référençant un champ en bas de page ; label séparé du champ par un autre élément.
 **Impact :** un label éloigné de son champ rompt l'association, notamment en agrandissement (zoom 200 %, loupe) où l'on perd le lien visuel entre les deux.
 **Priorité :** 🟠 Majeur
