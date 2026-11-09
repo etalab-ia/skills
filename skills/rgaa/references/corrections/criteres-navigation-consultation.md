@@ -53,7 +53,7 @@ Blocs de correction par stack, à lire seulement pour rédiger la correction d�
                 <label class="fr-label" for="recherche-input">
                   Rechercher
                 </label>
-                <input class="fr-input" aria-describedby="recherche-input-messages" placeholder="Rechercher" id="recherche-input" type="search">
+                <input class="fr-input" aria-describedby="recherche-input-messages" placeholder="Rechercher" id="recherche-input" name="q" type="search">
                 <div class="fr-messages-group" id="recherche-input-messages" aria-live="polite">
                 </div>
                 <button title="Rechercher" type="button" id="recherche-btn" class="fr-btn">Rechercher</button>
@@ -449,6 +449,7 @@ export default class extends Controller {
 <%# ✅ écouteur posé sur le composant, et composant Interrupteur du DSFR pour désactiver les raccourcis %>
 <div data-controller="liste">
   <div class="fr-toggle">
+    <%# sans name : piloté en JavaScript (Stimulus), jamais envoyé %>
     <input type="checkbox" class="fr-toggle__input" id="raccourcis-actifs" aria-describedby="raccourcis-actifs-messages" checked data-liste-target="interrupteur">
     <label class="fr-toggle__label" for="raccourcis-actifs">Activer les raccourcis clavier</label>
     <div class="fr-messages-group" id="raccourcis-actifs-messages" aria-live="polite">
@@ -902,6 +903,7 @@ useEffect(() => {
 <div data-controller="secousse" data-action="devicemotion@window->secousse#surMouvement">
   <button type="button" class="fr-btn" data-action="click->secousse#annuler">Annuler la dernière action</button>
   <div class="fr-toggle">
+    <%# sans name : piloté en JavaScript (Stimulus), jamais envoyé %>
     <input type="checkbox" class="fr-toggle__input" id="secousse-active" aria-describedby="secousse-active-messages" data-secousse-target="interrupteur">
     <label class="fr-toggle__label" for="secousse-active">Annuler en secouant l’appareil</label>
     <div class="fr-messages-group" id="secousse-active-messages" aria-live="polite">

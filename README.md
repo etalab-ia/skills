@@ -110,6 +110,7 @@ skills/
 │   ├── scripts/                  # contrôles des références, chacun avec son test test-*.sh
 │   │   ├── check-classement.py   # complétude du classement des 106 critères
 │   │   ├── check-dsfr-classes.py # classes fr-* des exemples contre le CSS DSFR publié
+│   │   ├── check-form-names.py   # champs des exemples HTML et ERB sans name
 │   │   └── officiel.py           # génère et contrôle les blocs « Texte officiel »
 │   ├── sources/                  # JSON officiels DINUM (critères, glossaire), non distribués
 │   └── references/
