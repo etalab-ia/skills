@@ -60,7 +60,9 @@ Pour une personne qui pilote l’interface à la voix (Dragon, Contrôle vocal d
 
 | Défaut | Impact | Critères |
 |--------|--------|----------|
-| Nom accessible qui ne contient pas l’intitulé visible | La commande « cliquer sur Envoyer » ne trouve pas le bouton | 6.1, 11.2 |
+| Nom accessible d’un bouton qui ne contient pas son intitulé visible | La commande « cliquer sur Envoyer » ne trouve pas le bouton | 11.9 |
+| Nom accessible d’un lien qui ne contient pas son intitulé visible | La commande « cliquer sur Mentions légales » ne trouve pas le lien | 6.1 |
+| Nom accessible d’un champ qui ne contient pas son étiquette visible | La commande « cliquer sur Nom » ne place pas le focus dans le champ | 11.2 |
 | Champ sans `autocomplete` adapté | Le remplissage automatique ne fonctionne pas : chaque donnée personnelle doit être dictée | 11.13 |
 
 ## Sous-titres et transcription
