@@ -54,7 +54,7 @@
     },
     {
       "name": "rgaa",
-      "version": "e7618fc398fc",
+      "version": "bb7e20b63ca7",
       "files": [
         "README.md",
         "SKILL.md",
@@ -77,9 +77,11 @@
         "references/impacts.md",
         "scripts/check-classement.py",
         "scripts/check-dsfr-classes.py",
+        "scripts/check-form-names.py",
         "scripts/officiel.py",
         "scripts/test-check-classement.sh",
         "scripts/test-check-dsfr-classes.sh",
+        "scripts/test-check-form-names.sh",
         "scripts/test-officiel.sh"
       ]
     },

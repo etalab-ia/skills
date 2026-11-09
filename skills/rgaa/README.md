@@ -30,6 +30,7 @@ C'est un outil d'**audit a posteriori** : on lui fournit du code à analyser, il
 | [`references/criteres-formulaires.md`](references/criteres-formulaires.md) | Thème 11 : Formulaires (13 critères) |
 | [`references/criteres-navigation-consultation.md`](references/criteres-navigation-consultation.md) | Thèmes 12 à 13 : Navigation, Consultation |
 | [`scripts/check-dsfr-classes.py`](scripts/check-dsfr-classes.py) | Vérifie les classes `fr-*` des exemples contre le CSS DSFR publié |
+| [`scripts/check-form-names.py`](scripts/check-form-names.py) | Vérifie que les champs des exemples HTML et ERB portent un `name` |
 
 ## Vérifier les classes DSFR des exemples
 
@@ -47,6 +48,29 @@ Le script a son propre test, sans réseau :
 
 ```bash
 sh scripts/test-check-dsfr-classes.sh
+```
+
+## Vérifier les champs de formulaire des exemples
+
+Un champ sans `name` ne transmet pas sa valeur à l’envoi du formulaire, et l’exemple recopié emporte le défaut avec lui. Après avoir modifié une référence, lancer depuis le dossier de la skill :
+
+```bash
+python3 scripts/check-form-names.py
+```
+
+Le script lit les blocs `html`, `erb` et `html+erb` de `references/**/*.md` et signale chaque `<input>`, `<select>` ou `<textarea>` sans `name` non vide, avec fichier et ligne (code de sortie 1). Les boutons (`type` `submit`, `button`, `reset`, `image`), les champs en commentaire et les helpers Rails, qui génèrent le `name`, ne sont pas vérifiés. Les blocs React (`tsx`, `jsx`) non plus : ils ne portent que les attributs d’accessibilité.
+
+Un champ qui n’est pas envoyé, comme un interrupteur piloté en JavaScript, se déclare par un commentaire placé juste avant lui, sans rien entre les deux :
+
+```erb
+<%# sans name : piloté en JavaScript %>
+<input type="checkbox" class="fr-toggle__input" id="raccourcis-actifs">
+```
+
+Le commentaire dispense le seul champ qui le suit. Le script a son propre test :
+
+```bash
+sh scripts/test-check-form-names.sh
 ```
 
 ## Installation
