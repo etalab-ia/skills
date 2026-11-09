@@ -78,7 +78,7 @@ MainLayout, Header, LeftPanel, RightPanel, Footer, Tabs, DropdownMenu, Input, Te
 RGAA 4.1.2 compliance (WCAG 2.1 AA) is mandatory.
 Ref: https://accessibilite.numerique.gouv.fr/ + [handbook/accessibility](https://suitenumerique.gitbook.io/handbook/accessibility)
 
-> For a comprehensive audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) provides a full 106-criteria audit tool that produces structured conformity reports.
+> To prepare an audit, the `rgaa` skill from [etalab-ia/skills](https://github.com/etalab-ia/skills) runs an AI-assisted self-assessment of the 106 criteria. Its structured report supports an audit; it is not a conformity audit.
 
 **Test with a screen reader:**
 - macOS: VoiceOver + Safari (built-in)
@@ -312,6 +312,6 @@ Ref: https://github.com/gitleaks/gitleaks
 The [etalab-ia/skills](https://github.com/etalab-ia/skills) repository provides AI coding assistant skills tailored for French government projects:
 
 - **lasuite-ui-kit** — Component reference for La Suite UI Kit (`@gouvfr-lasuite/ui-kit` and `@gouvfr-lasuite/cunningham-react`)
-- **rgaa** — Full 106-criteria RGAA accessibility audit tool with structured conformity reports
+- **rgaa** — AI-assisted RGAA 4.1.2 self-assessment (106 criteria); produces a structured report that supports an audit, not a conformity audit
 - **securite-developpement** — Comprehensive 12-rule security checklist for government app development
 - **datagouv-apis** — data.gouv.fr APIs reference (catalog, metrics, tabular data)
