@@ -107,12 +107,21 @@ skills/
 ├── rgaa/
 │   ├── README.md
 │   ├── SKILL.md
+│   ├── scripts/                  # contrôles des références, chacun avec son test test-*.sh
+│   │   ├── check-classement.py   # complétude du classement des 106 critères
+│   │   ├── check-dsfr-classes.py # classes fr-* des exemples contre le CSS DSFR publié
+│   │   └── officiel.py           # génère et contrôle les blocs « Texte officiel »
+│   ├── sources/                  # JSON officiels DINUM (critères, glossaire), non distribués
 │   └── references/
 │       ├── criteres-formulaires.md
 │       ├── criteres-images-cadres-couleurs.md
 │       ├── criteres-multimedia-tableaux-liens-scripts.md
 │       ├── criteres-navigation-consultation.md
-│       └── criteres-structure-presentation.md
+│       ├── criteres-structure-presentation.md
+│       ├── classement/           # mode d’évaluation de chaque critère
+│       ├── corrections/          # corrections React / JSX et Rails / ERB, mêmes noms de fichiers
+│       ├── glossaire.md          # glossaire officiel, généré
+│       └── impacts.md            # impacts des défauts par mécanisme de blocage
 ├── securite-developpement/
 │   ├── README.md
 │   ├── SKILL.md
