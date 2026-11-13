@@ -23,7 +23,7 @@ Quand elle est activée, l'assistant IA sait :
 |--------|-------|
 | HTML et CSS avec les classes `fr-*`, sans framework ou avec un moteur de gabarits (Twig, Jinja, ERB…) | **dsfr** |
 | Projet React avec `@codegouvfr/react-dsfr` | [**react-dsfr**](../react-dsfr/) |
-| Audit de conformité RGAA complet (106 critères) | [**rgaa**](../rgaa/) |
+| Auto-évaluation RGAA assistée par IA (106 critères), en appui d’un audit | [**rgaa**](../rgaa/) |
 
 ## Contenu
 
