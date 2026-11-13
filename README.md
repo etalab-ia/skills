@@ -18,6 +18,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | [**usage-ia-agents-etat**](skills/usage-ia-agents-etat/) | Cadre d'usage de l'IA générative pour les agents publics, d'après le [Guide d'usage de l'IA](https://ia.numerique.gouv.fr/ressources/guide-dusage-de-lia/) de la DINUM — 5 principes + conseil proactif |
 | [**datagouv-apis**](skills/datagouv-apis/) | 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) — synchronisées depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill) |
 | [**albert-api**](skills/albert-api/) | [Albert API](https://albert.api.etalab.gouv.fr) — API d'inférence IA de l'État (chat, embeddings, RAG souverain, audio, OCR), compatible OpenAI |
+| [**albert-chat**](skills/albert-chat/) | Guide FDE pour adapter, configurer, déployer et intégrer [`etalab-ia/albert-chat`](https://github.com/etalab-ia/albert-chat) sur un corpus métier |
 
 ## Skills expérimentales ⚠️
 
@@ -155,6 +156,12 @@ skills/
 │   ├── openapi.snapshot.json
 │   └── bin/
 │       └── check_drift.py
+├── albert-chat/
+│   ├── README.md
+│   ├── SKILL.md
+│   └── references/
+│       ├── contrat-corpus.md
+│       └── integration-et-deploiement.md
 └── .experimental/          # ⚠️ skills non portées par la DINUM, dépendances tierces non auditées
     ├── README.md
     ├── rag-parse/

@@ -11,6 +11,16 @@
       ]
     },
     {
+      "name": "albert-chat",
+      "version": "9fe99fbf5459",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "references/contrat-corpus.md",
+        "references/integration-et-deploiement.md"
+      ]
+    },
+    {
       "name": "anssi-guides",
       "version": "31d8a79d6e73",
       "files": [
