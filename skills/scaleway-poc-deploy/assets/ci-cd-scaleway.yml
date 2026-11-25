@@ -1,0 +1,156 @@
+# Modèle de workflow CI/CD pour déployer un POC sur Scaleway Serverless Containers.
+# À copier dans .github/workflows/ci-cd.yml et adapter aux commandes et routes du POC.
+#
+# Secrets GitHub Actions requis (Settings -> Secrets and variables -> Actions -> Secrets) :
+#   SCW_ACCESS_KEY        Clé d'accès de l'application IAM dédiée au POC
+#   SCW_SECRET_KEY        Clé secrète de l'application IAM dédiée au POC
+#   SCW_ORGANIZATION_ID   UUID de l'organisation Scaleway
+#   SCW_PROJECT_ID        UUID du projet Scaleway du POC
+#   (Si privacy=private : ajouter SCW_INVOKE_TOKEN pour le contrôle HTTP post-déploiement)
+#
+# Variables GitHub Actions requises (Settings -> Secrets and variables -> Actions -> Variables) :
+#   SCW_CONTAINER_ID      UUID du conteneur Serverless
+#   SCW_NAMESPACE_ID      UUID du namespace Serverless Containers
+#   SCW_IMAGE_BASE        Référence complète sans tag (ex. rg.fr-par.scw.cloud/alliance-mon-poc/app)
+#   SCW_REGISTRY_HOST     Optionnel, défaut : rg.fr-par.scw.cloud
+#   SCW_REGION            Optionnel, défaut : fr-par
+#
+# Pensez également à activer Dependabot (.github/dependabot.yml) pour les écosystèmes
+# "github-actions" et "docker" avec un cooldown de 7 jours.
+
+name: CI/CD
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-cd-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  verify:
+    name: Lint, tests and build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Adapter les étapes ci-dessous à la stack du POC (lint, typecheck, tests, build).
+      - name: Verify Docker build
+        run: docker build --pull -t poc-verify:pr .
+
+  deploy:
+    name: Deploy to Scaleway
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: scaleway-production
+      cancel-in-progress: false
+    env:
+      SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+      SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+      SCW_ORGANIZATION_ID: ${{ secrets.SCW_ORGANIZATION_ID }}
+      SCW_PROJECT_ID: ${{ secrets.SCW_PROJECT_ID }}
+      SCW_REGION: ${{ vars.SCW_REGION || 'fr-par' }}
+      SCW_REGISTRY_HOST: ${{ vars.SCW_REGISTRY_HOST || 'rg.fr-par.scw.cloud' }}
+      SCW_CONTAINER_ID: ${{ vars.SCW_CONTAINER_ID }}
+      SCW_NAMESPACE_ID: ${{ vars.SCW_NAMESPACE_ID }}
+      SCW_IMAGE_BASE: ${{ vars.SCW_IMAGE_BASE }}
+      IMAGE_REFERENCE: ${{ vars.SCW_IMAGE_BASE }}:sha-${{ github.sha }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Check Scaleway configuration
+        run: |
+          set -euo pipefail
+          for var_name in \
+            SCW_ACCESS_KEY \
+            SCW_SECRET_KEY \
+            SCW_ORGANIZATION_ID \
+            SCW_PROJECT_ID \
+            SCW_CONTAINER_ID \
+            SCW_NAMESPACE_ID \
+            SCW_IMAGE_BASE \
+            SCW_REGISTRY_HOST \
+            SCW_REGION; do
+            if [ -z "${!var_name:-}" ]; then
+              echo "::error::Missing required GitHub secret or variable: ${var_name}"
+              exit 1
+            fi
+          done
+          echo "Region:    ${SCW_REGION}"
+          echo "Namespace: ${SCW_NAMESPACE_ID}"
+          echo "Container: ${SCW_CONTAINER_ID}"
+          echo "Image:     ${IMAGE_REFERENCE}"
+
+      - name: Set up Scaleway CLI
+        uses: scaleway/action-scw@2e34a1eb35cf3cac627f24643a101fea269cbd83 # v0.0.3
+        with:
+          version: v2.65.2
+          access-key: ${{ secrets.SCW_ACCESS_KEY }}
+          secret-key: ${{ secrets.SCW_SECRET_KEY }}
+          default-organization-id: ${{ secrets.SCW_ORGANIZATION_ID }}
+          default-project-id: ${{ secrets.SCW_PROJECT_ID }}
+          export-config: true
+
+      - name: Log in to Scaleway registry
+        run: |
+          set -euo pipefail
+          printf '%s' "$SCW_SECRET_KEY" | docker login "$SCW_REGISTRY_HOST" --username "$SCW_ACCESS_KEY" --password-stdin
+
+      - name: Verify the Scaleway project and container
+        run: |
+          set -euo pipefail
+          namespace=$(scw container namespace get "$SCW_NAMESPACE_ID" region="$SCW_REGION" -o json)
+          test "$(jq -r '.organization_id // empty' <<<"$namespace")" = "$SCW_ORGANIZATION_ID"
+          test "$(jq -r '.project_id // empty' <<<"$namespace")" = "$SCW_PROJECT_ID"
+          container=$(scw container container get "$SCW_CONTAINER_ID" region="$SCW_REGION" -o json)
+          test "$(jq -r '.namespace_id // empty' <<<"$container")" = "$SCW_NAMESPACE_ID"
+          echo "Scaleway organization, project and container are consistent."
+
+      - name: Build and push the immutable image
+        run: |
+          set -euo pipefail
+          docker build --pull --tag "$IMAGE_REFERENCE" .
+          docker push "$IMAGE_REFERENCE"
+
+      - name: Update the container image and wait for rollout
+        run: |
+          set -euo pipefail
+          scw container container update "$SCW_CONTAINER_ID" \
+            image="$IMAGE_REFERENCE" \
+            region="$SCW_REGION" \
+            --wait \
+            -o json
+
+      - name: Verify the deployed image and check HTTP health
+        run: |
+          set -euo pipefail
+          container=$(scw container container get "$SCW_CONTAINER_ID" region="$SCW_REGION" -o json)
+          test "$(jq -r '.image // empty' <<<"$container")" = "$IMAGE_REFERENCE"
+          test "$(jq -r '.status // empty' <<<"$container")" = "ready"
+          endpoint=$(jq -r '.public_endpoint // empty' <<<"$container")
+          test -n "$endpoint"
+
+          # Adapter les routes vérifiées au POC (ex. /health, /_stcore/health, /).
+          # Pour un conteneur privacy=private, passer -H "X-Auth-Token: ${SCW_INVOKE_TOKEN}"
+          # (clé secrète d'une application IAM disposant de ContainersPrivateAccess).
+          for _ in $(seq 1 12); do
+            if curl --fail --silent --show-error --max-time 45 --output /dev/null "${endpoint}/"; then
+              echo "Deployment is healthy at ${endpoint}"
+              exit 0
+            fi
+            sleep 10
+          done
+
+          echo "Container is ready but the HTTP health checks failed."
+          exit 1

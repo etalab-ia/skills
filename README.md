@@ -19,6 +19,7 @@ Skills pour les assistants de code IA (Claude Code, OpenCode, Mistral Vibe) int�
 | [**datagouv-apis**](skills/datagouv-apis/) | 3 APIs de [data.gouv.fr](https://www.data.gouv.fr/) — synchronisées depuis [datagouv/datagouv-skill](https://github.com/datagouv/datagouv-skill) |
 | [**albert-api**](skills/albert-api/) | [Albert API](https://albert.api.etalab.gouv.fr) — API d'inférence IA de l'État (chat, embeddings, RAG souverain, audio, OCR), compatible OpenAI |
 | [**albert-chat**](skills/albert-chat/) | Guide FDE pour adapter, configurer, déployer et intégrer [`etalab-ia/albert-chat`](https://github.com/etalab-ia/albert-chat) sur un corpus métier |
+| [**scaleway-poc-deploy**](skills/scaleway-poc-deploy/) | Guide FDE pour conteneuriser, provisionner (`scw` + `gh`), déployer en CI/CD, diagnostiquer et démonter un POC HTTP sans état sur Scaleway Serverless Containers |
 
 ## Skills expérimentales ⚠️
 
@@ -162,6 +163,15 @@ skills/
 │   └── references/
 │       ├── contrat-corpus.md
 │       └── integration-et-deploiement.md
+├── scaleway-poc-deploy/
+│   ├── README.md
+│   ├── SKILL.md
+│   ├── assets/
+│   │   └── ci-cd-scaleway.yml
+│   └── references/
+│       ├── conteneur-et-stacks.md
+│       ├── pieges-et-depannage.md
+│       └── provisionnement-et-teardown.md
 └── .experimental/          # ⚠️ skills non portées par la DINUM, dépendances tierces non auditées
     ├── README.md
     ├── rag-parse/
