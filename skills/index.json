@@ -96,6 +96,18 @@
       ]
     },
     {
+      "name": "scaleway-poc-deploy",
+      "version": "d56ebe01a8bc",
+      "files": [
+        "README.md",
+        "SKILL.md",
+        "assets/ci-cd-scaleway.yml",
+        "references/conteneur-et-stacks.md",
+        "references/pieges-et-depannage.md",
+        "references/provisionnement-et-teardown.md"
+      ]
+    },
+    {
       "name": "securite-developpement",
       "version": "ff668f64c0cf",
       "files": [
