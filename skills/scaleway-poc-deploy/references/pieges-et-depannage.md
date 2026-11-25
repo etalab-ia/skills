@@ -128,9 +128,13 @@ Après une période d'inactivité, Scaleway arrête toutes les instances. La pre
 - **En CI** : les contrôles HTTP post-déploiement doivent utiliser un timeout généreux (`--max-time 45`) et une boucle de réessais (ex. 12 tentatives espacées de 10 s).
 - **Avant une démo** : envoyer une requête réelle quelques secondes avant de présenter le POC.
 
-### Compteurs en mémoire et `max_scale`
+### Compteurs en mémoire, `min_scale: 0` et plafonds budgétaires
 
-Les plafonds anti-abus en mémoire (requêtes/minute par IP, quota journalier global) vivent dans le processus de chaque instance. Passer `max-scale` au-delà de `1` multiplie le quota effectif par le nombre d'instances actives et fragmente l'état. Pour un POC, conserver `max-scale=1` ; pour une montée en charge multi-instances, externaliser les compteurs (Redis / base partagée) et suivre [`securite-developpement`](../../securite-developpement/SKILL.md).
+Les compteurs conservés en mémoire du processus (anti-rafale par IP ou compteur applicatif) ne sont qu'un **frein au mieux (*best-effort*) sur l'instance courante** :
+- Avec **`min-scale=0`**, Scaleway arrête le conteneur après inactivité ; chaque démarrage à froid, redéploiement ou redémarrage sur crash **remet ces compteurs à zéro**. Ils ne garantissent donc pas un plafond budgétaire journalier réel, même avec `max-scale=1`.
+- Passer **`max-scale` au-delà de `1`** multiplie en outre la limite par le nombre d'instances actives et fragmente l'état.
+
+Pour borner réellement le coût d'un POC public appelant une API payante (LLM, OCR), s'appuyer sur un **plafond imposé côté fournisseur amont** (clé d'API dédiée avec quota/budget plafonné) ou sur un **stockage persistant externe** (Redis / base partagée), plutôt que sur un compteur en mémoire seul. Pour un passage en production, suivre [`securite-developpement`](../../securite-developpement/SKILL.md).
 
 ### Consulter les journaux de démarrage
 

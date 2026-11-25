@@ -133,19 +133,31 @@ jobs:
             -o json
 
       - name: Verify the deployed image and check HTTP health
+        env:
+          SCW_INVOKE_TOKEN: ${{ secrets.SCW_INVOKE_TOKEN }}
         run: |
           set -euo pipefail
           container=$(scw container container get "$SCW_CONTAINER_ID" region="$SCW_REGION" -o json)
           test "$(jq -r '.image // empty' <<<"$container")" = "$IMAGE_REFERENCE"
           test "$(jq -r '.status // empty' <<<"$container")" = "ready"
           endpoint=$(jq -r '.public_endpoint // empty' <<<"$container")
+          privacy=$(jq -r '.privacy // "public"' <<<"$container")
           test -n "$endpoint"
 
+          curl_auth_args=()
+          if [ "$privacy" = "private" ]; then
+            if [ -z "${SCW_INVOKE_TOKEN:-}" ]; then
+              echo "::error::Container has privacy=private but GitHub secret SCW_INVOKE_TOKEN is not set."
+              exit 1
+            fi
+            curl_auth_args=(-H "X-Auth-Token: ${SCW_INVOKE_TOKEN}")
+          elif [ -n "${SCW_INVOKE_TOKEN:-}" ]; then
+            curl_auth_args=(-H "X-Auth-Token: ${SCW_INVOKE_TOKEN}")
+          fi
+
           # Adapter les routes vérifiées au POC (ex. /health, /_stcore/health, /).
-          # Pour un conteneur privacy=private, passer -H "X-Auth-Token: ${SCW_INVOKE_TOKEN}"
-          # (clé secrète d'une application IAM disposant de ContainersPrivateAccess).
           for _ in $(seq 1 12); do
-            if curl --fail --silent --show-error --max-time 45 --output /dev/null "${endpoint}/"; then
+            if curl --fail --silent --show-error --max-time 45 "${curl_auth_args[@]}" --output /dev/null "${endpoint}/"; then
               echo "Deployment is healthy at ${endpoint}"
               exit 0
             fi

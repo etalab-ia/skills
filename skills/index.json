@@ -97,7 +97,7 @@
     },
     {
       "name": "scaleway-poc-deploy",
-      "version": "d00c82a7238a",
+      "version": "d56ebe01a8bc",
       "files": [
         "README.md",
         "SKILL.md",
