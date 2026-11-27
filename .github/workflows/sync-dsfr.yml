@@ -1,0 +1,80 @@
+name: Sync dsfr skill
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Lundi 9h UTC, après la sync DSFR du dépôt source (6h UTC)
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check upstream
+        id: check
+        run: |
+          git clone --depth=1 https://github.com/numerique-gouv/dsfr-skill.git /tmp/upstream
+
+          # On suit le hash de l'arbre skills/dsfr-skill, pas le HEAD du dépôt :
+          # un commit upstream sur le générateur, les évals ou le README ne
+          # doit pas ouvrir de PR.
+          UPSTREAM_TREE=$(cd /tmp/upstream && git rev-parse HEAD:skills/dsfr-skill)
+          UPSTREAM_COMMIT=$(cd /tmp/upstream && git rev-parse HEAD)
+          LOCAL_TREE=$(cat .sync-state/dsfr.sha 2>/dev/null || echo "")
+
+          if [ "$UPSTREAM_TREE" != "$LOCAL_TREE" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "tree=$UPSTREAM_TREE" >> "$GITHUB_OUTPUT"
+            echo "commit=$UPSTREAM_COMMIT" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Sync files
+        if: steps.check.outputs.changed == 'true'
+        env:
+          TREE: ${{ steps.check.outputs.tree }}
+        run: |
+          python3 scripts/sync_dsfr.py /tmp/upstream/skills/dsfr-skill skills/dsfr
+
+          # Réécrit la copie depuis l'index git, qui applique .gitattributes
+          # (eol=lf) : build_index.py hache alors les octets qui seront
+          # commités, et --check passe sur un checkout neuf.
+          git add -A skills/dsfr
+          rm -rf skills/dsfr
+          git checkout -- skills/dsfr
+
+          python3 scripts/build_index.py
+          echo "$TREE" > .sync-state/dsfr.sha
+      - name: Create PR
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TREE: ${{ steps.check.outputs.tree }}
+          COMMIT: ${{ steps.check.outputs.commit }}
+        run: |
+          BRANCH="sync/dsfr-${TREE:0:12}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+          git add -A skills/dsfr skills/index.json skills/.experimental/index.json \
+            .sync-state/dsfr.sha
+          git commit -m "chore(dsfr): sync upstream changes"
+          git push --force origin "$BRANCH"
+
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
+            exit 0
+          fi
+          gh pr create \
+            --title "chore(dsfr): sync upstream changes" \
+            --body "$(cat <<EOF
+          Mise à jour automatique de la skill dsfr depuis [numerique-gouv/dsfr-skill](https://github.com/numerique-gouv/dsfr-skill).
+
+          Commit upstream : [\`${COMMIT:0:7}\`](https://github.com/numerique-gouv/dsfr-skill/commit/${COMMIT})
+          Arbre \`skills/dsfr-skill\` : \`${TREE}\`
+
+          Le contenu est relu dans le dépôt source avant d'arriver ici. À vérifier : la description de \`SKILL.md\` ne recouvre toujours pas \`react-dsfr\` ni \`rgaa\`.
+          EOF
+          )"

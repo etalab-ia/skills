@@ -1,0 +1,130 @@
+<main role="main" id="content">
+    <div class="fr-container fr-mt-8v fr-mt-md-14v fr-mb-2v fr-mb-md-8v">
+        <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
+            <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+                <h1 class="fr-h2">Création de compte sur [Nom de service-site]</h1>
+                <p class="fr-text--lead">Chapô — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.</p>
+            </div>
+        </div>
+    </div>
+    <div class="fr-container fr-container--fluid fr-mb-md-14v">
+        <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
+            <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+                <div class="fr-container fr-background-alt--grey fr-px-md-0 fr-pt-10v fr-pt-md-14v fr-pb-6v fr-pb-md-10v">
+                    <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center">
+                        <div class="fr-col-12 fr-col-md-10 fr-col-lg-9">
+                            <div class="fr-stepper">
+                                <h2 class="fr-stepper__title">
+                                    Renseigner une identité
+                                    <span class="fr-stepper__state">Étape 2 sur 3</span>
+                                </h2>
+                                <div class="fr-stepper__steps" data-fr-current-step="2" data-fr-steps="3"></div>
+                                <p class="fr-stepper__details">
+                                    <span class="fr-text--bold">Étape suivante :</span> Saisir des coordonnées
+                                </p>
+                            </div>
+                            <hr>
+                            <div>
+                                <form class="fr-mb-0 fr-fieldset" id="identity">
+                                    <fieldset class="fr-mb-0 fr-fieldset fr-fieldset" id="identity-fieldset" aria-labelledby="identity-fieldset-legend identity-fieldset-messages">
+                                        <legend class="fr-fieldset__legend" id="identity-fieldset-legend">
+                                            <h3 class="fr-h5">Identité personnelle</h3>
+                                        </legend>
+                                        <div class="fr-fieldset__element">
+                                            <p class="fr-hint-text">Sauf mention contraire, tous les champs sont obligatoires.</p>
+                                        </div>
+                                        <div class="fr-fieldset__element">
+                                            <fieldset class="fr-fieldset" id="sex-9226" aria-labelledby="sex-9226-legend sex-9226-messages">
+                                                <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="sex-9226-legend">
+                                                    Sexe
+                                                </legend>
+                                                <div class="fr-fieldset__element">
+                                                    <div class="fr-radio-group fr-radio-group--sm">
+                                                        <input type="radio" id="female-9227" name="sex">
+                                                        <label class="fr-label" for="female-9227">
+                                                            Feminin
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fr-fieldset__element">
+                                                    <div class="fr-radio-group fr-radio-group--sm">
+                                                        <input type="radio" id="male-9228" name="sex">
+                                                        <label class="fr-label" for="male-9228">
+                                                            Masculin
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fr-messages-group" id="sex-9226-messages" aria-live="polite">
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="fr-fieldset__element">
+                                            <fieldset class="fr-fieldset" id="name-9238" aria-labelledby="name-9238-legend name-9238-messages">
+                                                <legend class="fr-sr-only" id="name-9238-legend">
+                                                    Nom
+                                                </legend>
+                                                <div class="fr-fieldset__element">
+                                                    <div class="fr-input-group" id="input-group-9241">
+                                                        <label class="fr-label" for="family-name-9230">
+                                                            Nom
+                                                        </label>
+                                                        <input class="fr-input" aria-describedby="family-name-9230-messages" name="family-name" autocomplete="family-name" id="family-name-9230" spellcheck="false" type="text">
+                                                        <div class="fr-messages-group" id="family-name-9230-messages" aria-live="polite">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fr-fieldset__element">
+                                                    <fieldset class="fr-mb-n4v fr-fieldset fr-fieldset" id="firstname-fieldset-9236" aria-labelledby="firstname-fieldset-9236-legend firstname-fieldset-9236-messages">
+                                                        <legend class="fr-sr-only" id="firstname-fieldset-9236-legend">
+                                                            Prénom
+                                                        </legend>
+                                                        <div class="fr-fieldset__element">
+                                                            <div class="fr-input-group" id="input-group-9242">
+                                                                <label class="fr-label" for="given-9235">
+                                                                    Prénom
+                                                                </label>
+                                                                <input class="fr-input" aria-describedby="given-9235-messages" name="given-name" autocomplete="given-name" id="given-9235" spellcheck="false" type="text">
+                                                                <div class="fr-messages-group" id="given-9235-messages" aria-live="polite">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fr-messages-group" id="firstname-fieldset-9236-messages" aria-live="polite">
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="fr-fieldset__element">
+                                                    <div class="fr-checkbox-group fr-checkbox-group--sm">
+                                                        <input onclick="toggleDisabled(this, 'firstname-fieldset-9236')" name="firstname-disabled" id="disabler-9237" type="checkbox" aria-describedby="disabler-9237-messages">
+                                                        <label class="fr-label" for="disabler-9237">
+                                                            Je n'ai pas de prénom
+                                                        </label>
+                                                        <div class="fr-messages-group" id="disabler-9237-messages" aria-live="polite">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fr-messages-group" id="name-9238-messages" aria-live="polite">
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="fr-fieldset__element">
+                                            <ul class="fr-mt-2v fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-sm fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-sm">
+                                                <li>
+                                                    <button type="submit" class="fr-btn">Valider</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="fr-btn fr-btn--secondary">Précédent</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="fr-messages-group" id="identity-fieldset-messages" aria-live="polite">
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

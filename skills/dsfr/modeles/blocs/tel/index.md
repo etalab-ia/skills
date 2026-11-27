@@ -1,0 +1,84 @@
+# Numéro de téléphone
+
+> Champ de saisie de numéro de téléphone avec validation
+
+Voir aussi : [Exemples](exemples.md)
+
+Le bloc fonctionnel de “demande d’un numéro de téléphone” permet d’aider un utilisateur à saisir un numéro de téléphone.
+
+## Structure
+
+Le champ téléphone est composé :
+
+- d’un label - obligatoire
+- et d’une description précisant le format attendu - obligatoire
+- un input de type “tel” - obligatoire
+- un bloc de messages d’erreur/succès - optionnel
+
+<div class="dsfr-doc-preview">
+<div class="fr-input-group">
+    <label class="fr-label" for="tel-1">
+        Numéro de téléphone
+        <span class="fr-hint-text">Format attendu : (+33) 5 36 49 68 27</span>
+    </label>
+    <input class="fr-input" autocomplete="tel" aria-describedby="tel-1-message-error" id="tel-1422" type="tel">
+    <div class="fr-messages-group" aria-live="polite" id="tel-1-messages">
+    </div>
+</div>
+</div>
+
+```html
+<div class="fr-input-group">
+    <label class="fr-label" for="tel-1">
+        Numéro de téléphone
+        <span class="fr-hint-text">Format attendu : (+33) 5 36 49 68 27</span>
+    </label>
+    <input class="fr-input" autocomplete="tel" aria-describedby="tel-1-message-error" id="tel-1422" type="tel">
+    <div class="fr-messages-group" aria-live="polite" id="tel-1-messages">
+    </div>
+</div>
+```
+
+**Avec erreur :**
+
+- ajouter la classe `fr-input-group--error` sur l’`input-group`
+- insérer le texte d’erreur dans un `<p class="fr-message fr-message--error">` à l’intérieur du `messages-group`
+
+<div class="dsfr-doc-preview">
+<div class="fr-input-group fr-input-group--error">
+    <label class="fr-label" for="tel-1">
+        Numéro de téléphone
+        <span class="fr-hint-text">Format attendu : (+33) 5 36 49 68 27</span>
+    </label>
+    <input class="fr-input" autocomplete="tel" aria-describedby="tel-1-message-error" id="tel-1422" type="tel">
+    <div class="fr-messages-group" aria-live="polite" id="tel-1-messages">
+        <p class="fr-message fr-message--error">Le format de numéro de téléphone saisie n’est pas valide. Le format attendu est : (+33) 5 36 49 68 27</p>
+    </div>
+</div>
+</div>
+
+```html
+<div class="fr-input-group fr-input-group--error">
+    <label class="fr-label" for="tel-1">
+        Numéro de téléphone
+        <span class="fr-hint-text">Format attendu : (+33) 5 36 49 68 27</span>
+    </label>
+    <input class="fr-input" autocomplete="tel" aria-describedby="tel-1-message-error" id="tel-1422" type="tel">
+    <div class="fr-messages-group" aria-live="polite" id="tel-1-messages">
+        <p class="fr-message fr-message--error">Le format de numéro de téléphone saisie n’est pas valide. Le format attendu est : (+33) 5 36 49 68 27</p>
+    </div>
+</div>
+```
+
+## Bonnes pratiques
+
+- Veillez à préciser le format attendu en donnant un exemple de numéro de téléphone explicite
+- Le message d’erreur doit proposer un exemple de format différent de celui dans le label.
+- Utiliser l’attribut `autocomplete="tel"` sur l'`input` si la demande concerne un numéro international (avec indicateur).
+- Privilégier des exemples de saisie commençant par [les racines des numéros alloués aux œuvres audiovisuelles (article 2.5.12)](https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000037263033#:~:text=01%2099%2000) : 01 99 00, 02 61 91, 03 53 01, 04 65 71, 05 36 49, 06 39 98.
+
+## Accessibilité
+
+- Le label doit être lié à l’input via l’attribut `“for”`.
+- Les messages d’erreur ou de validation doivent être placés dans le bloc vide `fr-messages-group`. Celui-ci possède l’attribut `aria-live="polite"` pour annoncer les messages ajoutés à la volée aux lecteurs d'écrans.
+- L’input doit être lié au groupe de messages via l’attribut `aria-describedby`.

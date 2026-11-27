@@ -1,0 +1,153 @@
+<div class="fr-table fr-table--bordered" id="table-complex-component">
+    <div class="fr-table__wrapper">
+        <div class="fr-table__container">
+            <div class="fr-table__content">
+                <table id="table-complex">
+                    <caption>
+                        Titre du tableau (caption)
+                        <div class="fr-table__caption__desc">(Résumé) Emploi du temps horaire des Groupes 1 et 2, le matin des jours de la semaine ouvrée (Lundi au Vendredi) : <ul>
+                                <li>la première colonne représente le planning de la journée de Lundi pour les groupes 1 et 2,</li>
+                                <li>la deuxième colonne représente le planning de la journée de Mardi pour les groupes 1 et 2,</li>
+                                <li>la troisième colonne représente le planning des journées de Mercredi et Jeudi pour le groupe 1,</li>
+                                <li>la quatrième colonne représente le planning des journées de Mercredi et Jeudi pour le groupe 2,</li>
+                                <li>la cinquième colonne représente le planning de la journée de Vendredi pour les groupes 1 et 2.</li>
+                            </ul>
+                        </div>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th class="fr-cell--fixed" role="columnheader" rowspan="2" id="complex-thead-0-col-0">
+                                <span class="fr-sr-only">Horaires</span>
+                            </th>
+                            <th id="complex-thead-0-col-1">
+                                Lundi
+                            </th>
+                            <th id="complex-thead-0-col-2">
+                                Mardi
+                            </th>
+                            <th colspan="2" id="complex-thead-0-col-3">
+                                Mercredi & Jeudi
+                                <br>
+                                <i>Exemple de 2 cellules fusionnées dans le Header</i>
+                            </th>
+                            <th id="complex-thead-0-col-4">
+                                Vendredi
+                            </th>
+                        </tr>
+                        <tr>
+                            <th headers="complex-thead-0-col-1" id="complex-thead-1-col-0">
+                                Groupes 1 & 2
+                            </th>
+                            <th headers="complex-thead-0-col-2" id="complex-thead-1-col-1">
+                                Groupes 1 & 2
+                            </th>
+                            <th headers="complex-thead-0-col-3" id="complex-thead-1-col-2">
+                                Groupe 1
+                            </th>
+                            <th headers="complex-thead-0-col-3" id="complex-thead-1-col-3">
+                                Groupe 2
+                            </th>
+                            <th headers="complex-thead-0-col-4" id="complex-thead-1-col-4">
+                                Groupes 1 & 2
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="table-complex-row-key-1" data-row-key="1">
+                            <th class="fr-cell--fixed" id="complex-row-0" headers="complex-thead-0-col-0">
+                                8h
+                            </th>
+                            <td headers="complex-row-0 complex-thead-0-col-1 complex-thead-1-col-0">
+                                Français
+                            </td>
+                            <td headers="complex-row-0 complex-thead-0-col-2 complex-thead-1-col-1">
+                                Mathématiques
+                            </td>
+                            <td headers="complex-row-0 complex-thead-0-col-3 complex-thead-1-col-2">
+                                LV1
+                            </td>
+                            <td headers="complex-row-0 complex-thead-0-col-3 complex-thead-1-col-3">
+                                Histoire - Géographie
+                            </td>
+                            <td headers="complex-row-0 complex-thead-0-col-4 complex-thead-1-col-4">
+                                EPS
+                            </td>
+                        </tr>
+                        <tr id="table-complex-row-key-2" data-row-key="2">
+                            <th class="fr-cell--fixed" id="complex-row-1" headers="complex-thead-0-col-0">
+                                9h
+                            </th>
+                            <td colspan="5" headers="complex-row-1 complex-thead-0-col-1 complex-thead-0-col-2 complex-thead-0-col-3 complex-thead-0-col-4 complex-thead-1-col-0 complex-thead-1-col-1 complex-thead-1-col-2 complex-thead-1-col-3 complex-thead-1-col-4">
+                                Etude dirigée
+                                <br>
+                                <i>Exemple de colspan sur toute la ligne</i>
+                            </td>
+                        </tr>
+                        <tr id="table-complex-row-key-3" data-row-key="3">
+                            <th class="fr-cell--fixed" id="complex-row-2" headers="complex-thead-0-col-0">
+                                10h
+                            </th>
+                            <td headers="complex-row-2 complex-thead-0-col-1 complex-thead-1-col-0">
+                                Mathématiques
+                            </td>
+                            <td headers="complex-row-2 complex-thead-0-col-2 complex-thead-1-col-1">
+                                Histoire - Géographie
+                            </td>
+                            <td rowspan="2" headers="complex-row-2 complex-row-3 complex-thead-0-col-3 complex-thead-1-col-2">
+                                Arts appliqués
+                                <br>
+                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/environment.svg#artwork-decorative"></use>
+                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/environment.svg#artwork-minor"></use>
+                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/environment.svg#artwork-major"></use>
+                                </svg>
+                            </td>
+                            <td headers="complex-row-2 complex-thead-0-col-3 complex-thead-1-col-3">
+                                LV2
+                            </td>
+                            <td headers="complex-row-2 complex-thead-0-col-4 complex-thead-1-col-4">
+                                Sciences
+                            </td>
+                        </tr>
+                        <tr id="table-complex-row-key-4" data-row-key="4">
+                            <th class="fr-cell--fixed" id="complex-row-3" headers="complex-thead-0-col-0">
+                                11h
+                            </th>
+                            <td headers="complex-row-3 complex-thead-0-col-1 complex-thead-1-col-0">
+                                Français
+                            </td>
+                            <td headers="complex-row-3 complex-thead-0-col-2 complex-thead-1-col-1">
+                                EPS
+                            </td>
+                            <td headers="complex-row-3 complex-thead-0-col-3 complex-thead-1-col-3">
+                                Histoire - Géographie
+                            </td>
+                            <td headers="complex-row-3 complex-thead-0-col-4 complex-thead-1-col-4">
+                                Physique - Chimie
+                            </td>
+                        </tr>
+                        <tr id="table-complex-row-key-5" data-row-key="5">
+                            <th class="fr-cell--fixed" id="complex-row-4" headers="complex-thead-0-col-0">
+                                12h
+                            </th>
+                            <td headers="complex-row-4 complex-thead-0-col-1 complex-thead-1-col-0">
+                                Sciences
+                            </td>
+                            <td headers="complex-row-4 complex-thead-0-col-2 complex-thead-1-col-1">
+                                LV1
+                            </td>
+                            <td colspan="2" headers="complex-row-4 complex-thead-0-col-3 complex-thead-1-col-2 complex-thead-1-col-3">
+                                EPS
+                                <br>
+                                <i>Exemple de colspan sur 2 cellules</i>
+                            </td>
+                            <td headers="complex-row-4 complex-thead-0-col-4 complex-thead-1-col-4">
+                                LV2
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

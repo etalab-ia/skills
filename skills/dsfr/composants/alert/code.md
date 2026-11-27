@@ -1,0 +1,138 @@
+# Alerte : Code
+
+## HTML
+
+### Structure du composant
+
+Le composant **Alerte** est utilisé pour afficher des messages contextuels comme des informations, avertissements, erreurs ou succès. Il est composé de trois éléments principaux :
+
+- Un conteneur principal de type `<div>` avec la classe `fr-alert`, représentant l'alerte elle-même.
+- Un titre facultatif contenu dans un niveau d'entête `<hx>`, variable en fonction de sa hiérarchie dans la page (par défaut h3), avec la classe `fr-alert__title`, qui décrit la nature du message.
+- Un paragraphe `<p>` qui contient le texte du message.
+- Un bouton de fermeture facultatif `<button>` de type "button" pour permettre à l'utilisateur de fermer l'alerte. Ce bouton doit être lié à une fonction JavaScript pour supprimer l'alerte du DOM lorsqu'il est cliqué.
+
+Le composant Alerte utilise des classes spécifiques pour définir son type (info, warning, error, success) et sa taille (sm, md).
+
+**Exemple de structure HTML**
+
+```html
+<div class="fr-alert">
+  <h3 class="fr-alert__title">Titre de l'alerte</h3>
+  <p>Description de l'alerte</p>
+  <button title="Masquer le message" onclick="const alert = this.parentNode; alert.parentNode.removeChild(alert)" type="button" class="fr-btn--close fr-btn">Masquer le message</button>
+</div>
+```
+
+### Déclinaisons d'alertes
+
+Le composant Alerte propose plusieurs variations en fonction du type de message :
+
+- **info** : pour les messages d'information
+- **warning** : pour les messages d'avertissement
+- **error** : pour les messages d'erreur
+- **success** : pour les messages de succès
+
+Ces variations sont définies par l'ajout de classes correspondantes sur le conteneur principal :
+
+- `fr-alert--info`
+- `fr-alert--warning`
+- `fr-alert--error`
+- `fr-alert--success`
+
+**Exemple de structure HTML avec des déclinaisons**
+
+```html
+<div class="fr-alert fr-alert--error">
+  <h3 class="fr-alert__title">Erreur critique</h3>
+  <p>Une erreur est survenue, veuillez réessayer plus tard.</p>
+  <button title="Masquer le message" onclick="const alert = this.parentNode; alert.parentNode.removeChild(alert)" type="button" class="fr-btn--close fr-btn">Masquer le message</button>
+</div>
+```
+
+### Taille des alertes
+
+Le composant Alerte peut être utilisé avec différentes tailles :
+
+- **SM** (small) : pour les alertes petites
+- **MD** (medium) : pour les alertes de taille normale (par défaut)
+
+Les tailles sont définies par l'ajout des classes :
+
+- Par défaut, les alertes sont de taille moyenne
+- `fr-alert--sm` pour les alertes petites
+
+**Exemple de structure HTML avec taille SM**
+
+```html
+<div class="fr-alert fr-alert--success fr-alert--sm">
+  <h3 class="fr-alert__title">Succès</h3>
+  <p>Votre demande a été traitée avec succès.</p>
+  <button title="Masquer le message" onclick="const alert = this.parentNode; alert.parentNode.removeChild(alert)" type="button" class="fr-btn--close fr-btn">Masquer le message</button>
+</div>
+```
+
+---
+
+## CSS
+
+### Installation du CSS
+
+Pour fonctionner correctement le style CSS du composant et de ses dépendances doivent être importés. L'import doit se faire avant le contenu de la page dans la partie `<head>`, et de préférence avec les fichiers minifiés, car plus légers.
+
+Il est possible d'importer les fichiers CSS avec un niveau de granularité adapté à vos besoins. Voir le découpage des fichiers CSS du DSFR dans la [documentation dédiée](../../demarrage.md).
+
+**Dépendances CSS**
+
+| Dépendance | Obligatoire | Remarque |
+|------------|-------------|----------|
+| Core       | Oui         |          |
+| Alert      | Oui         |          |
+| Button     | Non         | Uniquement pour la version refermable |
+| Utility    | Non         | Uniquement pour l'ajout d'icône custom |
+
+**Exemple d'imports CSS**
+
+```html
+<link href="dist/core/core.min.css" rel="stylesheet">
+<link href="dist/component/alert/alert.min.css" rel="stylesheet">
+```
+
+### Variantes de style
+
+L'alerte dispose des variations visuelles suivantes en fonction du type de message :
+
+- `fr-alert--info` : pour un message informatif (bleu)
+- `fr-alert--warning` : pour un message d'avertissement (jaune)
+- `fr-alert--error` : pour un message d'erreur (rouge)
+- `fr-alert--success` : pour un message de succès (vert)
+
+Chaque type d'alerte se distingue par une couleur de fond et une icône spécifique.
+
+Les tailles d'alerte sont définies par :
+
+- `fr-alert--sm` pour les petites alertes, qui ont une hauteur réduite et un espacement intérieur plus petit.
+- La taille est médium par défaut.
+
+---
+
+## JavaScript
+
+Le composant Alerte nécessite un JavaScript minimal pour la gestion de la fermeture de l'alerte. En cliquant sur le bouton de fermeture, l'alerte est retirée du DOM grâce à un événement JavaScript. Le DSFR ne gère pas cette fonctionnalité car trop dépendante de la technologie utilisée.
+
+### Fermeture de l'alerte
+
+Le bouton de fermeture doit être lié à une fonction JavaScript pour supprimer l'alerte du DOM. Voici un exemple de code en javascript vanilla pour gérer la suppression de l'alerte :
+
+```javascript
+document.querySelector('.fr-alert__close').addEventListener('click', function() {
+  this.closest('.fr-alert').remove();
+});
+```
+
+Dans l'exemple HTML fourni, cette fonction est déjà intégrée directement dans l'attribut `onclick` du bouton de fermeture.
+
+---
+
+## Note de version
+
+[Voir les évolutions sur github](https://github.com/GouvernementFR/dsfr/pulls?q=is%3Apr+is%3Aclosed+is%3Amerged+alert+)
